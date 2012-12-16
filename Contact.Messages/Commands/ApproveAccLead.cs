@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using NServiceBus;
 
-namespace Messages
+namespace Contact.Messages.Commands
 {
     public class ApproveAccLead : ICommand
     {
