@@ -1,6 +1,8 @@
 using System;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Contact.Contracts;
+using Contact.Senders;
 
 namespace Contact
 {
@@ -18,10 +20,6 @@ namespace Contact
     {
         public void Init()
         {
-            //Configure.With().CastleWindsorBuilder(new WindsorContainer()
-            //    .Register(Classes.FromThisAssembly()
-            //        .InSameNamespaceAs<Main>()
-            //        .LifestyleTransient()));
             Console.WriteLine("Initialized");
         }
     }

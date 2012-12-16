@@ -1,4 +1,5 @@
 using System;
+using Contact.Contracts;
 using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using Contact.Messages.State;
@@ -15,6 +16,7 @@ namespace Contact.Processors
         IAmStartedByMessages<CreateAccSupplier>,
         IHandleMessages<UserCreated>
     {
+
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<UserCreated>(s => s.CorrelationId, m => m.CorrelationId);
