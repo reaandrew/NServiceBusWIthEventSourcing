@@ -8,14 +8,14 @@ namespace Contact.Subscribers
     /// <summary>
     /// Look into correlation id
     /// </summary>
-    public class AccLeadApprovedSubscriber : IHandleMessages<AccLeadApproved>
+    public class CreateAccSupplier : IHandleMessages<AccLeadApproved>
     {
         public IBus Bus { get; set; }
 
         public void Handle(AccLeadApproved message)
         {
             Console.WriteLine("AccLead Approved");
-            Bus.Send("Contact", new CreateAccSupplier());
+            Bus.Send("Contact", new Messages.Commands.CreateAccSupplier());
         }
     }
 }

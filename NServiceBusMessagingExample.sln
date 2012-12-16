@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact", "Contact\Contact.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Messages", "Contact.Messages\Contact.Messages.csproj", "{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.MessageClient", "Contact.MessageClient\Contact.MessageClient.csproj", "{7741D01B-BB0B-404B-951C-E9EDA2431DBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7741D01B-BB0B-404B-951C-E9EDA2431DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7741D01B-BB0B-404B-951C-E9EDA2431DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7741D01B-BB0B-404B-951C-E9EDA2431DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7741D01B-BB0B-404B-951C-E9EDA2431DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
