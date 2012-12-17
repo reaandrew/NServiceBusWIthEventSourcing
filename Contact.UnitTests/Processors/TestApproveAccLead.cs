@@ -5,11 +5,12 @@ using Contact.Messages.Events;
 using Contact.Processors;
 using NServiceBus.Testing;
 using NUnit.Framework;
+using ApproveAccLead = Contact.Processors.ApproveAccLead;
 
 namespace Contact.UnitTests.Processors
 {
     [TestFixture]
-    public class TestApproveAccLeadProcessor
+    public class TestApproveAccLead
     {
         [Test]
         public void ShouldPublishAnAccommodationLeadApprovedEvent()
@@ -18,9 +19,9 @@ namespace Contact.UnitTests.Processors
 
             Test.Initialize();
 
-            Test.Handler<ApproveAccLeadProcessor>(bus => new ApproveAccLeadProcessor(new EventPublisher(bus)))
+            Test.Handler<ApproveAccLead>(bus => new ApproveAccLead(new EventPublisher(bus)))
                 .ExpectPublish<AccLeadApproved>(approved => approved.AccLeadId == accLeadId)
-                .OnMessage<ApproveAccLead>(lead => { lead.AccLeadId = accLeadId; });
+                .OnMessage<Messages.Commands.ApproveAccLead>(lead => { lead.AccLeadId = accLeadId; });
         }
     }
 }

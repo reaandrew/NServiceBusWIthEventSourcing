@@ -5,11 +5,12 @@ using Contact.Messages.Events;
 using Contact.Processors;
 using NServiceBus.Testing;
 using NUnit.Framework;
+using CreateUser = Contact.Processors.CreateUser;
 
 namespace Contact.UnitTests.Processors
 {
     [TestFixture]
-    public class TestCreateUserProcessor
+    public class TestCreateUser
     {
         [Test]
         public void ShouldPublishAUserCreatedEvent()
@@ -19,11 +20,11 @@ namespace Contact.UnitTests.Processors
 
             Test.Initialize();
 
-            Test.Handler<CreateUserProcessor>(bus =>
-                                              new CreateUserProcessor(new EventPublisher(bus)))
+            Test.Handler<CreateUser>(bus =>
+                                              new CreateUser(new EventPublisher(bus)))
                 .ExpectPublish<UserCreated>(created => created.CorrelationId == correlationId &&
                                                        created.Name == name)
-                .OnMessage<CreateUser>(user =>
+                .OnMessage<Messages.Commands.CreateUser>(user =>
                     {
                         user.CorrelationId = correlationId;
                         user.Name = name;
