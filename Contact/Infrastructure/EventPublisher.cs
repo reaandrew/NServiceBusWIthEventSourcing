@@ -1,8 +1,9 @@
-﻿using NServiceBus;
+﻿using Contact.Core;
+using NServiceBus;
 
-namespace Contact.Core
+namespace Contact.Infrastructure
 {
-    public class EventPublisher : IPublishEvent
+    public class EventPublisher : IEventPublisher
     {
         private readonly IBus _bus;
 

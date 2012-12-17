@@ -1,5 +1,6 @@
 using System;
 using Contact.Core;
+using Contact.Infrastructure;
 using StructureMap;
 
 namespace Contact
@@ -26,7 +27,7 @@ namespace Contact
                             scan.AssemblyContainingType<Main>();
                             scan.AddAllTypesOf(typeof (ISendCommand<>));
                         });
-                    x.For<IPublishEvent>().Use<EventPublisher>();
+                    x.For<IEventPublisher>().Use<EventPublisher>();
                 });
             Configure.With()
                 .Log4Net()

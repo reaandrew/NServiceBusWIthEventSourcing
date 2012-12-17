@@ -6,7 +6,7 @@ namespace Contact.Senders
 {
     /*
      * ICommandSender
-     * IPublishEvent
+     * IEventPublisher
      * 
      */
 

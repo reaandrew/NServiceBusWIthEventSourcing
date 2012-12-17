@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\EventPublisher.cs" />
-    <Compile Include="Core\IPublishEvent.cs" />
+    <Compile Include="Core\IEventPublisher.cs" />
     <Compile Include="Core\ISendCommand.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />

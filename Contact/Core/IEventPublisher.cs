@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contact.Core
 {
-    public interface IPublishEvent
+    public interface IEventPublisher
     {
         void Publish<T>(T Event);
     }
