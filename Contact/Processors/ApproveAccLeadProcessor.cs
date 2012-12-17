@@ -15,6 +15,11 @@ namespace Contact.Processors
             _eventPublisher = eventPublisher;
         }
 
+        public ApproveAccLeadProcessor()
+        {
+
+        }
+
         public void Handle(ApproveAccLead message)
         {
             Console.Out.WriteLine(@"AccLead approved for {0}", message.AccLeadId);
