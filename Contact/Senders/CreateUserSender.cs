@@ -1,15 +1,27 @@
-using Contact.Contracts;
+using Contact.Core;
 using Contact.Messages.Commands;
 using NServiceBus;
 
 namespace Contact.Senders
 {
-    public class CreateUserSender : ICreateUserSender
+    /*
+     * ICommandSender
+     * IPublishEvent
+     * 
+     */
+
+    public class CreateUserSender : ISendCommand<CreateUser>
     {
-        public IBus Bus { get; set; }
+        private readonly IBus _bus;
+
+        public CreateUserSender(IBus bus)
+        {
+            _bus = bus;
+        }
+
         public void Send(CreateUser message)
         {
-            Bus.Send("Contact", message);
+            _bus.Send("Contact", message);
         }
     }
 }

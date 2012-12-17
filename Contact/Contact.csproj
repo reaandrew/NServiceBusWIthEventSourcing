@@ -60,8 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IApproveAccLeadSender.cs" />
-    <Compile Include="Contracts\ICreateUserSender.cs" />
+    <Compile Include="Infrastructure\EventPublisher.cs" />
+    <Compile Include="Core\IPublishEvent.cs" />
+    <Compile Include="Core\ISendCommand.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />
     <Compile Include="Main.cs" />
@@ -84,6 +85,9 @@
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core\README.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

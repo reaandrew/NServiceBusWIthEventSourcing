@@ -1,0 +1,1 @@
+﻿This will exist in a common assembly.  Just putting it here for the purposes of example.

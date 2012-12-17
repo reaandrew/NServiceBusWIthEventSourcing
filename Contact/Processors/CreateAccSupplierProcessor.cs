@@ -1,5 +1,5 @@
 using System;
-using Contact.Contracts;
+using Contact.Core;
 using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using Contact.Messages.State;
@@ -16,13 +16,14 @@ namespace Contact.Processors
         IAmStartedByMessages<CreateAccSupplier>,
         IHandleMessages<UserCreated>
     {
-        private readonly ICreateUserSender _createUserSender;
+        private readonly ISendCommand<CreateUser> _createUserSender;
 
         public CreateAccSupplierProcessor()
         {
             
         }
-        public CreateAccSupplierProcessor(ICreateUserSender createUserSender)
+
+        public CreateAccSupplierProcessor(ISendCommand<CreateUser> createUserSender)
         {
             _createUserSender = createUserSender;
         }
