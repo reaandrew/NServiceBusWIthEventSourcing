@@ -1,12 +1,11 @@
 using System;
-using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using NServiceBus;
 
 namespace Contact.Subscribers
 {
     /// <summary>
-    /// Look into correlation id
+    ///     Look into correlation id
     /// </summary>
     public class CreateAccSupplier : IHandleMessages<AccLeadApproved>
     {

@@ -1,6 +1,5 @@
 using System;
 using Contact.Core;
-using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using NServiceBus;
 
@@ -17,7 +16,6 @@ namespace Contact.Processors
 
         public ApproveAccLead()
         {
-
         }
 
         public void Handle(Messages.Commands.ApproveAccLead message)

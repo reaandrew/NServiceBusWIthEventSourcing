@@ -1,10 +1,8 @@
 using Contact.Messages.Commands;
 using Contact.Messages.Events;
-using Contact.Processors;
 using NServiceBus.Testing;
 using NUnit.Framework;
 using CreateAccSupplier = Contact.Processors.CreateAccSupplier;
-using CreateUser = Contact.Messages.Commands.CreateUser;
 
 namespace Contact.UnitTests.Processors
 {

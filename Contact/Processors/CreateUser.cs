@@ -1,6 +1,5 @@
 using System;
 using Contact.Core;
-using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using NServiceBus;
 using log4net;

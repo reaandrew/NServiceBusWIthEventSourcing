@@ -1,6 +1,4 @@
 using System;
-using Contact.Core;
-using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using Contact.Messages.State;
 using NServiceBus;
@@ -9,9 +7,9 @@ using NServiceBus.Saga;
 namespace Contact.Processors
 {
     /// <summary>
-    /// I think this will be the saga
+    ///     I think this will be the saga
     /// </summary>
-    public class CreateAccSupplier : 
+    public class CreateAccSupplier :
         Saga<CreateAccSupplierSagaData>,
         IAmStartedByMessages<Messages.Commands.CreateAccSupplier>,
         IHandleMessages<UserCreated>
@@ -28,18 +26,13 @@ namespace Contact.Processors
 
         //public CreateAccSupplier()
         //{
-            
+
         //}
 
         //public CreateAccSupplier(ISendCommand<CreateUser> createUserSender)
         //{
         //    _createUserSender = createUserSender;
         //}
-
-        public override void ConfigureHowToFindSaga()
-        {
-            ConfigureMapping<UserCreated>(s => s.CorrelationId, m => m.CorrelationId);
-        }
 
         public void Handle(Messages.Commands.CreateAccSupplier message)
         {
@@ -49,10 +42,10 @@ namespace Contact.Processors
                               Data.Originator);
             Console.WriteLine("Creating the Acc Supplier");
 
-            this.Data.CorrelationId = Guid.NewGuid();
+            Data.CorrelationId = Guid.NewGuid();
             Bus.Send(new Messages.Commands.CreateUser
                 {
-                    CorrelationId = this.Data.CorrelationId,
+                    CorrelationId = Data.CorrelationId,
                     Name = message.Name
                 });
         }
@@ -61,6 +54,11 @@ namespace Contact.Processors
         {
             Console.WriteLine("Acc Supplier has now been created");
             Bus.Publish(new AccSupplierCreated());
+        }
+
+        public override void ConfigureHowToFindSaga()
+        {
+            ConfigureMapping<UserCreated>(s => s.CorrelationId, m => m.CorrelationId);
         }
     }
 }
