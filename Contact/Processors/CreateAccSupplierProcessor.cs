@@ -16,6 +16,16 @@ namespace Contact.Processors
         IAmStartedByMessages<CreateAccSupplier>,
         IHandleMessages<UserCreated>
     {
+        private readonly ICreateUserSender _createUserSender;
+
+        public CreateAccSupplierProcessor()
+        {
+            
+        }
+        public CreateAccSupplierProcessor(ICreateUserSender createUserSender)
+        {
+            _createUserSender = createUserSender;
+        }
 
         public override void ConfigureHowToFindSaga()
         {
@@ -31,7 +41,7 @@ namespace Contact.Processors
             Console.WriteLine("Creating the Acc Supplier");
 
             this.Data.CorrelationId = Guid.NewGuid();
-            Bus.Send("Contact",new CreateUser
+            _createUserSender.Send(new CreateUser
                 {
                     CorrelationId = this.Data.CorrelationId,
                     Name = message.Name

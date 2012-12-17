@@ -1,8 +1,8 @@
 using System;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
 using Contact.Contracts;
 using Contact.Senders;
+using StructureMap;
+using log4net;
 
 namespace Contact
 {
@@ -20,6 +20,18 @@ namespace Contact
     {
         public void Init()
         {
+            Console.WriteLine("Setting Up logging");
+            SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
+            Console.WriteLine("Logging Setup");
+            LogManager.GetLogger("Name").Debug("Something interesting happened.");
+            Console.WriteLine("Waiting");
+            Console.ReadLine();
+            var container = new Container(x => x.For<ICreateUserSender>()
+                                                .Use<CreateUserSender>());
+            Configure.With()
+                .Log4Net()
+                .StructureMapBuilder(container);
+
             Console.WriteLine("Initialized");
         }
     }
