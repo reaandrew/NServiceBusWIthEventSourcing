@@ -16,6 +16,17 @@ namespace Contact.Processors
         IAmStartedByMessages<CreateAccSupplier>,
         IHandleMessages<UserCreated>
     {
+        //private readonly ISendCommand<CreateUser> _createUserSender;
+
+        //public CreateAccSupplierProcessor()
+        //{
+            
+        //}
+
+        //public CreateAccSupplierProcessor(ISendCommand<CreateUser> createUserSender)
+        //{
+        //    _createUserSender = createUserSender;
+        //}
 
         public override void ConfigureHowToFindSaga()
         {
