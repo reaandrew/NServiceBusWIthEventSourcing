@@ -49,5 +49,16 @@ namespace Contact.IntegrationTests.InfrastructureTests
             _eventStore.SaveEvents(id, events);
             _eventPersistence.AssertWasCalled(x => x.Save(Arg<Guid>.Is.Anything, Arg<EmptyDomainEvent>.Is.Anything));
         }
+
+        [Test]
+        public void ShouldBeAbleToGetAnAggregateRootById()
+        {
+            var id = Guid.NewGuid();
+            var events = new List<DomainEvent>
+                {
+                    new AccommodationLeadCreated(id,"joe","something@test.com")
+                };
+            Assert.Inconclusive();
+        }
     }
 }
