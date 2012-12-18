@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Contact.Domain;
 using NUnit.Framework;
 
@@ -8,8 +9,21 @@ namespace Contact.UnitTests.Domain
     public class TestAccommodationLead
     {
         [TestFixture]
+        public class TestMarkingChangesAsCommitted
+        {
+            [Test]
+            public void ShouldClearOutstandingEventsWhenChangesAreMarkedAsCommitted()
+            {
+                var accLead = new AccommodationLead(Guid.NewGuid(), String.Empty, String.Empty);
+                accLead.MarkChangesAsCommitted();
+                Assert.That(accLead.OutstandingEvents.Count, Is.EqualTo(0));
+            }
+        }
+
+        [TestFixture]
         public class TestCreatingAnAccommodationLead
         {
+            private Guid _id;
             private string _name;
             private string _email;
             private AccommodationLead _accLead;
@@ -17,9 +31,10 @@ namespace Contact.UnitTests.Domain
             [SetUp]
             public void Setup()
             {
+                _id = Guid.NewGuid();
                 _name = "Joe";
                 _email = "test@test.com";
-                _accLead = new AccommodationLead(_name, _email);
+                _accLead = new AccommodationLead(_id, _name, _email);
             }
 
             [Test]
@@ -43,6 +58,13 @@ namespace Contact.UnitTests.Domain
             }
 
             [Test]
+            public void ShouldAssignTheIdOfTheAccommodationLeadToTheEvent()
+            {
+                var @event = _accLead.OutstandingEvents[0] as AccommodationLeadCreated;
+                Assert.That(@event.ID, Is.EqualTo(_id));
+            }
+
+            [Test]
             public void ShouldAssignTheNameOfTheAccommodationLeadToTheEvent()
             {
                 var @event = _accLead.OutstandingEvents[0] as AccommodationLeadCreated;
@@ -60,6 +82,7 @@ namespace Contact.UnitTests.Domain
         [TestFixture]
         public class TestApprovingAnAccommodationLead
         {
+            private Guid _id;
             private string _name;
             private string _email;
             private AccommodationLead _accLead;
@@ -67,9 +90,11 @@ namespace Contact.UnitTests.Domain
             [SetUp]
             public void Setup()
             {
+                _id = Guid.NewGuid();
                 _name = "Joe";
                 _email = "Email";
-                _accLead = new AccommodationLead(_name, _email);
+                _accLead = new AccommodationLead(_id, _name, _email);
+                _accLead.MarkChangesAsCommitted();
                 _accLead.Approve();
             }
 
@@ -86,7 +111,13 @@ namespace Contact.UnitTests.Domain
                 var @eventCount = _accLead.OutstandingEvents.OfType<AccommodationLeadApproved>().Count();
                 Assert.That(@eventCount, Is.EqualTo(1));
             }
-        }
 
+            [Test]
+            public void ShouldAssignTheIdOfTheAccommodationLeadToTheApprovedEvent()
+            {
+                var @event = _accLead.OutstandingEvents[0] as AccommodationLeadApproved;
+                Assert.That(@event.ID, Is.EqualTo(_id));
+            }
+        }
     }
 }

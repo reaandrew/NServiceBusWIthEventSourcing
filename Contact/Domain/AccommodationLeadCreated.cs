@@ -1,9 +1,12 @@
+using System;
+
 namespace Contact.Domain
 {
     public class AccommodationLeadCreated : DomainEvent
     {
-        public AccommodationLeadCreated(string name, string email)
+        public AccommodationLeadCreated(Guid id, string name, string email)
         {
+            ID = id;
             Name = name;
             Email = email;
         }
@@ -11,5 +14,7 @@ namespace Contact.Domain
         public string Name { get; private set; }
 
         public string Email { get; private set; }
+
+        public Guid ID { get; private set; }
     }
 }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DomainServices\TestUserService.cs" />
     <Compile Include="Domain\TestAccommodationLead.cs" />
+    <Compile Include="Domain\TestUser.cs" />
     <Compile Include="Infrastructure\TestEventPublisher.cs" />
     <Compile Include="Processors\TestApproveAccLead.cs" />
     <Compile Include="Processors\TestCreateAccSupplier.cs" />

@@ -1,3 +1,5 @@
+using System;
+
 namespace Contact.Domain
 {
     /// <summary>
@@ -10,19 +12,20 @@ namespace Contact.Domain
         private string _email;
         private bool _approved;
 
-        public AccommodationLead(string name, string email)
+        public AccommodationLead(Guid id, string name, string email)
             :base()
         {
-            this.ApplyChange(new AccommodationLeadCreated(name, email));
+            this.ApplyChange(new AccommodationLeadCreated(id, name, email));
         }
 
         public void Approve()
         {
-            this.ApplyChange(new AccommodationLeadApproved());
+            this.ApplyChange(new AccommodationLeadApproved(this.ID));
         }
 
         private void Apply(AccommodationLeadCreated @event)
         {
+            this.ID = @event.ID;
             this._name = @event.Name;
             this._email = @event.Email;
         }

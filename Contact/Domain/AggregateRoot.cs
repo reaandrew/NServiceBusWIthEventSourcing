@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SimpleCQRS;
 
 namespace Contact.Domain
@@ -7,6 +8,7 @@ namespace Contact.Domain
     {
         private int _version;
         protected readonly List<DomainEvent> _outstandingEvents;
+        public Guid ID { get; protected set; }
 
         protected AggregateRoot()
         {
@@ -29,6 +31,11 @@ namespace Contact.Domain
             //not against but I though I would give this a try as I liked the look
             //of it.
             this.AsDynamic().Apply(@event);
+        }
+
+        public void MarkChangesAsCommitted()
+        {
+            _outstandingEvents.Clear();
         }
     }
 }
