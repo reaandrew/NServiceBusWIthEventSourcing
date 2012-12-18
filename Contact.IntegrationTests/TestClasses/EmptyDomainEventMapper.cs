@@ -1,6 +1,6 @@
 using Contact.Core;
 
-namespace Contact.UnitTests.TestClasses
+namespace Contact.IntegrationTests.TestClasses
 {
     public class EmptyDomainEventMapper : IMapDomainEvent<EmptyDomainEvent, EmptyNServiceBusEvent>
     {

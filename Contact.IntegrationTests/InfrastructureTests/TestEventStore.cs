@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Contact.Core;
 using Contact.Domain;
 using Contact.Infrastructure;
-using Contact.UnitTests.TestClasses;
+using Contact.IntegrationTests.TestClasses;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Is = Rhino.Mocks.Constraints.Is;
 
-namespace Contact.UnitTests.InfrastructureTests
+namespace Contact.IntegrationTests.InfrastructureTests
 {
     [TestFixture]
     public class TestEventStore
@@ -29,7 +29,7 @@ namespace Contact.UnitTests.InfrastructureTests
         [Test]
         public void ShouldPublishAllTheOutstandingEvents()
         {
-            Guid id = Guid.NewGuid();
+            var id = Guid.NewGuid();
             var events = new List<DomainEvent>
                 {
                     new EmptyDomainEvent()
@@ -41,7 +41,7 @@ namespace Contact.UnitTests.InfrastructureTests
         [Test]
         public void ShouldSaveAllTheOutstandingEventsToTheEventPersistence()
         {
-            Guid id = Guid.NewGuid();
+            var id = Guid.NewGuid();
             var events = new List<DomainEvent>
                 {
                     new EmptyDomainEvent()

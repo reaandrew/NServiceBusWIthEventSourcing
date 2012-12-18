@@ -1,10 +1,10 @@
-using Contact.Messages.Commands;
+
 using Contact.Messages.Events;
+using Contact.Processors;
 using NServiceBus.Testing;
 using NUnit.Framework;
-using CreateAccSupplier = Contact.Processors.CreateAccSupplier;
 
-namespace Contact.UnitTests.ProcessorsTests
+namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
     public class TestCreateAccSupplier

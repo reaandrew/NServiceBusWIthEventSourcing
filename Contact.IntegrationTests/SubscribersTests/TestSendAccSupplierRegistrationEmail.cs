@@ -1,10 +1,10 @@
-﻿using Contact.Core;
+using Contact.Core;
 using Contact.Messages.Events;
 using Contact.Subscribers;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Contact.UnitTests.SubscribersTests
+namespace Contact.IntegrationTests.SubscribersTests
 {
     [TestFixture]
     public class TestSendAccSupplierRegistrationEmail

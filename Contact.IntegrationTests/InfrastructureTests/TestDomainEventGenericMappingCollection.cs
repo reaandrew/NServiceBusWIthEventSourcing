@@ -1,10 +1,10 @@
-﻿using Contact.Exceptions;
+using Contact.Exceptions;
 using Contact.Infrastructure;
-using Contact.UnitTests.TestClasses;
+using Contact.IntegrationTests.TestClasses;
 using NServiceBus;
 using NUnit.Framework;
 
-namespace Contact.UnitTests.InfrastructureTests
+namespace Contact.IntegrationTests.InfrastructureTests
 {
     /// <summary>
     ///     Took this a little further when I saw an opportunity to explore

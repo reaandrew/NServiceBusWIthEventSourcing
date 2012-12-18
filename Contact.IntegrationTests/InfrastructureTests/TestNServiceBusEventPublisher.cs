@@ -1,11 +1,11 @@
-﻿using Contact.Infrastructure;
+using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
-using Contact.UnitTests.TestClasses;
+using Contact.IntegrationTests.TestClasses;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Contact.UnitTests.InfrastructureTests
+namespace Contact.IntegrationTests.InfrastructureTests
 {
     [TestFixture]
     public class TestNServiceBusEventPublisher

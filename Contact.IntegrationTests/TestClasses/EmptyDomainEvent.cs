@@ -1,6 +1,6 @@
 using Contact.Domain;
 
-namespace Contact.UnitTests.TestClasses
+namespace Contact.IntegrationTests.TestClasses
 {
     public class EmptyDomainEvent : DomainEvent
     {

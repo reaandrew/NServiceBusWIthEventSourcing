@@ -1,10 +1,6 @@
-using System;
-using Contact.Infrastructure.NServiceBus;
-using Contact.Messages.Commands;
-using NServiceBus.Testing;
 using NUnit.Framework;
 
-namespace Contact.UnitTests.ProcessorsTests
+namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
     public class TestApproveAccLead

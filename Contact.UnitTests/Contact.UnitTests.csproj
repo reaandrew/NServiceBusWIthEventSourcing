@@ -67,17 +67,7 @@
     <Compile Include="DomainTests\TestAccommodationLead.cs" />
     <Compile Include="DomainTests\TestAccommodationSupplier.cs" />
     <Compile Include="DomainTests\TestUser.cs" />
-    <Compile Include="InfrastructureTests\TestDomainEventGenericMappingCollection.cs" />
-    <Compile Include="InfrastructureTests\TestNServiceBusEventPublisher.cs" />
-    <Compile Include="InfrastructureTests\TestEventStore.cs" />
-    <Compile Include="ProcessorsTests\TestApproveAccLead.cs" />
-    <Compile Include="ProcessorsTests\TestCreateAccSupplier.cs" />
-    <Compile Include="ProcessorsTests\TestCreateUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubscribersTests\TestSendAccSupplierRegistrationEmail.cs" />
-    <Compile Include="TestClasses\EmptyDomainEvent.cs" />
-    <Compile Include="TestClasses\EmptyDomainEventMapper.cs" />
-    <Compile Include="TestClasses\EmptyNServiceBusEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
-namespace Contact.UnitTests.ProcessorsTests
+namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
     public class TestCreateUser

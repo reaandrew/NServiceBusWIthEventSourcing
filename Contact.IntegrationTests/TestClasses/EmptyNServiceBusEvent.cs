@@ -1,6 +1,6 @@
 using NServiceBus;
 
-namespace Contact.UnitTests.TestClasses
+namespace Contact.IntegrationTests.TestClasses
 {
     public class EmptyNServiceBusEvent : IEvent
     {
