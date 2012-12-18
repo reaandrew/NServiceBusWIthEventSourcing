@@ -63,11 +63,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ISendEmails.cs" />
+    <Compile Include="Domain\AccommodationLead.cs" />
+    <Compile Include="Domain\AccommodationLeadApproved.cs" />
+    <Compile Include="Domain\AccommodationLeadCreated.cs" />
+    <Compile Include="Domain\AggregateRoot.cs" />
+    <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Infrastructure\EventPublisher.cs" />
     <Compile Include="Core\IEventPublisher.cs" />
     <Compile Include="Core\ISendCommand.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />
+    <Compile Include="Infrastructure\SimpleCQRS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccSupplier.cs" />
