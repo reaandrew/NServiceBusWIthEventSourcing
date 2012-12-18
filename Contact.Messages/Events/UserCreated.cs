@@ -5,7 +5,7 @@ namespace Contact.Messages.Events
 {
     public class UserCreated : IEvent
     {
-        public Guid CorrelationId { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
     }
 }

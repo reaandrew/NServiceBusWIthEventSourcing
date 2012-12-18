@@ -4,7 +4,7 @@ using Contact.Subscribers;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Contact.UnitTests.Subscribers
+namespace Contact.UnitTests.SubscribersTests
 {
     [TestFixture]
     public class TestSendAccSupplierRegistrationEmail

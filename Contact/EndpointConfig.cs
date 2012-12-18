@@ -1,6 +1,7 @@
 using System;
 using Contact.Core;
 using Contact.Infrastructure;
+using Contact.Infrastructure.NServiceBus;
 using NServiceBus;
 using StructureMap;
 using log4net.Config;
@@ -28,7 +29,7 @@ namespace Contact
                             scan.AssemblyContainingType<Main>();
                             scan.AddAllTypesOf(typeof (ISendCommand<>));
                         });
-                    x.For<IEventPublisher>().Use<EventPublisher>();
+                    x.For<IEventPublisher>().Use<NServiceBusEventPublisher>();
                 });
             Configure.With()
                      .Log4Net()

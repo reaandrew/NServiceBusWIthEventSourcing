@@ -47,7 +47,8 @@
     <Compile Include="Commands\ApproveAccLead.cs" />
     <Compile Include="Commands\CreateAccSupplier.cs" />
     <Compile Include="Commands\CreateUser.cs" />
-    <Compile Include="Events\AccLeadApproved.cs" />
+    <Compile Include="Events\AccommodationLeadApproved.cs" />
+    <Compile Include="Events\AccommodationLeadCreated.cs" />
     <Compile Include="Events\AccSupplierCreated.cs" />
     <Compile Include="Events\UserCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

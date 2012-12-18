@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -7,78 +6,23 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace SimpleCQRS
+namespace Contact.Infrastructure.Github
 {
-
     //FROM http://blogs.msdn.com/b/davidebb/archive/2010/01/18/use-c-4-0-dynamic-to-drastically-simplify-your-private-reflection-code.aspx
     //doesnt count to line counts :)
     // And I took this from:
     // https://raw.github.com/gregoryyoung/m-r/master/SimpleCQRS/InfrastructureCrap.DontBotherReadingItsNotImportant.cs
-    class PrivateReflectionDynamicObject : DynamicObject
+    internal class PrivateReflectionDynamicObject : DynamicObject
     {
+        private const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-        private static IDictionary<Type, IDictionary<string, IProperty>> _propertiesOnType = new ConcurrentDictionary<Type, IDictionary<string, IProperty>>();
+        private static readonly IDictionary<Type, IDictionary<string, IProperty>> _propertiesOnType =
+            new ConcurrentDictionary<Type, IDictionary<string, IProperty>>();
 
         // Simple abstraction to make field and property access consistent
-        interface IProperty
-        {
-            string Name { get; }
-            object GetValue(object obj, object[] index);
-            void SetValue(object obj, object val, object[] index);
-        }
-
-        // IProperty implementation over a PropertyInfo
-        class Property : IProperty
-        {
-            internal PropertyInfo PropertyInfo { get; set; }
-
-            string IProperty.Name
-            {
-                get
-                {
-                    return PropertyInfo.Name;
-                }
-            }
-
-            object IProperty.GetValue(object obj, object[] index)
-            {
-                return PropertyInfo.GetValue(obj, index);
-            }
-
-            void IProperty.SetValue(object obj, object val, object[] index)
-            {
-                PropertyInfo.SetValue(obj, val, index);
-            }
-        }
-
-        // IProperty implementation over a FieldInfo
-        class Field : IProperty
-        {
-            internal FieldInfo FieldInfo { get; set; }
-
-            string IProperty.Name
-            {
-                get
-                {
-                    return FieldInfo.Name;
-                }
-            }
-
-
-            object IProperty.GetValue(object obj, object[] index)
-            {
-                return FieldInfo.GetValue(obj);
-            }
-
-            void IProperty.SetValue(object obj, object val, object[] index)
-            {
-                FieldInfo.SetValue(obj, val);
-            }
-        }
 
 
         private object RealObject { get; set; }
-        private const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
         internal static object WrapObjectIfNeeded(object o)
         {
@@ -86,7 +30,7 @@ namespace SimpleCQRS
             if (o == null || o.GetType().IsPrimitive || o is string)
                 return o;
 
-            return new PrivateReflectionDynamicObject() { RealObject = o };
+            return new PrivateReflectionDynamicObject {RealObject = o};
         }
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
@@ -162,7 +106,6 @@ namespace SimpleCQRS
 
         private IProperty GetProperty(string propertyName)
         {
-
             // Get the list of properties and fields for this type
             IDictionary<string, IProperty> typeProperties = GetTypeProperties(RealObject.GetType());
 
@@ -177,11 +120,12 @@ namespace SimpleCQRS
 
             // Get a list of supported properties and fields and show them as part of the exception message
             // For fields, skip the auto property backing fields (which name start with <)
-            var propNames = typeProperties.Keys.Where(name => name[0] != '<').OrderBy(name => name);
+            IOrderedEnumerable<string> propNames =
+                typeProperties.Keys.Where(name => name[0] != '<').OrderBy(name => name);
             throw new ArgumentException(
                 String.Format(
-                "The property {0} doesn't exist on type {1}. Supported properties are: {2}",
-                propertyName, RealObject.GetType(), String.Join(", ", propNames)));
+                    "The property {0} doesn't exist on type {1}. Supported properties are: {2}",
+                    propertyName, RealObject.GetType(), String.Join(", ", propNames)));
         }
 
         private static IDictionary<string, IProperty> GetTypeProperties(Type type)
@@ -200,13 +144,13 @@ namespace SimpleCQRS
             // First, add all the properties
             foreach (PropertyInfo prop in type.GetProperties(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[prop.Name] = new Property() { PropertyInfo = prop };
+                typeProperties[prop.Name] = new Property {PropertyInfo = prop};
             }
 
             // Now, add all the fields
             foreach (FieldInfo field in type.GetFields(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[field.Name] = new Field() { FieldInfo = field };
+                typeProperties[field.Name] = new Field {FieldInfo = field};
             }
 
             // Finally, recurse on the base class to add its fields
@@ -247,6 +191,55 @@ namespace SimpleCQRS
                 return null;
             }
         }
+
+        private class Field : IProperty
+        {
+            internal FieldInfo FieldInfo { get; set; }
+
+            string IProperty.Name
+            {
+                get { return FieldInfo.Name; }
+            }
+
+
+            object IProperty.GetValue(object obj, object[] index)
+            {
+                return FieldInfo.GetValue(obj);
+            }
+
+            void IProperty.SetValue(object obj, object val, object[] index)
+            {
+                FieldInfo.SetValue(obj, val);
+            }
+        }
+
+        private interface IProperty
+        {
+            string Name { get; }
+            object GetValue(object obj, object[] index);
+            void SetValue(object obj, object val, object[] index);
+        }
+
+        // IProperty implementation over a PropertyInfo
+        private class Property : IProperty
+        {
+            internal PropertyInfo PropertyInfo { get; set; }
+
+            string IProperty.Name
+            {
+                get { return PropertyInfo.Name; }
+            }
+
+            object IProperty.GetValue(object obj, object[] index)
+            {
+                return PropertyInfo.GetValue(obj, index);
+            }
+
+            void IProperty.SetValue(object obj, object val, object[] index)
+            {
+                PropertyInfo.SetValue(obj, val, index);
+            }
+        }
     }
 
 
@@ -260,18 +253,18 @@ namespace SimpleCQRS
 
     public class DelegateAdjuster
     {
-        public static Action<BaseT> CastArgument<BaseT, DerivedT>(Expression<Action<DerivedT>> source) where DerivedT : BaseT
+        public static Action<BaseT> CastArgument<BaseT, DerivedT>(Expression<Action<DerivedT>> source)
+            where DerivedT : BaseT
         {
-            if (typeof(DerivedT) == typeof(BaseT))
+            if (typeof (DerivedT) == typeof (BaseT))
             {
-                return (Action<BaseT>)((Delegate)source.Compile());
-
+                return (Action<BaseT>) ((Delegate) source.Compile());
             }
-            ParameterExpression sourceParameter = Expression.Parameter(typeof(BaseT), "source");
-            var result = Expression.Lambda<Action<BaseT>>(
+            ParameterExpression sourceParameter = Expression.Parameter(typeof (BaseT), "source");
+            Expression<Action<BaseT>> result = Expression.Lambda<Action<BaseT>>(
                 Expression.Invoke(
                     source,
-                    Expression.Convert(sourceParameter, typeof(DerivedT))),
+                    Expression.Convert(sourceParameter, typeof (DerivedT))),
                 sourceParameter);
             return result.Compile();
         }

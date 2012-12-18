@@ -42,11 +42,11 @@ namespace Contact.Processors
                               Data.Originator);
             Console.WriteLine("Creating the Acc Supplier");
 
-            Data.CorrelationId = Guid.NewGuid();
+            Data.Email = message.Email;
             Bus.Send(new Messages.Commands.CreateUser
                 {
-                    CorrelationId = Data.CorrelationId,
-                    Name = message.Name
+                    Name = message.Name,
+                    Email = message.Email
                 });
         }
 
@@ -58,7 +58,7 @@ namespace Contact.Processors
 
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<UserCreated>(s => s.CorrelationId, m => m.CorrelationId);
+            ConfigureMapping<UserCreated>(s => s.Email, m => m.Email);
         }
     }
 }

@@ -1,23 +1,11 @@
-Intended test strategy
-==
- - It would be nice to be able to test like this.  
- - This would come after the end to end test ofcourse and allow for mocking of infrastrcuture components
- - NServiceBus supports this testing with a fluent interface
- 
-Tests
-==
-When I send an ApproveAccLead Command
-Then an AccLeadApproved Event is pubilshed
+NOTE:
 
-When an AccLeadApproved Event is published
-Then a CreateAccSupplier Command is sent
+Please take the domain modelling in this example with a "pinch of salt".
 
-When a CreateAccSupplier Command is sent
-Then a CreateUser Command is sent
+The immediate goal is to look into different ways an EDA approach can help.
 
-When a UserCreated Event is raised
-And the UserCreated Event is correlated to the creation of an AccSupplier
-Then an AccSupplierCreated Event is published
+One fork in the road is looking at the application of Event Sourcing and how to efficiently use this whilst migrating away from legacy systems.
 
-When an AccSupplierCreated Event is published
-Then a SendAccSupplierRegistrationConfirmation Command is sent
+MISC:
+
+Rsesharper code cleanup re-orders your methods in alphabetical order by default.

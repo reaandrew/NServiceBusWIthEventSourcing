@@ -1,17 +1,16 @@
-using System;
 using Contact.Core;
-using Contact.Messages.Events;
+using Contact.Domain;
 using NServiceBus;
 
 namespace Contact.Processors
 {
     public class ApproveAccLead : IHandleMessages<Messages.Commands.ApproveAccLead>
     {
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IEventStore _eventStore;
 
-        public ApproveAccLead(IEventPublisher eventPublisher)
+        public ApproveAccLead(IEventStore eventStore)
         {
-            _eventPublisher = eventPublisher;
+            _eventStore = eventStore;
         }
 
         public ApproveAccLead()
@@ -20,12 +19,10 @@ namespace Contact.Processors
 
         public void Handle(Messages.Commands.ApproveAccLead message)
         {
-            Console.Out.WriteLine(@"AccLead approved for {0}", message.AccLeadId);
-            _eventPublisher.Publish(new AccLeadApproved
-                {
-                    AccLeadId = message.AccLeadId,
-                    Name = "Joe Blogs"
-                });
+            //Need to implement the GET functionality in the EventSourcing.
+            //Tis is the only thing missing.  This is temporary below and will break future tests
+            var accLead = new AccommodationLead(message.AccLeadId, "something", "anything");
+            _eventStore.SaveEvents(accLead.ID, accLead.OutstandingEvents);
         }
     }
 }

@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using SimpleCQRS;
+using Contact.Infrastructure.Github;
 
 namespace Contact.Domain
 {
     public abstract class AggregateRoot
     {
-        private int _version;
         protected readonly List<DomainEvent> _outstandingEvents;
-        public Guid ID { get; protected set; }
+        private int _version;
 
         protected AggregateRoot()
         {
             _outstandingEvents = new List<DomainEvent>();
         }
+
+        public Guid ID { get; protected set; }
 
         public List<DomainEvent> OutstandingEvents
         {
@@ -23,7 +24,7 @@ namespace Contact.Domain
         protected void ApplyChange<T>(T @event) where T : DomainEvent
         {
             @event.Version = ++_version;
-            this._outstandingEvents.Add(@event);
+            _outstandingEvents.Add(@event);
 
             //This is simply a way to avoid extra code at the cost of using
             //reflection, provided by external code from CQRS.

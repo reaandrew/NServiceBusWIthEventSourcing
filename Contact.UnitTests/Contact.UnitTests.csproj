@@ -35,6 +35,7 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NServiceBus">
       <HintPath>..\packages\NServiceBus.Interfaces.3.3.3\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
@@ -59,15 +60,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainServices\TestUserService.cs" />
-    <Compile Include="Domain\TestAccommodationLead.cs" />
-    <Compile Include="Domain\TestUser.cs" />
-    <Compile Include="Infrastructure\TestEventPublisher.cs" />
-    <Compile Include="Processors\TestApproveAccLead.cs" />
-    <Compile Include="Processors\TestCreateAccSupplier.cs" />
-    <Compile Include="Processors\TestCreateUser.cs" />
+    <Compile Include="DomainEventMappersTests\TestAccommodationLeadApprovedMapper.cs" />
+    <Compile Include="DomainEventMappersTests\TestAccommodationLeadCreatedMapper.cs" />
+    <Compile Include="DomainEventMappersTests\TestAccommodationSupplierCreatedMapper.cs" />
+    <Compile Include="DomainEventMappersTests\TestUserCreatedMapper.cs" />
+    <Compile Include="DomainTests\TestAccommodationLead.cs" />
+    <Compile Include="DomainTests\TestAccommodationSupplier.cs" />
+    <Compile Include="DomainTests\TestUser.cs" />
+    <Compile Include="InfrastructureTests\TestDomainEventGenericMappingCollection.cs" />
+    <Compile Include="InfrastructureTests\TestNServiceBusEventPublisher.cs" />
+    <Compile Include="InfrastructureTests\TestEventStore.cs" />
+    <Compile Include="ProcessorsTests\TestApproveAccLead.cs" />
+    <Compile Include="ProcessorsTests\TestCreateAccSupplier.cs" />
+    <Compile Include="ProcessorsTests\TestCreateUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Subscribers\TestSendAccSupplierRegistrationEmail.cs" />
+    <Compile Include="SubscribersTests\TestSendAccSupplierRegistrationEmail.cs" />
+    <Compile Include="TestClasses\EmptyDomainEvent.cs" />
+    <Compile Include="TestClasses\EmptyDomainEventMapper.cs" />
+    <Compile Include="TestClasses\EmptyNServiceBusEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

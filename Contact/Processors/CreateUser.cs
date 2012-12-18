@@ -1,8 +1,5 @@
-using System;
 using Contact.Core;
-using Contact.Messages.Events;
 using NServiceBus;
-using log4net;
 
 namespace Contact.Processors
 {
@@ -17,13 +14,13 @@ namespace Contact.Processors
 
         public void Handle(Messages.Commands.CreateUser message)
         {
-            LogManager.GetLogger(typeof (CreateUser)).Debug("User Created :-)");
-            Console.WriteLine("User created");
-            _eventPublisher.Publish(new UserCreated
-                {
-                    CorrelationId = message.CorrelationId,
-                    Name = message.Name
-                });
+            //LogManager.GetLogger(typeof (CreateUser)).Debug("User Created :-)");
+            //Console.WriteLine("User created");
+            //_eventPublisher.Publish(new UserCreated
+            //    {
+            //        CorrelationId = message.CorrelationId,
+            //        Name = message.Name
+            //    });
         }
     }
 }

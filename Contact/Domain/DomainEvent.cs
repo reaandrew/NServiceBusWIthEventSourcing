@@ -1,6 +1,6 @@
 namespace Contact.Domain
 {
-    public class DomainEvent
+    public abstract class DomainEvent
     {
         public int Version { get; set; }
     }

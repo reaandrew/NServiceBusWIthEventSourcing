@@ -4,7 +4,7 @@ using NServiceBus.Testing;
 using NUnit.Framework;
 using CreateAccSupplier = Contact.Processors.CreateAccSupplier;
 
-namespace Contact.UnitTests.Processors
+namespace Contact.UnitTests.ProcessorsTests
 {
     [TestFixture]
     public class TestCreateAccSupplier

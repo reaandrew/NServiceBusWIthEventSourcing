@@ -62,18 +62,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IDomainEventMappingCollection.cs" />
+    <Compile Include="Core\IEventPersistence.cs" />
+    <Compile Include="Core\IEventStore.cs" />
+    <Compile Include="Core\IMapDomainEvent.cs" />
+    <Compile Include="Core\IPublishEvent.cs" />
     <Compile Include="Core\ISendEmails.cs" />
     <Compile Include="Domain\AccommodationLead.cs" />
     <Compile Include="Domain\AccommodationLeadApproved.cs" />
     <Compile Include="Domain\AccommodationLeadCreated.cs" />
+    <Compile Include="Domain\AccommodationSupplier.cs" />
+    <Compile Include="Domain\AccommodationSupplierCreated.cs" />
     <Compile Include="Domain\AggregateRoot.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
-    <Compile Include="Infrastructure\EventPublisher.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\UserCreated.cs" />
+    <Compile Include="Exceptions\DomainEventNotFoundException.cs" />
+    <Compile Include="Infrastructure\DomainEventGenericMappingCollection.cs" />
     <Compile Include="Core\IEventPublisher.cs" />
     <Compile Include="Core\ISendCommand.cs" />
     <Compile Include="EndpointConfig.cs" />
+    <Compile Include="Infrastructure\EventStore.cs" />
+    <Compile Include="Infrastructure\Github\SimpleCQRS.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />
-    <Compile Include="Infrastructure\SimpleCQRS.cs" />
+    <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadApprovedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadCreatedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationSupplierCreatedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\UserCreatedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
+    <Compile Include="Infrastructure\NServiceBus\NServiceBusEventPublisher.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccSupplier.cs" />
