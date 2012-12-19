@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Contact.Core;
-using Contact.Domain;
 using Core.Domain;
 using Core.DomainServices;
 
