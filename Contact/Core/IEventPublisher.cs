@@ -1,4 +1,6 @@
-﻿using Contact.Domain;
+﻿using System;
+using System.Collections.Generic;
+using Contact.Domain;
 
 namespace Contact.Core
 {

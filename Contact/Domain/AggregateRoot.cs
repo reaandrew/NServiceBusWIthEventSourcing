@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Contact.Infrastructure.Github;
 
 namespace Contact.Domain
@@ -14,11 +15,26 @@ namespace Contact.Domain
             _outstandingEvents = new List<DomainEvent>();
         }
 
+        public AggregateRoot(IEnumerable<DomainEvent> domainEvents)
+        {
+            var events = domainEvents.OrderBy(x => x.Version);
+            foreach (var @event in events)
+            {
+                ReplayChange(@event);
+            }
+        }
+
         public Guid ID { get; protected set; }
 
         public List<DomainEvent> OutstandingEvents
         {
             get { return new List<DomainEvent>(_outstandingEvents); }
+        }
+
+        protected void ReplayChange<T>(T @event) where T : DomainEvent
+        {
+            _version = @event.Version;
+            this.AsDynamic().Apply(@event);
         }
 
         protected void ApplyChange<T>(T @event) where T : DomainEvent

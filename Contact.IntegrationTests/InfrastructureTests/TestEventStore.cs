@@ -53,12 +53,25 @@ namespace Contact.IntegrationTests.InfrastructureTests
         [Test]
         public void ShouldBeAbleToGetAnAggregateRootById()
         {
+            var eventPublisher = MockRepository.GenerateMock<IEventPublisher>();
+            var eventPersistence = MockRepository.GenerateMock<IEventPersistence>();
             var id = Guid.NewGuid();
-            var events = new List<DomainEvent>
+             var events = new List<DomainEvent>
                 {
                     new AccommodationLeadCreated(id,"joe","something@test.com")
+                        {
+                            Version = 1
+                        },
+                    new AccommodationLeadApproved(id)
+                        {
+                            Version = 2
+                        }
                 };
-            Assert.Inconclusive();
+            eventPersistence.Stub(x => x.GetEventsForAggregate(id)).Return(events);
+
+            var eventStore = new EventStore(eventPersistence, eventPublisher);
+            var domainObject = eventStore.Get<AccommodationLead>(id);
+            Assert.That(domainObject.Version, Is.Equal(2));
         }
     }
 }

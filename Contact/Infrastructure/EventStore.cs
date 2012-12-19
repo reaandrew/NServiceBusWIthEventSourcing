@@ -24,5 +24,11 @@ namespace Contact.Infrastructure
                 _eventPublisher.Publish(@event);
             }
         }
+
+        public T Get<T>(Guid id) where T : AggregateRoot
+        {
+            var events = _eventPersistence.GetEventsForAggregate(id);
+            var aggregateRoot = Activator.CreateInstance(typeof (T), new object[] {events});
+        }
     }
 }
