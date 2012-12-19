@@ -1,4 +1,4 @@
-namespace Contact.Domain
+namespace Core.Domain
 {
     public abstract class DomainEvent
     {

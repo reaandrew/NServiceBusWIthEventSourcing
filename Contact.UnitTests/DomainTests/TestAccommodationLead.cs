@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Contact.Domain;
+using Core.Domain;
 using NUnit.Framework;
 
 namespace Contact.UnitTests.DomainTests

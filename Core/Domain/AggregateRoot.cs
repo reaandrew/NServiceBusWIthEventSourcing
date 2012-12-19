@@ -5,8 +5,63 @@ using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using SimpleCQRS.Support;
 
-namespace Contact.Infrastructure.Github
+namespace Core.Domain
+{
+    public abstract class AggregateRoot
+    {
+        private readonly List<DomainEvent> _outstandingEvents;
+        public int Version { get; private set; }
+        public Guid ID { get; protected set; }
+
+        protected AggregateRoot()
+        {
+            _outstandingEvents = new List<DomainEvent>();
+        }
+
+        protected AggregateRoot(IEnumerable<DomainEvent> domainEvents)
+            :this()
+        {
+            var events = domainEvents.OrderBy(x => x.Version);
+            foreach (var @event in events)
+            {
+                ReplayChange(@event);
+            }
+        }
+
+        public List<DomainEvent> OutstandingEvents
+        {
+            get { return new List<DomainEvent>(_outstandingEvents); }
+        }
+
+        protected void ReplayChange<T>(T @event) where T : DomainEvent
+        {
+            Version = @event.Version;
+            this.AsDynamic().Apply(@event);
+        }
+
+        protected void ApplyChange<T>(T @event) where T : DomainEvent
+        {
+            @event.Version = ++Version;
+            _outstandingEvents.Add(@event);
+
+            //This is simply a way to avoid extra code at the cost of using
+            //reflection, provided by external code from CQRS.
+            //A reflection less way would be to map events to handlers which I am
+            //not against but I though I would give this a try as I liked the look
+            //of it.
+            this.AsDynamic().Apply(@event);
+        }
+
+        public void MarkChangesAsCommitted()
+        {
+            _outstandingEvents.Clear();
+        }
+    }
+}
+
+namespace SimpleCQRS.Support
 {
     //FROM http://blogs.msdn.com/b/davidebb/archive/2010/01/18/use-c-4-0-dynamic-to-drastically-simplify-your-private-reflection-code.aspx
     //doesnt count to line counts :)
@@ -30,7 +85,7 @@ namespace Contact.Infrastructure.Github
             if (o == null || o.GetType().IsPrimitive || o is string)
                 return o;
 
-            return new PrivateReflectionDynamicObject {RealObject = o};
+            return new PrivateReflectionDynamicObject { RealObject = o };
         }
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
@@ -144,13 +199,13 @@ namespace Contact.Infrastructure.Github
             // First, add all the properties
             foreach (PropertyInfo prop in type.GetProperties(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[prop.Name] = new Property {PropertyInfo = prop};
+                typeProperties[prop.Name] = new Property { PropertyInfo = prop };
             }
 
             // Now, add all the fields
             foreach (FieldInfo field in type.GetFields(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[field.Name] = new Field {FieldInfo = field};
+                typeProperties[field.Name] = new Field { FieldInfo = field };
             }
 
             // Finally, recurse on the base class to add its fields
@@ -256,15 +311,15 @@ namespace Contact.Infrastructure.Github
         public static Action<BaseT> CastArgument<BaseT, DerivedT>(Expression<Action<DerivedT>> source)
             where DerivedT : BaseT
         {
-            if (typeof (DerivedT) == typeof (BaseT))
+            if (typeof(DerivedT) == typeof(BaseT))
             {
-                return (Action<BaseT>) ((Delegate) source.Compile());
+                return (Action<BaseT>)((Delegate)source.Compile());
             }
-            ParameterExpression sourceParameter = Expression.Parameter(typeof (BaseT), "source");
+            ParameterExpression sourceParameter = Expression.Parameter(typeof(BaseT), "source");
             Expression<Action<BaseT>> result = Expression.Lambda<Action<BaseT>>(
                 Expression.Invoke(
                     source,
-                    Expression.Convert(sourceParameter, typeof (DerivedT))),
+                    Expression.Convert(sourceParameter, typeof(DerivedT))),
                 sourceParameter);
             return result.Compile();
         }

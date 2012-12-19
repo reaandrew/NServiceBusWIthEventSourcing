@@ -1,7 +1,7 @@
 using System;
-using Contact.Domain;
+using Core.Domain;
 
-namespace Contact.Core
+namespace Core.DomainServices
 {
     public interface IDomainRepository
     {

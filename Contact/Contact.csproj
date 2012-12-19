@@ -62,9 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\IDomainRepository.cs" />
-    <Compile Include="Core\IEventPersistence.cs" />
-    <Compile Include="Core\IEventStore.cs" />
     <Compile Include="Core\ISendEmails.cs" />
     <Compile Include="DomainServices\DomainRepository.cs" />
     <Compile Include="DomainServices\EventStore.cs" />
@@ -73,13 +70,9 @@
     <Compile Include="Domain\AccommodationLeadCreated.cs" />
     <Compile Include="Domain\AccommodationSupplier.cs" />
     <Compile Include="Domain\AccommodationSupplierCreated.cs" />
-    <Compile Include="Domain\AggregateRoot.cs" />
-    <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserCreated.cs" />
-    <Compile Include="Core\IEventPublisher.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="Infrastructure\Github\SimpleCQRS.cs" />
     <Compile Include="Infrastructure\InProc\InProcEventPersistence.cs" />
     <Compile Include="Infrastructure\InProc\BlackHoleEmailSender.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />
@@ -113,9 +106,12 @@
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Core\README.txt" />
     <Content Include="Senders\README.txt" />
   </ItemGroup>
   <ItemGroup />

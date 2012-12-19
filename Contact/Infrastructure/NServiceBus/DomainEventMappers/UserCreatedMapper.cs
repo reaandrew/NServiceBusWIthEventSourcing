@@ -1,4 +1,5 @@
 using Contact.Domain;
+using Core.Domain;
 using NServiceBus;
 using UserCreated = Contact.Messages.Events.UserCreated;
 

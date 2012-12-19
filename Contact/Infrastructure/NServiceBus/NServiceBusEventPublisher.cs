@@ -1,5 +1,7 @@
 using Contact.Core;
 using Contact.Domain;
+using Core.Domain;
+using Core.DomainServices;
 using NServiceBus;
 
 namespace Contact.Infrastructure.NServiceBus

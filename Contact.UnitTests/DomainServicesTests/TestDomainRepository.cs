@@ -4,6 +4,8 @@ using Contact.Core;
 using Contact.Domain;
 using Contact.DomainServices;
 using Contact.UnitTests.TestClasses;
+using Core.Domain;
+using Core.DomainServices;
 using NUnit.Framework;
 using Rhino.Mocks;
 

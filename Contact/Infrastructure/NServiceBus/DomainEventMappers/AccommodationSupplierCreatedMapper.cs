@@ -1,6 +1,7 @@
 using Contact.Core;
 using Contact.Domain;
 using Contact.Messages.Events;
+using Core.Domain;
 using NServiceBus;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers

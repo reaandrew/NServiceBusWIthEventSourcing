@@ -1,4 +1,5 @@
 using System;
+using Core.Domain;
 
 namespace Contact.Domain
 {

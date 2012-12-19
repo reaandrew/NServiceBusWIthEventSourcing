@@ -1,5 +1,6 @@
 using System;
 using Contact.Domain;
+using Core.Domain;
 
 namespace Contact.UnitTests.TestClasses
 {

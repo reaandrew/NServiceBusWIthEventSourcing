@@ -1,5 +1,6 @@
 ﻿using System;
 using Contact.Domain;
+using Core.Domain;
 using NUnit.Framework;
 
 namespace Contact.UnitTests.DomainTests
