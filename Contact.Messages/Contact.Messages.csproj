@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ApproveAccLead.cs" />
+    <Compile Include="Commands\CreateAccommodationLead.cs" />
     <Compile Include="Commands\CreateAccSupplier.cs" />
     <Compile Include="Commands\CreateUser.cs" />
     <Compile Include="Events\AccommodationLeadApproved.cs" />

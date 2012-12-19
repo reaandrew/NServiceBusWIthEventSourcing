@@ -1,5 +1,6 @@
 using System;
 using Contact.Domain;
+using Contact.IntegrationTests.ProcessorsTests.SupportForTests;
 using Contact.Messages.Commands;
 using NServiceBus.Testing;
 using NUnit.Framework;
@@ -9,7 +10,7 @@ using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadAppro
 namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
-    public class TestApproveAccLead : WithInProcEventStorendNServiceBusPublisher
+    public class TestApproveAccLead : WithInProcEventStoreAndNServiceBusPublisher
     {
         [Test]
         public void ShouldPublishAnAccommodationLeadApprovedEvent()

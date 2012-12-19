@@ -1,5 +1,4 @@
 using System;
-using Contact.Exceptions;
 using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
 using NServiceBus;

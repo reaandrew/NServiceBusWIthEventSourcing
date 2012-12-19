@@ -26,6 +26,9 @@ namespace Contact.Domain
 
         public void Approve()
         {
+            if (_approved)
+                throw new Exception("NO");
+
             ApplyChange(new AccommodationLeadApproved(ID));
         }
 

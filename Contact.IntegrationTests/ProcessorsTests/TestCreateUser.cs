@@ -1,4 +1,5 @@
 using System;
+using Contact.IntegrationTests.ProcessorsTests.SupportForTests;
 using Contact.Messages.Commands;
 using Contact.Messages.Events;
 using NServiceBus.Testing;
@@ -7,7 +8,7 @@ using NUnit.Framework;
 namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
-    public class TestCreateUser : WithInProcEventStorendNServiceBusPublisher
+    public class TestCreateUser : WithInProcEventStoreAndNServiceBusPublisher
     {
         [Test]
         public void ShouldPublishAUserCreatedEvent()

@@ -4,9 +4,9 @@ using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
 using NServiceBus;
 
-namespace Contact.IntegrationTests.ProcessorsTests
+namespace Contact.IntegrationTests.ProcessorsTests.SupportForTests
 {
-    public abstract class WithInProcEventStorendNServiceBusPublisher
+    public abstract class WithInProcEventStoreAndNServiceBusPublisher
     {
         protected IDomainRepository CreateDomainRepository(IBus bus)
         {
