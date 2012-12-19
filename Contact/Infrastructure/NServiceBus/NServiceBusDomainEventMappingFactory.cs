@@ -16,13 +16,13 @@ namespace Contact.Infrastructure.NServiceBus
         /// Should not be too much work either...
         /// </summary>
         /// <returns></returns>
-        public IDomainEventMappingCollection<IEvent> CreateMappingCollection()
+        public IEventMappings CreateMappingCollection()
         {
-            var mappingCollection = new DomainEventGenericMappingCollection<IEvent>();
-            mappingCollection.AddMapping(new UserCreatedMapper());
-            mappingCollection.AddMapping(new AccommodationLeadApprovedMapper());
-            mappingCollection.AddMapping(new AccommodationLeadCreatedMapper());
-            mappingCollection.AddMapping(new AccommodationSupplierCreatedMapper());
+            var mappingCollection = new NServiceBusEventMappings();
+            mappingCollection.AddMapper(new UserCreatedMapper());
+            mappingCollection.AddMapper(new AccommodationLeadApprovedMapper());
+            mappingCollection.AddMapper(new AccommodationLeadCreatedMapper());
+            mappingCollection.AddMapper(new AccommodationSupplierCreatedMapper());
             return mappingCollection;
         }
     }

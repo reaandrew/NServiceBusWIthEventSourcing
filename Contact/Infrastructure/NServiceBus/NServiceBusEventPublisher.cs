@@ -11,17 +11,17 @@ namespace Contact.Infrastructure.NServiceBus
     public class NServiceBusEventPublisher : IEventPublisher
     {
         private readonly IBus _bus;
-        private readonly IDomainEventMappingCollection<IEvent> _domainEventGenericMappers;
+        private readonly IEventMappings _genericMappers;
 
-        public NServiceBusEventPublisher(IBus bus, IDomainEventMappingCollection<IEvent> domainEventGenericMappers)
+        public NServiceBusEventPublisher(IBus bus, IEventMappings genericMappers)
         {
             _bus = bus;
-            _domainEventGenericMappers = domainEventGenericMappers;
+            _genericMappers = genericMappers;
         }
 
         public void Publish<T>(T @event) where T : DomainEvent
         {
-            var eventToPublish = _domainEventGenericMappers.GetMappedEventFor(@event);
+            var eventToPublish = _genericMappers.GetMappedObjectFor(@event);
             _bus.Publish(eventToPublish);
         }
     }

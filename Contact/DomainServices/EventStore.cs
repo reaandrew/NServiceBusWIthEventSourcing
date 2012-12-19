@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Contact.Core;
 using Contact.Domain;
 
-namespace Contact.Infrastructure
+namespace Contact.DomainServices
 {
     public class EventStore : IEventStore
     {
@@ -25,10 +25,10 @@ namespace Contact.Infrastructure
             }
         }
 
-        public T Get<T>(Guid id) where T : AggregateRoot
+        public IList<DomainEvent> GetEventsForAggregate<T>(Guid id)
+            where T : AggregateRoot
         {
-            var events = _eventPersistence.GetEventsForAggregate(id);
-            var aggregateRoot = Activator.CreateInstance(typeof (T), new object[] {events});
+            return _eventPersistence.GetEventsForAggregate<T>(id);
         }
     }
 }

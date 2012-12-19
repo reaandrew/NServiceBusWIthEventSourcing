@@ -1,26 +1,31 @@
+using System;
+using Contact.Domain;
+using Contact.Messages.Commands;
+using NServiceBus.Testing;
 using NUnit.Framework;
+using Rhino.Mocks;
+using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadApproved;
 
 namespace Contact.IntegrationTests.ProcessorsTests
 {
     [TestFixture]
-    public class TestApproveAccLead
+    public class TestApproveAccLead : WithInProcEventStorendNServiceBusPublisher
     {
         [Test]
         public void ShouldPublishAnAccommodationLeadApprovedEvent()
         {
-            Assert.Inconclusive();
-            /*
             var accLeadId = Guid.NewGuid();
-
-            var mapperFactory = new NServiceBusDomainEventMappingFactory();
-            var mapperCollection = mapperFactory.CreateMappingCollection();
+            var accommodationLead = new AccommodationLead(accLeadId, "joe", "test@test.com");
 
             Test.Initialize();
-
-            Test.Handler(bus => new Processors.ApproveAccLead(new NServiceBusEventPublisher(bus,mapperCollection)))
-                .ExpectPublish<ApproveAccLead>(approved => approved.AccLeadId == accLeadId)
+            Test.Handler(bus =>
+                {
+                    var domainRepository = CreateDomainRepository(bus);
+                    domainRepository.Save(accommodationLead);
+                    return new Processors.ApproveAccLead(domainRepository);
+                })
+                .ExpectPublish<AccommodationLeadApproved>(approved => approved.AccLeadId == accLeadId)
                 .OnMessage<ApproveAccLead>(lead => { lead.AccLeadId = accLeadId; });
-             * */
         }
     }
 }

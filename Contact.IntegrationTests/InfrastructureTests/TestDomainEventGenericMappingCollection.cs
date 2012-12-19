@@ -1,6 +1,7 @@
+using System;
 using Contact.Exceptions;
 using Contact.Infrastructure;
-using Contact.IntegrationTests.TestClasses;
+using Contact.Infrastructure.NServiceBus;
 using NServiceBus;
 using NUnit.Framework;
 
@@ -17,24 +18,26 @@ namespace Contact.IntegrationTests.InfrastructureTests
         [Test]
         public void ShouldLocateAnExistingMapperUsingASuppliedDomainEventType()
         {
-            var domainEventMappingCollection = new DomainEventGenericMappingCollection<IEvent>();
+            var domainEventMappingCollection = new NServiceBusEventMappings();
 
-            domainEventMappingCollection.AddMapping(new EmptyDomainEventMapper());
+            domainEventMappingCollection.AddMapper(
+                new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
 
-            var domainEvent = new EmptyDomainEvent();
+            var domainEvent = new Domain.AccommodationLeadApproved(Guid.NewGuid());
 
-            IEvent mappedEvent = domainEventMappingCollection.GetMappedEventFor(domainEvent);
+            var mappedEvent =
+                domainEventMappingCollection.GetMappedObjectFor(domainEvent);
 
-            Assert.That(mappedEvent, Is.TypeOf<EmptyNServiceBusEvent>());
+            Assert.That(mappedEvent, Is.TypeOf<Contact.Messages.Events.AccommodationLeadApproved>());
         }
 
         [Test]
-        [ExpectedException(typeof (DomainEventNotFoundException))]
+        [ExpectedException(typeof (MapperNotFoundException))]
         public void ShouldThrowDomainEventMapperNotFoundException()
         {
-            var domainEventMappingCollection = new DomainEventGenericMappingCollection<IEvent>();
-            var domainEvent = new EmptyDomainEvent();
-            domainEventMappingCollection.GetMappedEventFor(domainEvent);
+            var domainEventMappingCollection = new NServiceBusEventMappings();
+            var domainEvent = new Contact.Domain.AccommodationLeadApproved(Guid.NewGuid());
+            domainEventMappingCollection.GetMappedObjectFor(domainEvent);
         }
     }
 }

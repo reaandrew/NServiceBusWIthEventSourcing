@@ -14,26 +14,6 @@ namespace Contact.Processors
         IAmStartedByMessages<Messages.Commands.CreateAccSupplier>,
         IHandleMessages<UserCreated>
     {
-        //Need to understand how to keep constructor injection for Sagas
-        //which is also compatible for testing.  I think a fix for the NServiceBUs
-        //source code simply needs a constructor for Saga which is found in Handler
-        //that gives you access to a created mock bus instance you can use.  Wonder
-        //what the reason is why it is not there.  Simply because it has not be done
-        //or purposely not implemented for some reason I do not yet know.  Prob the latter
-        //but hey ho.
-
-        //private readonly ISendCommand<CreateUser> _createUserSender;
-
-        //public CreateAccSupplier()
-        //{
-
-        //}
-
-        //public CreateAccSupplier(ISendCommand<CreateUser> createUserSender)
-        //{
-        //    _createUserSender = createUserSender;
-        //}
-
         public void Handle(Messages.Commands.CreateAccSupplier message)
         {
             Console.WriteLine("{0},{1},{2}",

@@ -62,12 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\IDomainEventMappingCollection.cs" />
+    <Compile Include="Core\IDomainRepository.cs" />
     <Compile Include="Core\IEventPersistence.cs" />
     <Compile Include="Core\IEventStore.cs" />
-    <Compile Include="Core\IMapDomainEvent.cs" />
     <Compile Include="Core\IPublishEvent.cs" />
     <Compile Include="Core\ISendEmails.cs" />
+    <Compile Include="DomainServices\DomainRepository.cs" />
+    <Compile Include="DomainServices\EventStore.cs" />
     <Compile Include="Domain\AccommodationLead.cs" />
     <Compile Include="Domain\AccommodationLeadApproved.cs" />
     <Compile Include="Domain\AccommodationLeadCreated.cs" />
@@ -77,18 +78,20 @@
     <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserCreated.cs" />
-    <Compile Include="Exceptions\DomainEventNotFoundException.cs" />
-    <Compile Include="Infrastructure\DomainEventGenericMappingCollection.cs" />
+    <Compile Include="Exceptions\MapperNotFoundException.cs" />
     <Compile Include="Core\IEventPublisher.cs" />
     <Compile Include="Core\ISendCommand.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="Infrastructure\EventStore.cs" />
     <Compile Include="Infrastructure\Github\SimpleCQRS.cs" />
+    <Compile Include="Infrastructure\InProc\InProcEventPersistence.cs" />
     <Compile Include="Infrastructure\LoggingDecorator.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadApprovedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationSupplierCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\UserCreatedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\NServiceBusEventMappings.cs" />
+    <Compile Include="Infrastructure\NServiceBus\IEventMappings.cs" />
+    <Compile Include="Infrastructure\NServiceBus\IEventMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
     <Compile Include="Infrastructure\NServiceBus\NServiceBusEventPublisher.cs" />
     <Compile Include="Main.cs" />

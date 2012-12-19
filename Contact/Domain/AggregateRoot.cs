@@ -7,15 +7,17 @@ namespace Contact.Domain
 {
     public abstract class AggregateRoot
     {
-        protected readonly List<DomainEvent> _outstandingEvents;
-        private int _version;
+        private readonly List<DomainEvent> _outstandingEvents;
+        public int Version { get; private set; }
+        public Guid ID { get; protected set; }
 
         protected AggregateRoot()
         {
             _outstandingEvents = new List<DomainEvent>();
         }
 
-        public AggregateRoot(IEnumerable<DomainEvent> domainEvents)
+        protected AggregateRoot(IEnumerable<DomainEvent> domainEvents)
+            :this()
         {
             var events = domainEvents.OrderBy(x => x.Version);
             foreach (var @event in events)
@@ -24,8 +26,6 @@ namespace Contact.Domain
             }
         }
 
-        public Guid ID { get; protected set; }
-
         public List<DomainEvent> OutstandingEvents
         {
             get { return new List<DomainEvent>(_outstandingEvents); }
@@ -33,13 +33,13 @@ namespace Contact.Domain
 
         protected void ReplayChange<T>(T @event) where T : DomainEvent
         {
-            _version = @event.Version;
+            Version = @event.Version;
             this.AsDynamic().Apply(@event);
         }
 
         protected void ApplyChange<T>(T @event) where T : DomainEvent
         {
-            @event.Version = ++_version;
+            @event.Version = ++Version;
             _outstandingEvents.Add(@event);
 
             //This is simply a way to avoid extra code at the cost of using

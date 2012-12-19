@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Contact.Domain
 {
@@ -11,6 +12,12 @@ namespace Contact.Domain
         private bool _approved;
         private string _email;
         private string _name;
+
+        public AccommodationLead(IEnumerable<DomainEvent> domainEvents)
+            : base(domainEvents)
+        {
+            
+        }
 
         public AccommodationLead(Guid id, string name, string email)
         {

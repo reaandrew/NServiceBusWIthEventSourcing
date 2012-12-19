@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using Contact.Core;
 using Contact.Domain;
-using Contact.Infrastructure;
-using Contact.IntegrationTests.TestClasses;
+using Contact.DomainServices;
+using Contact.UnitTests.TestClasses;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Is = Rhino.Mocks.Constraints.Is;
 
-namespace Contact.IntegrationTests.InfrastructureTests
+namespace Contact.UnitTests.DomainServicesTests
 {
     [TestFixture]
     public class TestEventStore
@@ -32,7 +32,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var id = Guid.NewGuid();
             var events = new List<DomainEvent>
                 {
-                    new EmptyDomainEvent()
+                    new EmptyDomainEvent(id)
                 };
             _eventStore.SaveEvents(id, events);
             _eventPublisher.AssertWasCalled(x => x.Publish(Arg<DomainEvent>.Matches(Is.TypeOf<EmptyDomainEvent>())));
@@ -44,14 +44,14 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var id = Guid.NewGuid();
             var events = new List<DomainEvent>
                 {
-                    new EmptyDomainEvent()
+                    new EmptyDomainEvent(id)
                 };
             _eventStore.SaveEvents(id, events);
             _eventPersistence.AssertWasCalled(x => x.Save(Arg<Guid>.Is.Anything, Arg<EmptyDomainEvent>.Is.Anything));
         }
 
         [Test]
-        public void ShouldBeAbleToGetAnAggregateRootById()
+        public void ShouldBeAbleToGetEventsForAnAggregateRootById()
         {
             var eventPublisher = MockRepository.GenerateMock<IEventPublisher>();
             var eventPersistence = MockRepository.GenerateMock<IEventPersistence>();
@@ -67,11 +67,11 @@ namespace Contact.IntegrationTests.InfrastructureTests
                             Version = 2
                         }
                 };
-            eventPersistence.Stub(x => x.GetEventsForAggregate(id)).Return(events);
+             eventPersistence.Stub<IEventPersistence, IList<DomainEvent>>(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
 
             var eventStore = new EventStore(eventPersistence, eventPublisher);
-            var domainObject = eventStore.Get<AccommodationLead>(id);
-            Assert.That(domainObject.Version, Is.Equal(2));
+            var retrievedEvents = eventStore.GetEventsForAggregate<EmptyDomainObject>(id);
+            Assert.That(retrievedEvents, NUnit.Framework.Is.EquivalentTo(events));
         }
     }
 }

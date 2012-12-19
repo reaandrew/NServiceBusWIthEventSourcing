@@ -14,10 +14,11 @@ namespace Contact.IntegrationTests.ProcessorsTests
         {
             Test.Initialize();
             Test.Saga<CreateAccSupplier>()
-                .ExpectSend<CreateUser>()
+                .ExpectSend<Messages.Commands.CreateUser>()
                 .When(processor => processor.Handle(new Messages.Commands.CreateAccSupplier
                     {
-                        Name = "Something"
+                        Name = "Something",
+                        Email = "test@test.com"
                     }))
                 .ExpectPublish<AccSupplierCreated>()
                 .When(x => x.Handle(new UserCreated()));

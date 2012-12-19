@@ -1,18 +1,25 @@
 using Contact.Core;
 using Contact.Domain;
 using Contact.Messages.Events;
+using NServiceBus;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 {
-    public class AccommodationSupplierCreatedMapper : IMapDomainEvent<Domain.AccommodationSupplierCreated, AccSupplierCreated>
+    public class AccommodationSupplierCreatedMapper : IEventMapper
     {
-        public AccSupplierCreated Map(AccommodationSupplierCreated @event)
+        public IEvent Map(DomainEvent @event)
         {
+            var accSupplierCreatedEvent = (Domain.AccommodationSupplierCreated) @event;
             return new AccSupplierCreated
                 {
-                    Name = @event.Name,
-                    Email = @event.Email
+                    Name = accSupplierCreatedEvent.Name,
+                    Email = accSupplierCreatedEvent.Email
                 };
+        }
+
+        public bool CanMap(DomainEvent @event)
+        {
+            return @event.GetType() == typeof (Domain.AccommodationSupplierCreated);
         }
     }
 }

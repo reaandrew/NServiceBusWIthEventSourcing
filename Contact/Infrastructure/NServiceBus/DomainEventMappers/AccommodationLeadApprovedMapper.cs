@@ -1,17 +1,24 @@
 using Contact.Core;
-using Contact.Messages.Events;
+using Contact.Domain;
+using NServiceBus;
+using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadApproved;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 {
-    public class AccommodationLeadApprovedMapper 
-        : IMapDomainEvent<Domain.AccommodationLeadApproved,AccommodationLeadApproved>
+    public class AccommodationLeadApprovedMapper : IEventMapper
     {
-        public AccommodationLeadApproved Map(Domain.AccommodationLeadApproved @event)
+        public IEvent Map(DomainEvent @event)
         {
+            var accLeadCreatedEvent = (Domain.AccommodationLeadApproved) @event;
             return new AccommodationLeadApproved
-                {
-                    AccLeadId = @event.ID
-                };
+            {
+                AccLeadId = accLeadCreatedEvent.ID
+            };
+        }
+
+        public bool CanMap(DomainEvent @event)
+        {
+            return @event.GetType() == typeof (Contact.Domain.AccommodationLeadApproved);
         }
     }
 }

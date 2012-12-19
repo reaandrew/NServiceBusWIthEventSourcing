@@ -1,26 +1,22 @@
 using Contact.Core;
+using Contact.Domain;
 using NServiceBus;
 
 namespace Contact.Processors
 {
     public class CreateUser : IHandleMessages<Messages.Commands.CreateUser>
     {
-        private readonly IEventPublisher _eventPublisher;
+        private readonly IDomainRepository _domainRepository;
 
-        public CreateUser(IEventPublisher eventPublisher)
+        public CreateUser(IDomainRepository domainRepository)
         {
-            _eventPublisher = eventPublisher;
+            _domainRepository = domainRepository;
         }
 
         public void Handle(Messages.Commands.CreateUser message)
         {
-            //LogManager.GetLogger(typeof (CreateUser)).Debug("User Created :-)");
-            //Console.WriteLine("User created");
-            //_eventPublisher.Publish(new UserCreated
-            //    {
-            //        CorrelationId = message.CorrelationId,
-            //        Name = message.Name
-            //    });
+            var user = new User(message.UserId, message.Name, message.Email);
+            _domainRepository.Save(user);
         }
     }
 }

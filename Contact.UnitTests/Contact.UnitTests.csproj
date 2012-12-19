@@ -64,10 +64,14 @@
     <Compile Include="DomainEventMappersTests\TestAccommodationLeadCreatedMapper.cs" />
     <Compile Include="DomainEventMappersTests\TestAccommodationSupplierCreatedMapper.cs" />
     <Compile Include="DomainEventMappersTests\TestUserCreatedMapper.cs" />
+    <Compile Include="DomainServicesTests\TestDomainRepository.cs" />
+    <Compile Include="DomainServicesTests\TestEventStore.cs" />
     <Compile Include="DomainTests\TestAccommodationLead.cs" />
     <Compile Include="DomainTests\TestAccommodationSupplier.cs" />
     <Compile Include="DomainTests\TestUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\EmptyDomainEvent.cs" />
+    <Compile Include="TestClasses\EmptyDomainObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

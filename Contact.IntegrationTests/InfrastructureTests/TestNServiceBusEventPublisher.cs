@@ -1,6 +1,6 @@
+using System;
 using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
-using Contact.IntegrationTests.TestClasses;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -14,10 +14,10 @@ namespace Contact.IntegrationTests.InfrastructureTests
         public void ShouldPublishEvent()
         {
             var mockBus = MockRepository.GenerateMock<IBus>();
-            var domainEventMappingCollection = new DomainEventGenericMappingCollection<IEvent>();
-            domainEventMappingCollection.AddMapping(new EmptyDomainEventMapper());
+            var domainEventMappingCollection = new NServiceBusEventMappings();
+            domainEventMappingCollection.AddMapper(new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
             var eventPublisher = new NServiceBusEventPublisher(mockBus, domainEventMappingCollection);
-            var domainEvent = new EmptyDomainEvent();
+            var domainEvent = new Contact.Domain.AccommodationLeadApproved(Guid.NewGuid());
             eventPublisher.Publish(domainEvent);
             //Already tested that the correct event should be being published here where the 
             //DomainEventMappingTests

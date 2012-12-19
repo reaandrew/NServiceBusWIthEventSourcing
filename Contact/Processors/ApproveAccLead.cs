@@ -6,11 +6,11 @@ namespace Contact.Processors
 {
     public class ApproveAccLead : IHandleMessages<Messages.Commands.ApproveAccLead>
     {
-        private readonly IEventStore _eventStore;
+        private readonly IDomainRepository _domainRepository;
 
-        public ApproveAccLead(IEventStore eventStore)
+        public ApproveAccLead(IDomainRepository domainRepository)
         {
-            _eventStore = eventStore;
+            _domainRepository = domainRepository;
         }
 
         public ApproveAccLead()
@@ -19,10 +19,9 @@ namespace Contact.Processors
 
         public void Handle(Messages.Commands.ApproveAccLead message)
         {
-            //Need to implement the GET functionality in the EventSourcing.
-            //Tis is the only thing missing.  This is temporary below and will break future tests
-            var accLead = new AccommodationLead(message.AccLeadId, "something", "anything");
-            _eventStore.SaveEvents(accLead.ID, accLead.OutstandingEvents);
+            var accommodationLead = _domainRepository.Get<AccommodationLead>(message.AccLeadId);
+            accommodationLead.Approve();
+            _domainRepository.Save(accommodationLead);
         }
     }
 }

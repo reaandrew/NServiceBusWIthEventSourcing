@@ -1,17 +1,25 @@
-using Contact.Core;
-using Contact.Messages.Events;
+using Contact.Domain;
+using NServiceBus;
+using UserCreated = Contact.Messages.Events.UserCreated;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 {
-    public class UserCreatedMapper : IMapDomainEvent<Domain.UserCreated,Messages.Events.UserCreated>
+    public class UserCreatedMapper : IEventMapper
     {
-        public UserCreated Map(Domain.UserCreated @event)
+        public IEvent Map(DomainEvent @event)
         {
+            var userCreatedEvent = (Domain.UserCreated) @event;
             return new UserCreated
-                {
-                    Name = @event.Name,
-                    Email = @event.Email
-                };
+            {
+                UserID = userCreatedEvent.ID,
+                Name = userCreatedEvent.Name,
+                Email = userCreatedEvent.Email
+            };
+        }
+
+        public bool CanMap(DomainEvent @event)
+        {
+            return @event.GetType() == typeof (Domain.UserCreated);
         }
     }
 }
