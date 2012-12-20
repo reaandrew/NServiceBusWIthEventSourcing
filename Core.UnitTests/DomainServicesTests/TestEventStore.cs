@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Contact.Core;
-using Contact.Domain;
-using Contact.DomainServices;
-using Contact.UnitTests.TestClasses;
 using Core.Domain;
 using Core.DomainServices;
+using Core.UnitTests.TestClasses;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Is = Rhino.Mocks.Constraints.Is;
 
-namespace Contact.UnitTests.DomainServicesTests
+namespace Core.UnitTests.DomainServicesTests
 {
     [TestFixture]
     public class TestEventStore
@@ -60,20 +57,16 @@ namespace Contact.UnitTests.DomainServicesTests
             var id = Guid.NewGuid();
              var events = new List<DomainEvent>
                 {
-                    new AccommodationLeadCreated(id,"joe","something@test.com")
+                    new EmptyDomainEvent(id)
                         {
                             Version = 1
-                        },
-                    new AccommodationLeadApproved(id)
-                        {
-                            Version = 2
                         }
                 };
              eventPersistence.Stub<IEventPersistence, IList<DomainEvent>>(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
 
             var eventStore = new EventStore(eventPersistence, eventPublisher);
             var retrievedEvents = eventStore.GetEventsForAggregate<EmptyDomainObject>(id);
-            Assert.That(retrievedEvents, NUnit.Framework.Is.EquivalentTo(events));
+            Assert.That((object) retrievedEvents, NUnit.Framework.Is.EquivalentTo(events));
         }
     }
 }

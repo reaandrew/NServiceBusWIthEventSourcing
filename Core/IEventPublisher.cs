@@ -1,6 +1,6 @@
 using Core.Domain;
 
-namespace Core.DomainServices
+namespace Core
 {
     public interface IEventPublisher
     {

@@ -1,7 +1,7 @@
 using Contact.Core;
-using Contact.DomainServices;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
+using Core;
 using Core.DomainServices;
 using NServiceBus;
 

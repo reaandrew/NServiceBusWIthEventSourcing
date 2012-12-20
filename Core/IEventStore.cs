@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core.Domain;
 
-namespace Core.DomainServices
+namespace Core
 {
     public interface IEventStore
     {

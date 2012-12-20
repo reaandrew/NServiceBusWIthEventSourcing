@@ -1,7 +1,7 @@
 using System;
-using Contact.DomainServices;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
+using Core.DomainServices;
 using NServiceBus;
 
 namespace Contact.IntegrationTests.ProcessorsTests

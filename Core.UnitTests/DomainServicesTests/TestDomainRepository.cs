@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Contact.Core;
-using Contact.Domain;
-using Contact.DomainServices;
-using Contact.UnitTests.TestClasses;
 using Core.Domain;
 using Core.DomainServices;
+using Core.UnitTests.TestClasses;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Contact.UnitTests.DomainServicesTests
+namespace Core.UnitTests.DomainServicesTests
 {
     [TestFixture]
     public class TestDomainRepository
@@ -24,7 +21,7 @@ namespace Contact.UnitTests.DomainServicesTests
             var repository = new DomainRepository(fakeEventStore);
             repository.Save(aggregateRoot);
             fakeEventStore.VerifyAllExpectations();
-            Assert.That(aggregateRoot.OutstandingEvents.Count, Is.EqualTo(0));
+            Assert.That((object) aggregateRoot.OutstandingEvents.Count, Is.EqualTo(0));
         }
 
         [Test]

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Core.Domain;
-using Core.DomainServices;
 
-namespace Contact.DomainServices
+namespace Core.DomainServices
 {
     public class EventStore : IEventStore
     {
@@ -18,7 +17,7 @@ namespace Contact.DomainServices
 
         public void SaveEvents(Guid id, List<DomainEvent> outstandingEvents)
         {
-            foreach (DomainEvent @event in outstandingEvents)
+            foreach (var @event in outstandingEvents)
             {
                 _eventPersistence.Save(id, @event);
                 _eventPublisher.Publish(@event);

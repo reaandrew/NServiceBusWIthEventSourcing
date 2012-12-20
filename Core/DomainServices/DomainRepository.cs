@@ -1,10 +1,7 @@
 using System;
-using Contact.Core;
-using Contact.Domain;
 using Core.Domain;
-using Core.DomainServices;
 
-namespace Contact.DomainServices
+namespace Core.DomainServices
 {
     public class DomainRepository : IDomainRepository
     {

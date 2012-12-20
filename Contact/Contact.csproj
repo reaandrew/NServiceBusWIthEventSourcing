@@ -63,8 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ISendEmails.cs" />
-    <Compile Include="DomainServices\DomainRepository.cs" />
-    <Compile Include="DomainServices\EventStore.cs" />
     <Compile Include="Domain\AccommodationLead.cs" />
     <Compile Include="Domain\AccommodationLeadApproved.cs" />
     <Compile Include="Domain\AccommodationLeadCreated.cs" />

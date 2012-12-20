@@ -1,7 +1,7 @@
 using System;
 using Core.Domain;
 
-namespace Core.DomainServices
+namespace Core
 {
     public interface IDomainRepository
     {

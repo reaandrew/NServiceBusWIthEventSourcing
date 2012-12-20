@@ -1,8 +1,7 @@
 using System;
-using Contact.Domain;
 using Core.Domain;
 
-namespace Contact.UnitTests.TestClasses
+namespace Core.UnitTests.TestClasses
 {
     public class EmptyDomainEvent : DomainEvent
     {
