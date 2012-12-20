@@ -66,6 +66,7 @@
     <Compile Include="DomainEventMappersTests\TestUserCreatedMapper.cs" />
     <Compile Include="DomainTests\TestAccommodationLead.cs" />
     <Compile Include="DomainTests\TestAccommodationSupplier.cs" />
+    <Compile Include="DomainTests\TestAuthentication.cs" />
     <Compile Include="DomainTests\TestUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
+      <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>
+      <Name>Infrastructure.NServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

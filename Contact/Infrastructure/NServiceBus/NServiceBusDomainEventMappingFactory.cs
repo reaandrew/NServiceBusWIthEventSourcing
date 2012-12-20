@@ -1,5 +1,6 @@
 using Contact.Core;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
+using Infrastructure.NServiceBus;
 using NServiceBus;
 
 namespace Contact.Infrastructure.NServiceBus
@@ -23,6 +24,7 @@ namespace Contact.Infrastructure.NServiceBus
             mappingCollection.AddMapper(new AccommodationLeadApprovedMapper());
             mappingCollection.AddMapper(new AccommodationLeadCreatedMapper());
             mappingCollection.AddMapper(new AccommodationSupplierCreatedMapper());
+            mappingCollection.AddMapper(new AuthenticationCreatedMapper());
             return mappingCollection;
         }
     }

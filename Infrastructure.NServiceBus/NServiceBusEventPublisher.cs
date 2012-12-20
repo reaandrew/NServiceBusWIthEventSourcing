@@ -1,11 +1,8 @@
-using Contact.Core;
-using Contact.Domain;
 using Core;
 using Core.Domain;
-using Core.DomainServices;
 using NServiceBus;
 
-namespace Contact.Infrastructure.NServiceBus
+namespace Infrastructure.NServiceBus
 {
     /// <summary>
     ///     When using domain events, it isn't recommended to publish them directly on the bus - instead, a domain event handler would translate them to service-level events

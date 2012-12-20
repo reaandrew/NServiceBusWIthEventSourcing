@@ -1,6 +1,7 @@
 using System;
 using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
+using Infrastructure.NServiceBus;
 using NServiceBus;
 using NUnit.Framework;
 

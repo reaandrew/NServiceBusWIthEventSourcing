@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B4F27C6-2BD4-48BA-A8D4-EC6BD0624483}</ProjectGuid>
+    <ProjectGuid>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contact.IntegrationTests</RootNamespace>
-    <AssemblyName>Contact.IntegrationTests</AssemblyName>
+    <RootNamespace>Infrastructure.NServiceBus</RootNamespace>
+    <AssemblyName>Infrastructure.NServiceBus</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -32,23 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\packages\NServiceBus.Interfaces.3.3.3\lib\net40\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\packages\NServiceBus.3.3.3\lib\net40\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\packages\NServiceBus.Testing.3.3.3\lib\net40\NServiceBus.Testing.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,37 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InfrastructureTests\TestDomainEventGenericMappingCollection.cs" />
-    <Compile Include="InfrastructureTests\TestNServiceBusEventPublisher.cs" />
-    <Compile Include="ProcessorsTests\SupportForTests\WithInProcEventStoreAndNServiceBusPublisher.cs" />
-    <Compile Include="ProcessorsTests\TestApproveAccLead.cs" />
-    <Compile Include="ProcessorsTests\TestCreateAccommodationLead.cs" />
-    <Compile Include="ProcessorsTests\TestCreateAccSupplier.cs" />
-    <Compile Include="ProcessorsTests\TestCreateAuthenticationWithGeneratedPassword.cs" />
-    <Compile Include="ProcessorsTests\TestCreateUser.cs" />
-    <Compile Include="ProcessorsTests\TestProcessorFactory.cs" />
+    <Compile Include="IEventMapper.cs" />
+    <Compile Include="IEventMappings.cs" />
+    <Compile Include="MapperNotFoundException.cs" />
+    <Compile Include="NServiceBusEventMappings.cs" />
+    <Compile Include="NServiceBusEventPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubscribersTests\TestSendAccSupplierRegistrationEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
-      <Project>{08b6a47d-b8d1-48a1-81cc-bfbaf212bed1}</Project>
-      <Name>Contact.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Contact\Contact.csproj">
-      <Project>{1e070495-6fae-408d-a601-bc42d2a3e817}</Project>
-      <Name>Contact</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
+      <Project>{5C179E3E-6E03-4BFE-8577-824BA52AB9C5}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
-      <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>
-      <Name>Infrastructure.NServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

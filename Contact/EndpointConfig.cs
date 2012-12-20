@@ -4,6 +4,7 @@ using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
 using Core;
 using Core.DomainServices;
+using Infrastructure.NServiceBus;
 using NServiceBus;
 using StructureMap;
 using StructureMap.Pipeline;

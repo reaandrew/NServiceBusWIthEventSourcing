@@ -63,11 +63,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ISendEmails.cs" />
+    <Compile Include="DomainServices\IGeneratePassword.cs" />
+    <Compile Include="DomainServices\IHash.cs" />
     <Compile Include="Domain\AccommodationLead.cs" />
     <Compile Include="Domain\AccommodationLeadApproved.cs" />
     <Compile Include="Domain\AccommodationLeadCreated.cs" />
     <Compile Include="Domain\AccommodationSupplier.cs" />
     <Compile Include="Domain\AccommodationSupplierCreated.cs" />
+    <Compile Include="Domain\Authentication.cs" />
+    <Compile Include="Domain\AuthenticationCreated.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserCreated.cs" />
     <Compile Include="EndpointConfig.cs" />
@@ -77,17 +81,14 @@
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadApprovedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationSupplierCreatedMapper.cs" />
+    <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AuthenticationCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\UserCreatedMapper.cs" />
-    <Compile Include="Infrastructure\NServiceBus\MapperNotFoundException.cs" />
-    <Compile Include="Infrastructure\NServiceBus\NServiceBusEventMappings.cs" />
-    <Compile Include="Infrastructure\NServiceBus\IEventMappings.cs" />
-    <Compile Include="Infrastructure\NServiceBus\IEventMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
-    <Compile Include="Infrastructure\NServiceBus\NServiceBusEventPublisher.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccommodationLead.cs" />
     <Compile Include="Processors\CreateAccSupplier.cs" />
+    <Compile Include="Processors\CreateAuthenticationWithGeneratedPassword.cs" />
     <Compile Include="Processors\CreateUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscribers\CreateAccSupplier.cs" />
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
+      <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>
+      <Name>Infrastructure.NServiceBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

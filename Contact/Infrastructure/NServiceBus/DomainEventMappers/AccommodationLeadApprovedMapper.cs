@@ -1,6 +1,5 @@
-using Contact.Core;
-using Contact.Domain;
 using Core.Domain;
+using Infrastructure.NServiceBus;
 using NServiceBus;
 using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadApproved;
 

@@ -1,8 +1,7 @@
-using Contact.Domain;
 using Core.Domain;
 using NServiceBus;
 
-namespace Contact.Infrastructure.NServiceBus
+namespace Infrastructure.NServiceBus
 {
     public interface IEventMappings
     {

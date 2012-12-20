@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Contact.Domain;
 using Core.Domain;
 using NServiceBus;
 
-namespace Contact.Infrastructure.NServiceBus
+namespace Infrastructure.NServiceBus
 {
     //This is just for the purposes of example
     //Using a dedicated mapping library would be good in the future to make use of

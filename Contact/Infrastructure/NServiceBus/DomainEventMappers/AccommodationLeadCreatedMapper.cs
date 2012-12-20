@@ -1,6 +1,7 @@
 using Contact.Core;
 using Contact.Domain;
 using Core.Domain;
+using Infrastructure.NServiceBus;
 using NServiceBus;
 using AccommodationLeadCreated = Contact.Messages.Events.AccommodationLeadCreated;
 

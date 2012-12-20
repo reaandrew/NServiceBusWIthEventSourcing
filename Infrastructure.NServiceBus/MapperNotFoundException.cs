@@ -1,6 +1,6 @@
 using System;
 
-namespace Contact.Infrastructure.NServiceBus
+namespace Infrastructure.NServiceBus
 {
     public class MapperNotFoundException : Exception
     {
