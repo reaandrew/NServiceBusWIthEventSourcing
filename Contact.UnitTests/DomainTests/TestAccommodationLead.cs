@@ -96,7 +96,7 @@ namespace Contact.UnitTests.DomainTests
             {
                 _id = Guid.NewGuid();
                 _name = "Joe";
-                _email = "Email";
+                _email = "UserID";
                 _accLead = new AccommodationLead(_id, _name, _email);
                 _accLead.MarkChangesAsCommitted();
                 _accLead.Approve();

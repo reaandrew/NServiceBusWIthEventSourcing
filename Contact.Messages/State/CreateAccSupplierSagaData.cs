@@ -11,8 +11,9 @@ namespace Contact.Messages.State
         public string OriginalMessageId { get; set; }
 
 
-        //Using email until I find out how to use message headers and then I can
-        //go back to using the correlation id but transport it in the headers not the explicit object
+        public Guid UserID { get; set; }
+        public Guid AuthenticationID { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
     }
 }

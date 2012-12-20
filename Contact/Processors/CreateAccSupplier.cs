@@ -12,7 +12,8 @@ namespace Contact.Processors
     public class CreateAccSupplier :
         Saga<CreateAccSupplierSagaData>,
         IAmStartedByMessages<Messages.Commands.CreateAccSupplier>,
-        IHandleMessages<UserCreated>
+        IHandleMessages<Messages.Events.AuthenticationCreated>,
+    IHandleMessages<UserCreated>
     {
         public void Handle(Messages.Commands.CreateAccSupplier message)
         {
@@ -21,24 +22,42 @@ namespace Contact.Processors
                               Data.OriginalMessageId,
                               Data.Originator);
             Console.WriteLine("Creating the Acc Supplier");
-
+            Data.Name = message.Name;
             Data.Email = message.Email;
-            Bus.Send(new Messages.Commands.CreateUser
+            Data.AuthenticationID = Guid.NewGuid();
+            Bus.Send(new Messages.Commands.CreateAuthenticationWithGeneratedPassword
                 {
-                    Name = message.Name,
+                    AuthID = Data.AuthenticationID,
                     Email = message.Email
                 });
+        }
+
+        public void Handle(AuthenticationCreated message)
+        {
+            Data.UserID = Guid.NewGuid();
+            Bus.Send(new Messages.Commands.CreateUser
+            {
+                UserId = Data.AuthenticationID,
+                Name = Data.Name,
+                Email = Data.Email
+            });
         }
 
         public void Handle(UserCreated message)
         {
             Console.WriteLine("Acc Supplier has now been created");
-            Bus.Publish(new AccSupplierCreated());
+            Bus.Publish(new AccSupplierCreated
+                {
+                    Name = Data.Name,
+                    Email = Data.Email
+                });
         }
 
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<UserCreated>(s => s.Email, m => m.Email);
+            ConfigureMapping<UserCreated>(s => s.UserID, m => m.UserID);
+            ConfigureMapping<AuthenticationCreated>(x => x.AuthenticationID, m => m.AuthenticationID);
+
         }
     }
 }
