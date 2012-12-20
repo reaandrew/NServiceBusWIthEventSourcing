@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using Contact.WebApi.Contracts.Queries;
 using NUnit.Framework;

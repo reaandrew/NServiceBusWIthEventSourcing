@@ -5,11 +5,20 @@ using System.Net.Http;
 using System.Web.Http;
 using Contact.WebApi.Contracts.Commands;
 using Contact.WebApi.Contracts.Queries;
+using NServiceBus;
 
 namespace Contact.WebApi.Controllers
 {
     public class AccommodationLeadsController : ApiController
     {
+        //This will be changed to implementations of ISender
+        private readonly IBus _bus;
+
+        public AccommodationLeadsController(IBus bus)
+        {
+            _bus = bus;
+        }
+
         // GET api/accommodationleads
         public HttpResponseMessage Get()
         {
