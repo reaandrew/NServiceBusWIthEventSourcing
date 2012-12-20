@@ -11,7 +11,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var accLeadCreatedEvent = (Domain.AccommodationLeadCreated) @event;
+            var accLeadCreatedEvent = (Domain.DomainEvents.AccommodationLeadCreated) @event;
             return new AccommodationLeadCreated
                 {
                     AccommodationLeadID = accLeadCreatedEvent.ID,
@@ -22,7 +22,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Domain.AccommodationLeadCreated);
+            return @event.GetType() == typeof (Domain.DomainEvents.AccommodationLeadCreated);
         }
     }
 }

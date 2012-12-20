@@ -1,7 +1,7 @@
 using System;
 using Core.Domain;
 
-namespace Contact.Domain
+namespace Contact.Domain.DomainEvents
 {
     public class AccommodationLeadCreated : DomainEvent
     {

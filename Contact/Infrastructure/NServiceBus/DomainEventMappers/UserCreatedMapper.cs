@@ -10,7 +10,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var userCreatedEvent = (Domain.UserCreated) @event;
+            var userCreatedEvent = (Domain.DomainEvents.UserCreated) @event;
             return new UserCreated
             {
                 UserID = userCreatedEvent.ID,
@@ -21,7 +21,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Domain.UserCreated);
+            return @event.GetType() == typeof (Domain.DomainEvents.UserCreated);
         }
     }
 }

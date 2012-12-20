@@ -9,7 +9,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var accLeadCreatedEvent = (Domain.AccommodationLeadApproved) @event;
+            var accLeadCreatedEvent = (Domain.DomainEvents.AccommodationLeadApproved) @event;
             return new AccommodationLeadApproved
             {
                 AccLeadId = accLeadCreatedEvent.ID
@@ -18,7 +18,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Contact.Domain.AccommodationLeadApproved);
+            return @event.GetType() == typeof (Domain.DomainEvents.AccommodationLeadApproved);
         }
     }
 }

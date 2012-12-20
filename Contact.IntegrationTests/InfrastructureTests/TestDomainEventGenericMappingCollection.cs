@@ -1,4 +1,5 @@
 using System;
+using Contact.Domain.DomainEvents;
 using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
 using Infrastructure.NServiceBus;
@@ -23,7 +24,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
             domainEventMappingCollection.AddMapper(
                 new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
 
-            var domainEvent = new Domain.AccommodationLeadApproved(Guid.NewGuid());
+            var domainEvent = new AccommodationLeadApproved(Guid.NewGuid());
 
             var mappedEvent =
                 domainEventMappingCollection.GetMappedObjectFor(domainEvent);
@@ -36,7 +37,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
         public void ShouldThrowDomainEventMapperNotFoundException()
         {
             var domainEventMappingCollection = new NServiceBusEventMappings();
-            var domainEvent = new Contact.Domain.AccommodationLeadApproved(Guid.NewGuid());
+            var domainEvent = new AccommodationLeadApproved(Guid.NewGuid());
             domainEventMappingCollection.GetMappedObjectFor(domainEvent);
         }
     }

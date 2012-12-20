@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using Core.Domain;
 
-namespace Contact.Domain
+namespace Contact.Domain.DomainEvents
 {
     public class AuthenticationCreated : DomainEvent
     {

@@ -1,5 +1,6 @@
 using Contact.Core;
 using Contact.Domain;
+using Contact.Domain.DomainEvents;
 using Contact.Messages.Events;
 using Core.Domain;
 using Infrastructure.NServiceBus;
@@ -11,7 +12,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var accSupplierCreatedEvent = (Domain.AccommodationSupplierCreated) @event;
+            var accSupplierCreatedEvent = (AccommodationSupplierCreated) @event;
             return new AccSupplierCreated
                 {
                     Name = accSupplierCreatedEvent.Name,
@@ -21,7 +22,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Domain.AccommodationSupplierCreated);
+            return @event.GetType() == typeof (AccommodationSupplierCreated);
         }
     }
 }

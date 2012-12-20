@@ -2,6 +2,7 @@
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Contact.Messages.Events;
 using NUnit.Framework;
+using AccommodationLeadCreated = Contact.Domain.DomainEvents.AccommodationLeadCreated;
 
 namespace Contact.UnitTests.DomainEventMappersTests
 {
@@ -13,8 +14,8 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new AccommodationLeadCreatedMapper();
-            var domainEvent = new Domain.AccommodationLeadCreated(id, "Joe", "test@test.com");
-            Assert.That(mapper.Map(domainEvent), Is.TypeOf<AccommodationLeadCreated>());
+            var domainEvent = new AccommodationLeadCreated(id, "Joe", "test@test.com");
+            Assert.That(mapper.Map(domainEvent), Is.TypeOf<Messages.Events.AccommodationLeadCreated>());
         }
     }
 }

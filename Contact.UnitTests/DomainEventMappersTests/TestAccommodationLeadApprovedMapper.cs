@@ -13,7 +13,7 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new AccommodationLeadApprovedMapper();
-            var domainEvent = new Contact.Domain.AccommodationLeadApproved(id);
+            var domainEvent = new Domain.DomainEvents.AccommodationLeadApproved(id);
             Assert.That(mapper.Map(domainEvent), Is.TypeOf<AccommodationLeadApproved>());
         }
     }

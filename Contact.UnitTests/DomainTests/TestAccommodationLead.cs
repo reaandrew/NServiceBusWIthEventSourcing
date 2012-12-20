@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Contact.Domain;
+using Contact.Domain.DomainEvents;
 using Core.Domain;
 using NUnit.Framework;
 

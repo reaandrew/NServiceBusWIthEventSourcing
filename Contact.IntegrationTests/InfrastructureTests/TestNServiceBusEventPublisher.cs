@@ -1,4 +1,5 @@
 using System;
+using Contact.Domain.DomainEvents;
 using Contact.Infrastructure;
 using Contact.Infrastructure.NServiceBus;
 using Infrastructure.NServiceBus;
@@ -18,7 +19,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var domainEventMappingCollection = new NServiceBusEventMappings();
             domainEventMappingCollection.AddMapper(new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
             var eventPublisher = new NServiceBusEventPublisher(mockBus, domainEventMappingCollection);
-            var domainEvent = new Contact.Domain.AccommodationLeadApproved(Guid.NewGuid());
+            var domainEvent = new AccommodationLeadApproved(Guid.NewGuid());
             eventPublisher.Publish(domainEvent);
             //Already tested that the correct event should be being published here where the 
             //DomainEventMappingTests

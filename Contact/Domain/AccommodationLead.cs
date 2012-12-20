@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Contact.Domain.DomainEvents;
 using Core.Domain;
 
 namespace Contact.Domain

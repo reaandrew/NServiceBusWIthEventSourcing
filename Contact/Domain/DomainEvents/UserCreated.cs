@@ -1,18 +1,21 @@
 using System;
 using Core.Domain;
 
-namespace Contact.Domain
+namespace Contact.Domain.DomainEvents
 {
-    public class AccommodationSupplierCreated : DomainEvent
+    public class UserCreated : DomainEvent
     {
-        public AccommodationSupplierCreated(Guid id, string name, string email)
+        public UserCreated(Guid id, string name, string email)
         {
             ID = id;
             Name = name;
             Email = email;
         }
+
         public Guid ID { get; private set; }
+
         public string Name { get; private set; }
-        public string Email { get; set; }
+
+        public string Email { get; private set; }
     }
 }

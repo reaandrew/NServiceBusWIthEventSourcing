@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Contact.Domain.DomainEvents;
 using Core.Domain;
 
 namespace Contact.Domain
@@ -18,6 +19,13 @@ namespace Contact.Domain
         public User(Guid id, string name, string email)
         {
             ApplyChange(new UserCreated(id, name, email));
+        }
+
+        private void Handle(UserCreated @event)
+        {
+            this.ID = @event.ID;
+            this._email = @event.Email;
+            this._name = @event.Name;
         }
     }
 }

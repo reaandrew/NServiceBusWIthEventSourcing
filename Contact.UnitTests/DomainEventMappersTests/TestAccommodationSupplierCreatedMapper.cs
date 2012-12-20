@@ -1,4 +1,5 @@
 ﻿using System;
+using Contact.Domain.DomainEvents;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Contact.Messages.Events;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new AccommodationSupplierCreatedMapper();
-            var domainEvent = new Domain.AccommodationSupplierCreated(id, "Joe", "test@test.com");
+            var domainEvent = new AccommodationSupplierCreated(id, "Joe", "test@test.com");
             Assert.That(mapper.Map(domainEvent), Is.TypeOf<AccSupplierCreated>());
         }
     }
