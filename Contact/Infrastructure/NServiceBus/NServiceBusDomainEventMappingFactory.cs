@@ -1,4 +1,3 @@
-using Contact.Core;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Infrastructure.NServiceBus;
 using NServiceBus;

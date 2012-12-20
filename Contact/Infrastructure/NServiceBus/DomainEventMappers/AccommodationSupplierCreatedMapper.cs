@@ -1,4 +1,3 @@
-using Contact.Core;
 using Contact.Domain;
 using Contact.Domain.DomainEvents;
 using Contact.Messages.Events;

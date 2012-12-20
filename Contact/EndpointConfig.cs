@@ -1,5 +1,6 @@
 using System;
-using Contact.Core;
+using Contact.DomainServices;
+using Contact.Infrastructure;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
 using Core;
@@ -37,9 +38,11 @@ namespace Contact
                     x.For<IEventPersistence>()
                      .LifecycleIs(new SingletonLifecycle())
                      .Use<InProcEventPersistence>();
-                    x.For<IEventStore>().Use<IEventStore>();
+                    x.For<IEventStore>().Use<EventStore>();
                     x.For<IDomainRepository>().Use<DomainRepository>();
                     x.For<ISendEmails>().Use<BlackHoleEmailSender>();
+                    x.For<IGeneratePassword>().Use<RandomNumberPasswordGenerator>();
+                    x.For<IHash>().Use<SHA512Hasher>();
                 });
             Configure.With()
                      .Log4Net()

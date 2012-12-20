@@ -1,4 +1,3 @@
-using Contact.Core;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
 using Core;

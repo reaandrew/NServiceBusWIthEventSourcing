@@ -44,9 +44,18 @@ namespace Contact.WebApi.Controllers
         // POST api/accommodationleads
         public HttpResponseMessage Post([FromBody]CreateAccommodationLead createAccommodationLead)
         {
+            var accLeadId = Guid.NewGuid();
+            var createAccommodationLeadCommand = new Messages.Commands.CreateAccommodationLead
+                {
+                    AccommodationLeadID = accLeadId,
+                    Name = createAccommodationLead.Name,
+                    Email = createAccommodationLead.Email
+                };
+
+            _bus.Send("Contact", createAccommodationLeadCommand);
+
             var response = new HttpResponseMessage(HttpStatusCode.Created);
-            
-            response.Headers.Add("Location", "/api/accommodationleads/" + Guid.NewGuid().ToString("N"));
+            response.Headers.Add("Location", "/api/accommodationleads/" + accLeadId.ToString("N"));
             return response;
         }
 

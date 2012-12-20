@@ -1,4 +1,4 @@
-﻿using Contact.Core;
+﻿using Contact.DomainServices;
 
 namespace Contact.Infrastructure.InProc
 {

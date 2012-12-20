@@ -1,4 +1,4 @@
-namespace Contact.Core
+namespace Contact.DomainServices
 {
     public interface ISendEmails
     {

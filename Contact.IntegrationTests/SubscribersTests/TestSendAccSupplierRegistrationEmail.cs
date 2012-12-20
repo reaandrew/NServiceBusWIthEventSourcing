@@ -1,4 +1,4 @@
-using Contact.Core;
+using Contact.DomainServices;
 using Contact.Messages.Events;
 using Contact.Subscribers;
 using NUnit.Framework;

@@ -62,9 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\ISendEmails.cs" />
     <Compile Include="DomainServices\IGeneratePassword.cs" />
     <Compile Include="DomainServices\IHash.cs" />
+    <Compile Include="DomainServices\ISendEmails.cs" />
     <Compile Include="Domain\AccommodationLead.cs" />
     <Compile Include="Domain\AccommodationSupplier.cs" />
     <Compile Include="Domain\Authentication.cs" />
@@ -84,6 +84,8 @@
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AuthenticationCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\UserCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
+    <Compile Include="Infrastructure\RandomNumberPasswordGenerator.cs" />
+    <Compile Include="Infrastructure\SHA512Hasher.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccommodationLead.cs" />
@@ -117,7 +119,9 @@
   <ItemGroup>
     <Content Include="Senders\README.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
