@@ -13,7 +13,12 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new UserCreatedMapper();
-            var domainEvent = new Domain.DomainEvents.UserCreated(id, "Joe", "test@test.com");
+            var domainEvent = new Domain.DomainEvents.UserCreated
+                {
+                    ID = id,
+                    Name = "Something",
+                    Email = "test@test.com"
+                };
             Assert.That(mapper.Map(domainEvent), Is.TypeOf<UserCreated>());
         }
     }

@@ -11,7 +11,12 @@ namespace Contact.Domain
 
         public Authentication(Guid id, string email, string hashedPassword)
         {
-            this.ApplyChange(new AuthenticationCreated(id, email, hashedPassword));
+            this.ApplyChange(new AuthenticationCreated
+                {
+                    ID = id,
+                    Email = email,
+                    HashedPassword = hashedPassword
+                });
         }
 
         private void Apply(AuthenticationCreated authenticationCreated)

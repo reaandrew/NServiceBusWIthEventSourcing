@@ -18,7 +18,12 @@ namespace Contact.Domain
 
         public User(Guid id, string name, string email)
         {
-            ApplyChange(new UserCreated(id, name, email));
+            ApplyChange(new UserCreated
+                {
+                    ID = id,
+                    Name = name,
+                    Email = email
+                });
         }
 
         private void Handle(UserCreated @event)

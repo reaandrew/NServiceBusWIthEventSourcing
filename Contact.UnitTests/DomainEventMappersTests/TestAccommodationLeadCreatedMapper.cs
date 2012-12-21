@@ -14,7 +14,12 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new AccommodationLeadCreatedMapper();
-            var domainEvent = new AccommodationLeadCreated(id, "Joe", "test@test.com");
+            var domainEvent = new AccommodationLeadCreated
+                {
+                    ID = id,
+                    Name = "Something",
+                    Email = "test@test.com"
+                };
             Assert.That(mapper.Map(domainEvent), Is.TypeOf<Messages.Events.AccommodationLeadCreated>());
         }
     }

@@ -18,7 +18,12 @@ namespace Contact.Domain
 
         public AccommodationSupplier(Guid id, string name, string email)
         {
-            this.ApplyChange(new AccommodationSupplierCreated(id, name, email));
+            this.ApplyChange(new AccommodationSupplierCreated
+                {
+                    ID = id,
+                    Name = name,
+                    Email = email
+                });
         }
 
         private void Apply(AccommodationSupplierCreated @event)

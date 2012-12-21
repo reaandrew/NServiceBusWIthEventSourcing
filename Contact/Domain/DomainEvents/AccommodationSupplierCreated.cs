@@ -5,14 +5,8 @@ namespace Contact.Domain.DomainEvents
 {
     public class AccommodationSupplierCreated : DomainEvent
     {
-        public AccommodationSupplierCreated(Guid id, string name, string email)
-        {
-            ID = id;
-            Name = name;
-            Email = email;
-        }
-        public Guid ID { get; private set; }
-        public string Name { get; private set; }
+        public Guid ID { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
     <Compile Include="Infrastructure\RandomNumberPasswordGenerator.cs" />
     <Compile Include="Infrastructure\SHA512Hasher.cs" />
+    <Compile Include="Infrastructure\Sql\SqlEventPersistence.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccommodationLead.cs" />

@@ -23,7 +23,12 @@ namespace Contact.Domain
 
         public AccommodationLead(Guid id, string name, string email)
         {
-            ApplyChange(new AccommodationLeadCreated(id, name, email));
+            ApplyChange(new AccommodationLeadCreated
+                {
+                    ID = id,
+                    Name = name,
+                    Email = email
+                });
         }
 
         public void Approve()
@@ -31,7 +36,10 @@ namespace Contact.Domain
             if (_approved)
                 throw new Exception("NO");
 
-            ApplyChange(new AccommodationLeadApproved(ID));
+            ApplyChange(new AccommodationLeadApproved
+                {
+                    ID = ID
+                });
         }
 
         private void Apply(AccommodationLeadCreated @event)

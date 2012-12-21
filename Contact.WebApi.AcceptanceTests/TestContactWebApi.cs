@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
+using System.Xml;
 using Contact.WebApi.Contracts.Queries;
 using NUnit.Framework;
 using RestSharp;
@@ -10,6 +14,7 @@ namespace Contact.WebApi.AcceptanceTests
     public class TestContactWebApi
     {
         private const string ApiHost = "http://localhost/Contact.WebApi";
+
 
         [Test]
         public void ShouldReturnHttpStatus201WhenACreateAccommodationLeadCommandIsSend()
