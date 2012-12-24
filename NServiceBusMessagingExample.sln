@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.WebApi", "Contact.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.WebApi.Contracts", "Contact.WebApi.Contracts\Contact.WebApi.Contracts.csproj", "{388F84BE-242E-4BD7-BBF9-5DFD2C439EBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Query.SqlServer", "Contact.Query.SqlServer\Contact.Query.SqlServer.csproj", "{55E7FE77-348C-493E-9A89-6B88CDEBDC04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Query.SqlServer.IntegrationTests", "Contact.Query.SqlServer.IntegrationTests\Contact.Query.SqlServer.IntegrationTests.csproj", "{BC197ED0-2670-4027-88DA-B8B4E117C12B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,14 @@ Global
 		{388F84BE-242E-4BD7-BBF9-5DFD2C439EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{388F84BE-242E-4BD7-BBF9-5DFD2C439EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{388F84BE-242E-4BD7-BBF9-5DFD2C439EBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E7FE77-348C-493E-9A89-6B88CDEBDC04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E7FE77-348C-493E-9A89-6B88CDEBDC04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E7FE77-348C-493E-9A89-6B88CDEBDC04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E7FE77-348C-493E-9A89-6B88CDEBDC04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

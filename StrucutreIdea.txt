@@ -1,0 +1,3 @@
+Contact.Query.Api
+Contact.Query.SqlServer
+ - Implementations for Repositories and Queries
