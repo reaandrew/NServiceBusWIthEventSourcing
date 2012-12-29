@@ -31,6 +31,52 @@ namespace Contact.Query.SqlServer.IntegrationTests
         }
 
         [Test]
+        public void ShouldUpdateTheAccommodationLeadWithApprovedStatus()
+        {
+            var id = Guid.NewGuid();
+            const string name = "Something";
+            const string email = "test@test.com";
+
+            //Insert an existing Accommodation Lead
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "insert into AccommodationLeads (AccommodationLeadId,Name,Email) values (@Id, @Name, @Email)";
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            var handler = new AccommodationLeadApproved(_connectionString);
+            var @event = new Messages.Events.AccommodationLeadApproved
+                {
+                    AccLeadId = id
+                };
+            handler.Handle(@event);
+
+            //Check the database has been updated
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "Select * from AccommodationLeads where AccommodationLeadId=@Id and Approved=1";
+                    command.Parameters.AddWithValue("@Id", id);
+                    using (var dataReader = command.ExecuteReader())
+                    {
+                        Assert.That(dataReader.HasRows, Is.True);
+                    }
+                }
+            }
+        }
+
+        [Test]
         public void ShouldCreateANewAccommodationLead()
         {
             var id = Guid.NewGuid();
