@@ -14,7 +14,7 @@ namespace Contact.IntegrationTests.SubscribersTests
         {
             var fakeSender = MockRepository.GenerateMock<ISendEmails>();
             var handler = new SendAccSupplierRegistrationEmail(fakeSender);
-            handler.Handle(new AccSupplierCreated
+            handler.Handle(new AccommodationSupplierCreated
                 {
                     Name = "Somebody"
                 });

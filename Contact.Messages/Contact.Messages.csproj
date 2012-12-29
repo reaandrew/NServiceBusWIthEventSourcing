@@ -51,7 +51,7 @@
     <Compile Include="Commands\CreateUser.cs" />
     <Compile Include="Events\AccommodationLeadApproved.cs" />
     <Compile Include="Events\AccommodationLeadCreated.cs" />
-    <Compile Include="Events\AccSupplierCreated.cs" />
+    <Compile Include="Events\AccommodationSupplierCreated.cs" />
     <Compile Include="Events\AuthenticationCreated.cs" />
     <Compile Include="Events\UserCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

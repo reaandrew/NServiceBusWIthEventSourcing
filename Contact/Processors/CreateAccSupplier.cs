@@ -46,7 +46,7 @@ namespace Contact.Processors
         public void Handle(UserCreated message)
         {
             Console.WriteLine("Acc Supplier has now been created");
-            Bus.Publish(new AccSupplierCreated
+            Bus.Publish(new AccommodationSupplierCreated
                 {
                     Name = Data.Name,
                     Email = Data.Email

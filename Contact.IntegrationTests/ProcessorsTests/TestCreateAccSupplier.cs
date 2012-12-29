@@ -34,7 +34,7 @@ namespace Contact.IntegrationTests.ProcessorsTests
                         Email = accSupplierEmail,
                         HashedPassword = "OEHOFEHOIEFH"
                     }))
-                .ExpectPublish<AccSupplierCreated>()
+                .ExpectPublish<AccommodationSupplierCreated>()
                 .When(x => x.Handle(new UserCreated()));
         }
     }

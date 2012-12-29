@@ -4,7 +4,7 @@ using NServiceBus;
 
 namespace Contact.Subscribers
 {
-    public class SendAccSupplierRegistrationEmail : IHandleMessages<AccSupplierCreated>
+    public class SendAccSupplierRegistrationEmail : IHandleMessages<AccommodationSupplierCreated>
     {
         private readonly ISendEmails _emailSender;
 
@@ -13,7 +13,7 @@ namespace Contact.Subscribers
             _emailSender = emailSender;
         }
 
-        public void Handle(AccSupplierCreated message)
+        public void Handle(AccommodationSupplierCreated message)
         {
             _emailSender.SendEmail("", "");
         }
