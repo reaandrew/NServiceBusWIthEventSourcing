@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net;
+using System.Threading;
 using NUnit.Framework;
 using RestSharp;
 
@@ -28,6 +29,7 @@ namespace Contact.WebApi.AcceptanceTests
             const string name = "Something";
             const string email = "test@test.com";
             var createResponse = CreateAccommodationLead(name, email);
+            Thread.Sleep(1000);
             var newLocation = createResponse.Location();
 
             var client = new RestClient(ApiHost);
