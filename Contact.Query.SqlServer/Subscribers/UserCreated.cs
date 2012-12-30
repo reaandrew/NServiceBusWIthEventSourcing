@@ -10,26 +10,19 @@ namespace Contact.Query.SqlServer.Subscribers
 {
     public class UserCreated : IHandleMessages<Contact.Messages.Events.UserCreated>
     {
-        private readonly string _connectionString;
-
-        public UserCreated(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
+ 
         public void Handle(Messages.Events.UserCreated message)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var context = new ContactEntities())
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "insert into Users (UserId,Name,Email) values (@UserId,@Name,@Email)";
-                    command.Parameters.AddWithValue("@UserId", message.UserID);
-                    command.Parameters.AddWithValue("@Name", message.Name);
-                    command.Parameters.AddWithValue("@Email", message.Email);
-                    command.ExecuteNonQuery();
-                }
+                var user = new User
+                    {
+                        UserId = message.UserID,
+                        Name = message.Name,
+                        Email = message.Email
+                    };
+                context.Users.Add(user);
+                context.SaveChanges();
             }
         }
     }

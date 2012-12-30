@@ -22,6 +22,8 @@ namespace Core.DomainServices
         public T Get<T>(Guid id) where T : AggregateRoot
         {
             var events = _eventStore.GetEventsForAggregate<T>(id);
+            if (events.Count == 0)
+                throw new NullReferenceException("No events found for the ID of the Aggregate supplied");
             var aggregateRoot = (T)Activator.CreateInstance(typeof(T), new object[] { events });
             return aggregateRoot;
         }

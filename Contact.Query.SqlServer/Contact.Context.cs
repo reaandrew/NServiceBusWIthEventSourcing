@@ -13,10 +13,10 @@ namespace Contact.Query.SqlServer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestDatabaseEntities : DbContext
+    public partial class ContactEntities : DbContext
     {
-        public TestDatabaseEntities()
-            : base("name=TestDatabaseEntities")
+        public ContactEntities()
+            : base("name=ContactEntities")
         {
         }
     

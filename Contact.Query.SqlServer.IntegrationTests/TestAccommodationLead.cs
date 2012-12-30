@@ -53,7 +53,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
                 }
             }
 
-            var handler = new AccommodationLeadApproved(_connectionString);
+            var handler = new AccommodationLeadApproved();
             var @event = new Messages.Events.AccommodationLeadApproved
                 {
                     AccLeadId = id
@@ -84,7 +84,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
             const string name = "Something";
             const string email = "test@test.com";
 
-            var handler = new AccommodationLeadCreated(_connectionString);
+            var handler = new AccommodationLeadCreated();
             var @event = new Contact.Messages.Events.AccommodationLeadCreated
                 {
                     AccommodationLeadID = id,

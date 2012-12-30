@@ -7,27 +7,18 @@ namespace Contact.Query.SqlServer.Subscribers
 {
     public class AccommodationLeadCreated : IHandleMessages<Contact.Messages.Events.AccommodationLeadCreated>
     {
-        private readonly string _connectionString;
-
-        public AccommodationLeadCreated(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         public void Handle(Messages.Events.AccommodationLeadCreated message)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var context = new ContactEntities())
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText =
-                        "insert into AccommodationLeads (AccommodationLeadId, Name, Email) values (@AccommodationLeadId,@name,@Email)";
-                    command.Parameters.AddWithValue("@AccommodationLeadId", message.AccommodationLeadID);
-                    command.Parameters.AddWithValue("@Name", message.Name);
-                    command.Parameters.AddWithValue("@Email", message.Email);
-                    command.ExecuteNonQuery();
-                }
+                var accommodationLead = new AccommodationLead
+                    {
+                        AccommodationLeadId = message.AccommodationLeadID,
+                        Name = message.Name,
+                        Email = message.Email
+                    };
+                context.AccommodationLeads.Add(accommodationLead);
+                context.SaveChanges();
             }
         }
     }

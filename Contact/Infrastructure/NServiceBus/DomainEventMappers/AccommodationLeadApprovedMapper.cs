@@ -9,10 +9,10 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var accLeadCreatedEvent = (Domain.DomainEvents.AccommodationLeadApproved) @event;
+            var accommodationLeadApproved = (Domain.DomainEvents.AccommodationLeadApproved) @event;
             return new AccommodationLeadApproved
             {
-                AccLeadId = accLeadCreatedEvent.ID
+                AccLeadId = accommodationLeadApproved.ID
             };
         }
 

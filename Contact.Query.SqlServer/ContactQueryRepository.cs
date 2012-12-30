@@ -8,7 +8,7 @@ namespace Contact.Query.SqlServer
     {
         public List<Model.AccommodationLead> ListAccommodationLeads()
         {
-            using (var context = new TestDatabaseEntities())
+            using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Select(x =>
                                                          new Contact.Query.Model.AccommodationLead
@@ -25,7 +25,7 @@ namespace Contact.Query.SqlServer
 
         public Model.AccommodationLead GetAccommodationLeadById(Guid id)
         {
-            using (var context = new TestDatabaseEntities())
+            using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Where(x => x.AccommodationLeadId == id)
                               .Select(lead => new Model.AccommodationLead

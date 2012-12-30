@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Contact.Query.SqlServer.IntegrationTests
@@ -45,7 +41,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
                     Name = name,
                     Email = email
                 };
-            var handler = new Subscribers.UserCreated(_connectionString);
+            var handler = new Subscribers.UserCreated();
             handler.Handle(@event);
 
             using (var connection = new SqlConnection(_connectionString))

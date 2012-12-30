@@ -41,7 +41,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
                     Email = email,
                     HashedPassword = hashedPassword
                 };
-            var handler = new Subscribers.AuthenticationCreated(_connectionString);
+            var handler = new Subscribers.AuthenticationCreated();
             handler.Handle(@event);
 
             using (var connection = new SqlConnection(_connectionString))

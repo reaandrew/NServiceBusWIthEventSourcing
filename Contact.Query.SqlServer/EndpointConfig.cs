@@ -1,3 +1,4 @@
+using StructureMap;
 using log4net.Config;
 
 namespace Contact.Query.SqlServer 

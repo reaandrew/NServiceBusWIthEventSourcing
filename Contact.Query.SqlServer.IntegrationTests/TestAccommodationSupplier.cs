@@ -46,7 +46,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
                     Name = name,
                     Email = email
                 };
-            var handler = new Subscribers.AccommodationSupplierCreated(_connectionString);
+            var handler = new Subscribers.AccommodationSupplierCreated();
             handler.Handle(@event);
 
             using (var connection = new SqlConnection(_connectionString))

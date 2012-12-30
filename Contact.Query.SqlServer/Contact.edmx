@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TestDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="TestDatabaseModelStoreContainer">
-          <EntitySet Name="AccommodationLeads" EntityType="TestDatabaseModel.Store.AccommodationLeads" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AccommodationSuppliers" EntityType="TestDatabaseModel.Store.AccommodationSuppliers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Authentication" EntityType="TestDatabaseModel.Store.Authentication" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="TestDatabaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
+      <Schema Namespace="ContactModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ContactModelStoreContainer">
+          <EntitySet Name="AccommodationLeads" EntityType="ContactModel.Store.AccommodationLeads" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AccommodationSuppliers" EntityType="ContactModel.Store.AccommodationSuppliers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Authentication" EntityType="ContactModel.Store.Authentication" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="ContactModel.Store.Users" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="AccommodationLeads">
           <Key>
@@ -52,12 +52,12 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TestDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TestDatabaseEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="AccommodationLeads" EntityType="TestDatabaseModel.AccommodationLead" />
-          <EntitySet Name="AccommodationSuppliers" EntityType="TestDatabaseModel.AccommodationSupplier" />
-          <EntitySet Name="Authentications" EntityType="TestDatabaseModel.Authentication" />
-          <EntitySet Name="Users" EntityType="TestDatabaseModel.User" />
+      <Schema Namespace="ContactModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ContactEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AccommodationLeads" EntityType="ContactModel.AccommodationLead" />
+          <EntitySet Name="AccommodationSuppliers" EntityType="ContactModel.AccommodationSupplier" />
+          <EntitySet Name="Authentications" EntityType="ContactModel.Authentication" />
+          <EntitySet Name="Users" EntityType="ContactModel.User" />
         </EntityContainer>
         <EntityType Name="AccommodationLead">
           <Key>
@@ -101,9 +101,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TestDatabaseModelStoreContainer" CdmEntityContainer="TestDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="ContactModelStoreContainer" CdmEntityContainer="ContactEntities">
           <EntitySetMapping Name="AccommodationLeads">
-            <EntityTypeMapping TypeName="TestDatabaseModel.AccommodationLead">
+            <EntityTypeMapping TypeName="ContactModel.AccommodationLead">
               <MappingFragment StoreEntitySet="AccommodationLeads">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AccommodationLeadId" ColumnName="AccommodationLeadId" />
@@ -114,7 +114,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AccommodationSuppliers">
-            <EntityTypeMapping TypeName="TestDatabaseModel.AccommodationSupplier">
+            <EntityTypeMapping TypeName="ContactModel.AccommodationSupplier">
               <MappingFragment StoreEntitySet="AccommodationSuppliers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AccommodationSupplierId" ColumnName="AccommodationSupplierId" />
@@ -124,7 +124,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Authentications">
-            <EntityTypeMapping TypeName="TestDatabaseModel.Authentication">
+            <EntityTypeMapping TypeName="ContactModel.Authentication">
               <MappingFragment StoreEntitySet="Authentication">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AuthenticationId" ColumnName="AuthenticationId" />
@@ -134,7 +134,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TestDatabaseModel.User">
+            <EntityTypeMapping TypeName="ContactModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

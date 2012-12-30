@@ -21,7 +21,7 @@ namespace Core.UnitTests.DomainServicesTests
             var repository = new DomainRepository(fakeEventStore);
             repository.Save(aggregateRoot);
             fakeEventStore.VerifyAllExpectations();
-            Assert.That((object) aggregateRoot.OutstandingEvents.Count, Is.EqualTo(0));
+            Assert.That((object)aggregateRoot.OutstandingEvents.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -39,7 +39,20 @@ namespace Core.UnitTests.DomainServicesTests
             fakeEventStore.Stub<IEventStore, IList<DomainEvent>>(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
             var repository = new DomainRepository(fakeEventStore);
             var aggregateRoot = repository.Get<EmptyDomainObject>(id);
-            Assert.That((object) aggregateRoot.Version, Is.EqualTo(1));
+            Assert.That((object)aggregateRoot.Version, Is.EqualTo(1));
+        }
+
+        [Test]
+        [ExpectedException(ExpectedException = typeof(NullReferenceException),
+            ExpectedMessage = "No events found for the ID of the Aggregate supplied")]
+        public void ShouldThrowExceptionWhenNoDomainEventExistForAnAggregate()
+        {
+            var id = Guid.NewGuid();
+            var events = new List<DomainEvent>();
+            var fakeEventStore = MockRepository.GenerateMock<IEventStore>();
+            fakeEventStore.Stub<IEventStore, IList<DomainEvent>>(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
+            var repository = new DomainRepository(fakeEventStore);
+            var aggregateRoot = repository.Get<EmptyDomainObject>(id);
         }
     }
 }

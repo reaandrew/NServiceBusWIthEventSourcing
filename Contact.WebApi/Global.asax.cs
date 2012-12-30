@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Contact.Query;
+using Contact.Query.SqlServer;
 using Contact.WebApi.Infrastructure;
 using NServiceBus;
 using StructureMap;
@@ -25,9 +26,9 @@ namespace Contact.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var container = new Container(expression 
-                => expression.For<IContactQueryRepository>()
-                .Use<IContactQueryRepository>());
+            var container = new Container(expression
+                                          => expression.For<IContactQueryRepository>()
+                                                       .Use<ContactQueryRepository>());
 
             Configure.With()
                      .StructureMapBuilder(container)
