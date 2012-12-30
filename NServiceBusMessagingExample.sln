@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Query.SqlServer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Query.SqlServer.IntegrationTests", "Contact.Query.SqlServer.IntegrationTests\Contact.Query.SqlServer.IntegrationTests.csproj", "{BC197ED0-2670-4027-88DA-B8B4E117C12B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Query", "Contact.Query\Contact.Query.csproj", "{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC197ED0-2670-4027-88DA-B8B4E117C12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

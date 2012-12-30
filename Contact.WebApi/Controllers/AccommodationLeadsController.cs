@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Contact.Query;
 using Contact.WebApi.Contracts.Commands;
-using Contact.WebApi.Contracts.Queries;
 using NServiceBus;
 
 namespace Contact.WebApi.Controllers
@@ -13,32 +12,28 @@ namespace Contact.WebApi.Controllers
     {
         //This will be changed to implementations of ISender
         private readonly IBus _bus;
+        private readonly IContactQueryRepository _contactQueryRepository;
 
-        public AccommodationLeadsController(IBus bus)
+        public AccommodationLeadsController(IBus bus, IContactQueryRepository contactQueryRepository)
         {
             _bus = bus;
+            _contactQueryRepository = contactQueryRepository;
         }
 
         // GET api/accommodationleads
         public HttpResponseMessage Get()
         {
-            return new HttpResponseMessage(HttpStatusCode.Created);
+            var accommodationLeads = _contactQueryRepository.ListAccommodationLeads();
+            var result = Request.CreateResponse(HttpStatusCode.OK, accommodationLeads);
+            return result;
         }
 
         // GET api/accommodationleads/5
         public HttpResponseMessage Get(Guid id)
         {
-            HttpResponseMessage result =
-                Request.CreateResponse<AccommodationLead>(HttpStatusCode.OK,
-                                                          new AccommodationLead
-                                                              {
-                                                                  Approved = false,
-                                                                  Email = "test@test.com",
-                                                                  Name = "something",
-                                                                  ID = Guid.NewGuid()
-                                                              });
+            var accommodationLead = _contactQueryRepository.GetAccommodationLeadById(id);
+            var result = Request.CreateResponse(HttpStatusCode.OK, accommodationLead);
             return result;
-
         }
 
         // POST api/accommodationleads

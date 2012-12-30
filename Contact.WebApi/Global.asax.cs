@@ -1,8 +1,10 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Contact.Query;
 using Contact.WebApi.Infrastructure;
 using NServiceBus;
+using StructureMap;
 using log4net;
 
 namespace Contact.WebApi
@@ -23,8 +25,12 @@ namespace Contact.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            var container = new Container(expression 
+                => expression.For<IContactQueryRepository>()
+                .Use<IContactQueryRepository>());
+
             Configure.With()
-                     .DefaultBuilder()
+                     .StructureMapBuilder(container)
                      .Log4Net()
                      .ForWebApi()
                      .XmlSerializer()
@@ -32,6 +38,7 @@ namespace Contact.WebApi
                      .UnicastBus()
                      .CreateBus()
                      .Start();
+
         }
     }
 }

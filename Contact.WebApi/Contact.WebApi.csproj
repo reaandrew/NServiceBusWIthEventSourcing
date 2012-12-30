@@ -52,6 +52,12 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\packages\NServiceBus.3.3.3\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
+      <HintPath>..\packages\NServiceBus.StructureMap.3.3.3\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -165,9 +171,21 @@
       <Project>{08b6a47d-b8d1-48a1-81cc-bfbaf212bed1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
+      <Project>{55E7FE77-348C-493E-9A89-6B88CDEBDC04}</Project>
+      <Name>Contact.Query.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contact.Query\Contact.Query.csproj">
+      <Project>{0D3D3EAC-5EF3-49E6-AA52-E9D86CF43C3D}</Project>
+      <Name>Contact.Query</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contact.WebApi.Contracts\Contact.WebApi.Contracts.csproj">
       <Project>{388f84be-242e-4bd7-bbf9-5dfd2c439ebd}</Project>
       <Name>Contact.WebApi.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{5C179E3E-6E03-4BFE-8577-824BA52AB9C5}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

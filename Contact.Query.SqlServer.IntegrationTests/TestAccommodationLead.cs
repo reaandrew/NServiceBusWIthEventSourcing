@@ -44,7 +44,8 @@ namespace Contact.Query.SqlServer.IntegrationTests
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText =
-                        "insert into AccommodationLeads (AccommodationLeadId,Name,Email) values (@Id, @Name, @Email)";
+                        "insert into AccommodationLeads (AccommodationLeadId,Name,Email) " +
+                        "values (@Id, @Name, @Email)";
                     command.Parameters.AddWithValue("@Id", id);
                     command.Parameters.AddWithValue("@Name", name);
                     command.Parameters.AddWithValue("@Email", email);

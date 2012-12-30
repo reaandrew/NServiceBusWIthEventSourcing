@@ -1,10 +1,5 @@
-﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Xml;
-using Contact.WebApi.Contracts.Queries;
 using NUnit.Framework;
 using RestSharp;
 
@@ -38,7 +33,7 @@ namespace Contact.WebApi.AcceptanceTests
             var client = new RestClient(ApiHost);
             var request = new RestRequest { Method = Method.GET, Resource = newLocation.TrimStart('/') };
             request.AddHeader("Accept", "application/json");
-            var response = client.Execute<AccommodationLead>(request);
+            var response = client.Execute<Contact.Query.Model.AccommodationLead>(request);
             //Hardcoded response at this point whilst I get my head around
             //WebApi and RestSharp.  Seem good up to now.
             Assert.That(response.Data.Email, Is.EqualTo("test@test.com"));
