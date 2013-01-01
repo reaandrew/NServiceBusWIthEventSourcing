@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using NUnit.Framework;
@@ -40,6 +41,24 @@ namespace Contact.WebApi.AcceptanceTests
             //WebApi and RestSharp.  Seem good up to now.
             Assert.That(response.Data.Email, Is.EqualTo("test@test.com"));
         }
+
+        /*
+        [Test]
+        public void ShouldReturnAListOfAccommodationLeads()
+        {
+            var client = new RestClient(ApiHost);
+            var request = new RestRequest {Method = Method.GET, Resource = "api/accommodationsleads"};
+            request.AddHeader("Accept", "application/json");
+            var response = client.Execute<List<Contact.Query.Model.AccommodationLead>>(request);
+            Assert.That(response.Data.Count, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void ShouldValidateAuthentication()
+        {
+            
+        }
+         * */
 
         private IRestResponse CreateAccommodationLead(string name, string email)
         {
