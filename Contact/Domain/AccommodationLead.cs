@@ -38,7 +38,9 @@ namespace Contact.Domain
 
             ApplyChange(new AccommodationLeadApproved
                 {
-                    ID = ID
+                    ID = ID,
+                    Name = this._name,
+                    Email = this._email
                 });
         }
 

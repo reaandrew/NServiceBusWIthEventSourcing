@@ -13,6 +13,7 @@ namespace Contact.Messages.State
 
         public Guid UserID { get; set; }
         public Guid AuthenticationID { get; set; }
+        public Guid AccommodationSupplierId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
     }

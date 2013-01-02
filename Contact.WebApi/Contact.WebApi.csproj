@@ -146,6 +146,7 @@
     <Compile Include="Infrastructure\NServiceBusControllerActivator.cs" />
     <Compile Include="Infrastructure\NServiceBusResolverAdapter.cs" />
     <Compile Include="Infrastructure\NServiceBusConfigureExtension.cs" />
+    <Compile Include="Models\AccommodationLeadId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

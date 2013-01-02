@@ -14,7 +14,12 @@ namespace Contact.Subscribers
         public void Handle(AccommodationLeadApproved message)
         {
             Console.WriteLine("AccLead Approved");
-            Bus.Send("Contact", new Messages.Commands.CreateAccSupplier());
+            Bus.Send("Contact", new Messages.Commands.CreateAccSupplier
+                {
+                    AccommodationSupplierId = Guid.NewGuid(),
+                    Name = message.Name,
+                    Email = message.Email
+                });
         }
     }
 }

@@ -12,7 +12,9 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
             var accommodationLeadApproved = (Domain.DomainEvents.AccommodationLeadApproved) @event;
             return new AccommodationLeadApproved
             {
-                AccLeadId = accommodationLeadApproved.ID
+                AccLeadId = accommodationLeadApproved.ID,
+                Name = accommodationLeadApproved.Name,
+                Email = accommodationLeadApproved.Email
             };
         }
 

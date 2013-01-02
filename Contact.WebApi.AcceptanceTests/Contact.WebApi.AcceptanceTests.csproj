@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drivers\ITestDataDriver.cs" />
+    <Compile Include="Drivers\Sql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestContactWebApi.cs" />
   </ItemGroup>

@@ -15,8 +15,11 @@ namespace Contact.IntegrationTests.ProcessorsTests
         [Test]
         public void ShouldPublishAnAccommodationLeadApprovedEvent()
         {
+            const string name = "joe";
+            const string email = "test@test.com";
+
             var accLeadId = Guid.NewGuid();
-            var accommodationLead = new AccommodationLead(accLeadId, "joe", "test@test.com");
+            var accommodationLead = new AccommodationLead(accLeadId, name, email);
 
             Test.Initialize();
             Test.Handler(bus =>
@@ -25,7 +28,9 @@ namespace Contact.IntegrationTests.ProcessorsTests
                     domainRepository.Save(accommodationLead);
                     return new Processors.ApproveAccLead(domainRepository);
                 })
-                .ExpectPublish<AccommodationLeadApproved>(approved => approved.AccLeadId == accLeadId)
+                .ExpectPublish<AccommodationLeadApproved>(approved => approved.AccLeadId == accLeadId &&
+                                                                      approved.Name == name &&
+                                                                      approved.Email == email)
                 .OnMessage<ApproveAccLead>(lead => { lead.AccLeadId = accLeadId; });
         }
     }

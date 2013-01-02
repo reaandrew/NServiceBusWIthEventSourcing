@@ -5,6 +5,7 @@ using System.Web.Http;
 using Contact.Query;
 using Contact.Query.Contracts;
 using Contact.WebApi.Contracts.Commands;
+using Contact.WebApi.Models;
 using NServiceBus;
 
 namespace Contact.WebApi.Controllers
@@ -56,8 +57,15 @@ namespace Contact.WebApi.Controllers
         }
 
         // PUT api/accommodationleads/approved/
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put([FromBody]AccommodationLeadId accommodationLeadId)
         {
+            var approveAccLeadCommand = new Contact.Messages.Commands.ApproveAccLead
+                {
+                    AccLeadId =  accommodationLeadId.Id
+                };
+            _bus.Send("Contact", approveAccLeadCommand);
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted);
+            return response;
         }
 
         // DELETE api/accommodationleads/5

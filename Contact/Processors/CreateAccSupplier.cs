@@ -22,9 +22,12 @@ namespace Contact.Processors
                               Data.OriginalMessageId,
                               Data.Originator);
             Console.WriteLine("Creating the Acc Supplier");
+            Data.AccommodationSupplierId = message.AccommodationSupplierId;
             Data.Name = message.Name;
             Data.Email = message.Email;
             Data.AuthenticationID = Guid.NewGuid();
+            Data.UserID = Guid.NewGuid();
+
             Bus.Send(new Messages.Commands.CreateAuthenticationWithGeneratedPassword
                 {
                     AuthID = Data.AuthenticationID,
@@ -34,10 +37,9 @@ namespace Contact.Processors
 
         public void Handle(AuthenticationCreated message)
         {
-            Data.UserID = Guid.NewGuid();
             Bus.Send(new Messages.Commands.CreateUser
             {
-                UserId = Data.AuthenticationID,
+                UserId = Data.UserID,
                 Name = Data.Name,
                 Email = Data.Email
             });

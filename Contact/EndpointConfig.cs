@@ -1,8 +1,10 @@
 using System;
+using System.Configuration;
 using Contact.DomainServices;
 using Contact.Infrastructure;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.NServiceBus;
+using Contact.Infrastructure.Sql;
 using Core;
 using Core.DomainServices;
 using Infrastructure.NServiceBus;
@@ -24,10 +26,14 @@ namespace Contact
         AsA_Publisher,
         IWantCustomInitialization
     {
+        /// <summary>
+        /// http://support.nservicebus.com/customer/portal/articles/859362-using-ravendb-in-nservicebus-%E2%80%93-connecting
+        /// </summary>
         public void Init()
         {
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
             //I know I could use default conventions in here, but just being explicit for the purposes of example.
+            var connectionString = ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString;
             var container = new Container(x =>
                 {
                     x.For<IEventPublisher>().Use<NServiceBusEventPublisher>();
@@ -37,7 +43,7 @@ namespace Contact
                                     .CreateMappingCollection());
                     x.For<IEventPersistence>()
                      .LifecycleIs(new SingletonLifecycle())
-                     .Use<InProcEventPersistence>();
+                     .Use(new SqlEventPersistence(connectionString));
                     x.For<IEventStore>().Use<EventStore>();
                     x.For<IDomainRepository>().Use<DomainRepository>();
                     x.For<ISendEmails>().Use<BlackHoleEmailSender>();
@@ -46,7 +52,8 @@ namespace Contact
                 });
             Configure.With()
                      .Log4Net()
-                     .StructureMapBuilder(container);
+                     .StructureMapBuilder(container)
+                     .RavenPersistence();
 
             Console.WriteLine("Initialized");
         }

@@ -14,6 +14,16 @@ namespace Contact.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "AccommodationLeads",
+                routeTemplate: "api/accommodationleads/approved",
+                defaults: new
+                {
+                    id = RouteParameter.Optional,
+                    controller = "AccommodationLeads"
+                }
+            );
         }
     }
 }
