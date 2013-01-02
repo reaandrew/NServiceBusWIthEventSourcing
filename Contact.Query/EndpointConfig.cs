@@ -24,6 +24,7 @@ namespace Contact.Query
 	        Configure.With()
 	                 .StructureMapBuilder(container)
                      .RavenPersistence()
+                     .EnablePerformanceCounters()
 	                 .Log4Net();
 	    }
     }
