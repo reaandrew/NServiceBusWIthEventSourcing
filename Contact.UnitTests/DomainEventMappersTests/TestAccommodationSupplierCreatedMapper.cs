@@ -1,5 +1,4 @@
 ﻿using System;
-using Contact.Domain.DomainEvents;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Contact.Messages.Events;
 using NUnit.Framework;

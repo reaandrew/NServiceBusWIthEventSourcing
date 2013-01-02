@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Contact.Domain.DomainEvents;
 using Core.Domain;
 

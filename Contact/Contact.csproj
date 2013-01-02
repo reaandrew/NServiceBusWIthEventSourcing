@@ -78,18 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainServices\IGeneratePassword.cs" />
-    <Compile Include="DomainServices\IHash.cs" />
-    <Compile Include="DomainServices\ISendEmails.cs" />
-    <Compile Include="Domain\AccommodationLead.cs" />
-    <Compile Include="Domain\AccommodationSupplier.cs" />
-    <Compile Include="Domain\Authentication.cs" />
-    <Compile Include="Domain\DomainEvents\AccommodationLeadApproved.cs" />
-    <Compile Include="Domain\DomainEvents\AccommodationLeadCreated.cs" />
-    <Compile Include="Domain\DomainEvents\AccommodationSupplierCreated.cs" />
-    <Compile Include="Domain\DomainEvents\AuthenticationCreated.cs" />
-    <Compile Include="Domain\DomainEvents\UserCreated.cs" />
-    <Compile Include="Domain\User.cs" />
+    <Compile Include="Services\IGeneratePassword.cs" />
+    <Compile Include="Services\IHash.cs" />
+    <Compile Include="Services\ISendEmails.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Infrastructure\InProc\InProcEventPersistence.cs" />
     <Compile Include="Infrastructure\InProc\BlackHoleEmailSender.cs" />
@@ -120,6 +111,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contact.Domain\Contact.Domain.csproj">
+      <Project>{FC352196-1D24-40DF-B634-AF47F4801148}</Project>
+      <Name>Contact.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
@@ -136,9 +131,7 @@
   <ItemGroup>
     <Content Include="Senders\README.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
