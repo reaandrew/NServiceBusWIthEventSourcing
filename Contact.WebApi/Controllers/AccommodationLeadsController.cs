@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Contact.Query;
 using Contact.Query.Contracts;
+using Contact.Query.Contracts.Model;
 using Contact.WebApi.Contracts.Commands;
 using Contact.WebApi.Models;
 using NServiceBus;
@@ -23,19 +25,15 @@ namespace Contact.WebApi.Controllers
         }
 
         // GET api/accommodationleads
-        public HttpResponseMessage Get()
+        public List<AccommodationLead> Get()
         {
-            var accommodationLeads = _contactQueryRepository.ListAccommodationLeads();
-            var result = Request.CreateResponse(HttpStatusCode.OK, accommodationLeads);
-            return result;
+            return _contactQueryRepository.ListAccommodationLeads();
         }
 
         // GET api/accommodationleads/5
-        public HttpResponseMessage Get(Guid id)
+        public AccommodationLead Get(Guid id)
         {
-            var accommodationLead = _contactQueryRepository.GetAccommodationLeadById(id);
-            var result = Request.CreateResponse(HttpStatusCode.OK, accommodationLead);
-            return result;
+            return _contactQueryRepository.GetAccommodationLeadById(id);
         }
 
         // POST api/accommodationleads
@@ -61,7 +59,7 @@ namespace Contact.WebApi.Controllers
         {
             var approveAccLeadCommand = new Contact.Messages.Commands.ApproveAccLead
                 {
-                    AccLeadId =  accommodationLeadId.Id
+                    AccLeadId = accommodationLeadId.Id
                 };
             _bus.Send("Contact", approveAccLeadCommand);
             var response = new HttpResponseMessage(HttpStatusCode.Accepted);
