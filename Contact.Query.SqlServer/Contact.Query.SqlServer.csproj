@@ -105,19 +105,12 @@
       <DependentUpon>Contact.edmx</DependentUpon>
     </Compile>
     <Compile Include="ContactQueryRepository.cs" />
-    <Compile Include="EndpointConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Subscribers\AccommodationLeadApproved.cs" />
-    <Compile Include="Subscribers\AccommodationLeadCreated.cs" />
-    <Compile Include="Subscribers\AccommodationSupplierCreated.cs" />
-    <Compile Include="Subscribers\AuthenticationCreated.cs" />
-    <Compile Include="Subscribers\UserCreated.cs" />
     <Compile Include="User.cs">
       <DependentUpon>Contact.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <EntityDeploy Include="Contact.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Contact.Designer.cs</LastGenOutput>

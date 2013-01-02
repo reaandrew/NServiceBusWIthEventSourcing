@@ -1,11 +1,10 @@
+using NServiceBus;
 using StructureMap;
 using log4net.Config;
 
-namespace Contact.Query.SqlServer 
+namespace Contact.Query 
 {
-    using NServiceBus;
-
-	/*
+    /*
 		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
 		can be found here: http://nservicebus.com/GenericHost.aspx
 	*/
@@ -16,6 +15,11 @@ namespace Contact.Query.SqlServer
     {
 	    public void Init()
 	    {
+	        var container = new Container(expression =>
+	            {
+	                expression.For<IContactQueryRepository>()
+	                          .Use<ContactQueryRepository>();
+	            });
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
 	        Configure.With().Log4Net();
 	    }
