@@ -50,6 +50,9 @@ namespace Contact
                     x.For<ISendEmails>().Use<BlackHoleEmailSender>();
                     x.For<IGeneratePassword>().Use<RandomNumberPasswordGenerator>();
                     x.For<IHash>().Use<SHA512Hasher>();
+                    //Doing this as I cannot see a route to constructor injection with
+                    //Sagas that work with the NServiceBus Test framework
+                    x.FillAllPropertiesOfType<IDomainRepository>();
                 });
             Configure.With()
                      .Log4Net()

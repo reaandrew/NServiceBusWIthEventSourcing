@@ -1,6 +1,8 @@
 using System;
+using Contact.Domain;
 using Contact.Messages.Events;
 using Contact.Messages.State;
+using Core;
 using NServiceBus;
 using NServiceBus.Saga;
 
@@ -15,6 +17,9 @@ namespace Contact.Processors
         IHandleMessages<Messages.Events.AuthenticationCreated>,
     IHandleMessages<UserCreated>
     {
+        public IDomainRepository DomainRepository { get; set; }
+
+
         public void Handle(Messages.Commands.CreateAccSupplier message)
         {
             Console.WriteLine("{0},{1},{2}",
@@ -48,11 +53,10 @@ namespace Contact.Processors
         public void Handle(UserCreated message)
         {
             Console.WriteLine("Acc Supplier has now been created");
-            Bus.Publish(new AccommodationSupplierCreated
-                {
-                    Name = Data.Name,
-                    Email = Data.Email
-                });
+            var accommodationSupplier = new AccommodationSupplier(Data.AccommodationSupplierId, message.Name,
+                                                                  message.Email);
+
+            DomainRepository.Save(accommodationSupplier);
         }
 
         public override void ConfigureHowToFindSaga()
