@@ -1,3 +1,4 @@
+using Contact.Query.Contracts;
 using NServiceBus;
 
 namespace Contact.Query.Subscribers

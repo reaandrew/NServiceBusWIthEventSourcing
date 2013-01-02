@@ -14,13 +14,13 @@ namespace Contact.WebApi.AcceptanceTests
 
 
         [Test]
-        public void ShouldReturnHttpStatus201WhenACreateAccommodationLeadCommandIsSend()
+        public void ShouldReturnHttpStatus202WhenACreateAccommodationLeadCommandIsSend()
         {
             const string name = "Something";
             const string email = "test@test.com";
             var response = CreateAccommodationLead(name, email);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Accepted));
             Assert.That(response.Location(), Is.StringMatching(".*/api/accommodationleads/[\\d\\w]+"));
         }
 
@@ -36,7 +36,7 @@ namespace Contact.WebApi.AcceptanceTests
             var client = new RestClient(ApiHost);
             var request = new RestRequest { Method = Method.GET, Resource = newLocation.TrimStart('/') };
             request.AddHeader("Accept", "application/json");
-            var response = client.Execute<Contact.Query.Model.AccommodationLead>(request);
+            var response = client.Execute<Contact.Query.Contracts.Model.AccommodationLead>(request);
             //Hardcoded response at this point whilst I get my head around
             //WebApi and RestSharp.  Seem good up to now.
             Assert.That(response.Data.Email, Is.EqualTo("test@test.com"));

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using NUnit.Framework;
+using Model = Contact.Query.Contracts.Model;
 
 namespace Contact.Query.SqlServer.IntegrationTests
 {

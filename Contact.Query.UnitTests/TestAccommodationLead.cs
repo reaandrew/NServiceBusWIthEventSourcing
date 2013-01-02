@@ -1,5 +1,5 @@
 using System;
-using Contact.Query.Model;
+using Contact.Query.Contracts.Model;
 using Contact.Query.Subscribers;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;

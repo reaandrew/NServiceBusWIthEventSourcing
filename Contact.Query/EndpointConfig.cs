@@ -1,3 +1,5 @@
+using Contact.Query.Contracts;
+using Contact.Query.SqlServer;
 using NServiceBus;
 using StructureMap;
 using log4net.Config;
@@ -15,13 +17,13 @@ namespace Contact.Query
     {
 	    public void Init()
 	    {
-	        var container = new Container(expression =>
-	            {
-	                expression.For<IContactQueryRepository>()
-	                          .Use<ContactQueryRepository>();
-	            });
+            //Move to config so that it can be changed
+	        var container = new Container(expression => expression.For<IContactQueryRepository>()
+	                                                              .Use<ContactQueryRepository>());
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
-	        Configure.With().Log4Net();
+	        Configure.With()
+	                 .StructureMapBuilder(container)
+	                 .Log4Net();
 	    }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 using System.Data.SqlClient;
-using Contact.Query.Model;
+using Contact.Query.Contracts.Model;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;
 using Rhino.Mocks;

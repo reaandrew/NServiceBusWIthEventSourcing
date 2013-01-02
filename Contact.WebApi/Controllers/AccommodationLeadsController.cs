@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Contact.Query;
+using Contact.Query.Contracts;
 using Contact.WebApi.Contracts.Commands;
 using NServiceBus;
 
@@ -49,12 +50,12 @@ namespace Contact.WebApi.Controllers
 
             _bus.Send("Contact", createAccommodationLeadCommand);
 
-            var response = new HttpResponseMessage(HttpStatusCode.Created);
+            var response = new HttpResponseMessage(HttpStatusCode.Accepted);
             response.Headers.Add("Location", "/api/accommodationleads/" + accLeadId.ToString("N"));
             return response;
         }
 
-        // PUT api/accommodationleads/5
+        // PUT api/accommodationleads/approved/
         public void Put(int id, [FromBody]string value)
         {
         }

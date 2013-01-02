@@ -57,7 +57,6 @@ namespace Contact.Processors
         {
             ConfigureMapping<UserCreated>(s => s.UserID, m => m.UserID);
             ConfigureMapping<AuthenticationCreated>(x => x.AuthenticationID, m => m.AuthenticationID);
-
         }
     }
 }

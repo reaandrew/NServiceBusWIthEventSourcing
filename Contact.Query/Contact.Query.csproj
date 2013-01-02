@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Host.3.3.3\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
+      <HintPath>..\packages\NServiceBus.StructureMap.3.3.3\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -58,11 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="IContactQueryRepository.cs" />
-    <Compile Include="Model\AccommodationLead.cs" />
-    <Compile Include="Model\AccommodationSupplier.cs" />
-    <Compile Include="Model\Authentication.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subscribers\AccommodationLeadApproved.cs" />
     <Compile Include="Subscribers\AccommodationLeadCreated.cs" />
@@ -79,10 +77,16 @@
       <Project>{08b6a47d-b8d1-48a1-81cc-bfbaf212bed1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+      <Project>{2F416DAA-ED7E-4F66-9347-BDBC975F53B6}</Project>
+      <Name>Contact.Query.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
+      <Project>{55e7fe77-348c-493e-9a89-6b88cdebdc04}</Project>
+      <Name>Contact.Query.SqlServer</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

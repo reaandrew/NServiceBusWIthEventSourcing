@@ -77,6 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+      <Project>{2f416daa-ed7e-4f66-9347-bdbc975f53b6}</Project>
+      <Name>Contact.Query.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contact.Query\Contact.Query.csproj">
       <Project>{0d3d3eac-5ef3-49e6-aa52-e9d86cf43c3d}</Project>
       <Name>Contact.Query</Name>

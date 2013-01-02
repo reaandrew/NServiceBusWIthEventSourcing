@@ -1,4 +1,5 @@
-using Contact.Query.Model;
+using Contact.Query.Contracts;
+using Contact.Query.Contracts.Model;
 using NServiceBus;
 
 namespace Contact.Query.Subscribers

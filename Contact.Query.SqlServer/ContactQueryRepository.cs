@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Contact.Query.Contracts;
+using Model = Contact.Query.Contracts.Model;
 
 namespace Contact.Query.SqlServer
 {
@@ -89,7 +91,7 @@ namespace Contact.Query.SqlServer
             using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Select(x =>
-                                                         new Contact.Query.Model.AccommodationLead
+                                                         new Model.AccommodationLead
                                                              {
                                                                  AccommodationLeadId =
                                                                      x.AccommodationLeadId,

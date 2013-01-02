@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Contact.Query;
+using Contact.Query.Contracts;
 using Contact.Query.SqlServer;
 using Contact.WebApi.Infrastructure;
 using NServiceBus;
@@ -34,11 +35,12 @@ namespace Contact.WebApi
                      .StructureMapBuilder(container)
                      .Log4Net()
                      .ForWebApi()
+                     .EnablePerformanceCounters()
                      .XmlSerializer()
                      .MsmqTransport()
                      .UnicastBus()
                      .CreateBus()
-                     .Start();
+                     .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 
         }
     }
