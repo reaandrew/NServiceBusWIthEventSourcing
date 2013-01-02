@@ -29,8 +29,10 @@ namespace Contact.IntegrationTests.ProcessorsTests
             Test.Handler<Processors.CreateAuthenticationWithGeneratedPassword>(bus =>
                          new Processors.CreateAuthenticationWithGeneratedPassword
                              (CreateDomainRepository(bus), mockPasswordGenerator, mockHasher))
-                .ExpectPublish<Messages.Events.AuthenticationCreated>(created => created.Email == email &&
-                                                                                 created.HashedPassword == hash)
+                .ExpectPublish<Messages.Events.AuthenticationCreated>(created => 
+                    created.AuthenticationID == authId &&
+                    created.Email == email &&                                                  
+                    created.HashedPassword == hash)
                 .OnMessage<Messages.Commands.CreateAuthenticationWithGeneratedPassword>(password =>
                     {
                         password.AuthID = authId;

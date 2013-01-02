@@ -9,5 +9,5 @@ Scenario: Approve a valid AccommodationLead
 	| Name       | Email        |
 	| Joe Bloggs | joe@test.com |
 	When I approve the Accommodation Lead
-	And query the system for the Accommodation Lead
+	And I query the system for the Accommodation Lead
 	Then the Approval status of the Accommodation Lead should be true

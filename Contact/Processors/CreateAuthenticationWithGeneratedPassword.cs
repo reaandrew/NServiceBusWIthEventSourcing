@@ -25,7 +25,7 @@ namespace Contact.Processors
         {
             var generatedPassword = _passwordGenerator.GeneratePassword();
             var hashedPassword = _hasher.Hash(generatedPassword);
-            var authentication = new Authentication(Guid.NewGuid(), message.Email, hashedPassword);
+            var authentication = new Authentication(message.AuthID, message.Email, hashedPassword);
             _domainRepository.Save(authentication);
         }
     }

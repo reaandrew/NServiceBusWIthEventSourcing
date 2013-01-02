@@ -32,9 +32,9 @@ namespace Contact.WebApi.AcceptanceTests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ApprovingAnAccommodationLead", "In order to increase the company revenue\r\nAs a Product Improvement user\r\nI want t" +
-                    "o be able to approve valid accommodation leads\r\nAnd increase the stock of hotels" +
-                    " which can be advertised", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ApprovingAnAccommodationLead", "In order to increase the company revenue\nAs a Product Improvement user\nI want to " +
+                    "be able to approve valid accommodation leads\nAnd increase the stock of hotels wh" +
+                    "ich can be advertised", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -85,7 +85,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I approve the Accommodation Lead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.And("query the system for the Accommodation Lead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I query the system for the Accommodation Lead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
  testRunner.Then("the Approval status of the Accommodation Lead should be true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
