@@ -13,7 +13,7 @@ namespace Contact.Subscribers
 
         public void Handle(AccommodationLeadApproved message)
         {
-            Bus.Send("Contact", new Messages.Commands.CreateAccSupplier
+            Bus.Send(new Messages.Commands.CreateAccSupplier
                 {
                     AccommodationSupplierId = Guid.NewGuid(),
                     Name = message.Name,

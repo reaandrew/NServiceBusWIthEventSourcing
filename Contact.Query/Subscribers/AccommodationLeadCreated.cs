@@ -1,6 +1,7 @@
 using Contact.Query.Contracts;
 using Contact.Query.Contracts.Model;
 using NServiceBus;
+using log4net;
 
 namespace Contact.Query.Subscribers
 {
@@ -15,6 +16,7 @@ namespace Contact.Query.Subscribers
 
         public void Handle(Messages.Events.AccommodationLeadCreated message)
         {
+            LogManager.GetLogger(this.GetType()).Info("Receieved " + message.GetType().ToString());
             var accommodationLead = new AccommodationLead
             {
                 AccommodationLeadId = message.AccommodationLeadID,

@@ -11,6 +11,7 @@ using Infrastructure.NServiceBus;
 using NServiceBus;
 using StructureMap;
 using StructureMap.Pipeline;
+using log4net;
 using log4net.Config;
 
 namespace Contact
@@ -59,6 +60,8 @@ namespace Contact
                      .StructureMapBuilder(container)
                      .EnablePerformanceCounters()
                      .RavenPersistence();
+
+            LogManager.GetLogger(this.GetType()).Info("Initialized");
         }
     }
 }
