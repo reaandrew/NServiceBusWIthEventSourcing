@@ -69,8 +69,19 @@
     <Compile Include="Subscribers\UserCreated.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="ServiceInstall.bat">
+      <DependentUpon>ServiceInstall.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="ServiceInstall.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceInstall.bat</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
@@ -85,8 +96,14 @@
       <Project>{55e7fe77-348c-493e-9a89-6b88cdebdc04}</Project>
       <Name>Contact.Query.SqlServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log4Net\Infrastructure.Log4Net.csproj">
+      <Project>{e30c2922-a037-4a7d-8d76-e68e148a1c9c}</Project>
+      <Name>Infrastructure.Log4Net</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

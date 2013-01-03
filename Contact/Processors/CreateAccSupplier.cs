@@ -19,14 +19,8 @@ namespace Contact.Processors
     {
         public IDomainRepository DomainRepository { get; set; }
 
-
         public void Handle(Messages.Commands.CreateAccSupplier message)
         {
-            Console.WriteLine("{0},{1},{2}",
-                              Data.Id,
-                              Data.OriginalMessageId,
-                              Data.Originator);
-            Console.WriteLine("Creating the Acc Supplier");
             Data.AccommodationSupplierId = message.AccommodationSupplierId;
             Data.Name = message.Name;
             Data.Email = message.Email;
@@ -52,7 +46,6 @@ namespace Contact.Processors
 
         public void Handle(UserCreated message)
         {
-            Console.WriteLine("Acc Supplier has now been created");
             var accommodationSupplier = new AccommodationSupplier(Data.AccommodationSupplierId, message.Name,
                                                                   message.Email);
 

@@ -39,6 +39,7 @@ namespace Contact.WebApi
                      .XmlSerializer()
                      .MsmqTransport()
                      .UnicastBus()
+                     .IsTransactional(true)
                      .CreateBus()
                      .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 

@@ -15,7 +15,7 @@ namespace Contact.Query.SqlServer
                 var accLeadToSave =
                     context.AccommodationLeads.SingleOrDefault(
                         x => x.AccommodationLeadId == accommodationLead.AccommodationLeadId)
-                        ?? new AccommodationLead();
+                    ?? new AccommodationLead();
 
                 accLeadToSave.AccommodationLeadId = accommodationLead.AccommodationLeadId;
                 accLeadToSave.Name = accommodationLead.Name;
@@ -31,6 +31,7 @@ namespace Contact.Query.SqlServer
 
         public void Save(Model.AccommodationSupplier accommodationSupplier)
         {
+
             using (var context = new ContactEntities())
             {
                 var accSupplierToSave = context.AccommodationSuppliers.SingleOrDefault(
@@ -50,6 +51,7 @@ namespace Contact.Query.SqlServer
 
         public void Save(Model.Authentication authentication)
         {
+
             using (var context = new ContactEntities())
             {
                 var authToSave = context.Authentications.SingleOrDefault(
@@ -69,6 +71,7 @@ namespace Contact.Query.SqlServer
 
         public void Save(Model.User user)
         {
+
             using (var context = new ContactEntities())
             {
                 var userToSave = context.Users.SingleOrDefault(
@@ -88,6 +91,7 @@ namespace Contact.Query.SqlServer
 
         public List<Model.AccommodationLead> ListAccommodationLeads()
         {
+
             using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Select(x =>

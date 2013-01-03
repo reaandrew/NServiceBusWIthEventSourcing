@@ -1,0 +1,13 @@
+Managing separate endpoints per message type
+
+Ultimately this allows independent management, monitoring, upgrading, and scaling (to name a few) on a per message type level. When doing this, name your Windows services the same as your message type, and also name your queue the same. This makes correlating what's in the queue, with the queue, with the process very easy.
+
+ 
+
+Best regards,
+
+ 
+
+-- Udi Dahan
+
+http://tech.groups.yahoo.com/group/nservicebus/message/9835

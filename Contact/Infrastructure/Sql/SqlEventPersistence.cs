@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Xml;
@@ -16,7 +17,7 @@ namespace Contact.Infrastructure.Sql
         {
             public DomainEventWrapper()
             {
-                
+
             }
 
             public DomainEventWrapper(DomainEvent domainEvent)
@@ -43,9 +44,11 @@ namespace Contact.Infrastructure.Sql
             serializer.Serialize(xmlWriter, new DomainEventWrapper(domainEvent));
             xmlWriter.Flush();
 
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText =
@@ -56,6 +59,7 @@ namespace Contact.Infrastructure.Sql
                     command.Parameters.AddWithValue("@Event", stringBuilder.ToString());
                     command.ExecuteNonQuery();
                 }
+
             }
         }
 
@@ -77,7 +81,7 @@ namespace Contact.Infrastructure.Sql
                         while (dataReader.Read())
                         {
                             var @eventXmlReader = dataReader.GetXmlReader(dataReader.GetOrdinal("Event"));
-                            var @eventWrapper = (DomainEventWrapper) serializer.Deserialize(@eventXmlReader);
+                            var @eventWrapper = (DomainEventWrapper)serializer.Deserialize(@eventXmlReader);
                             events.Add(@eventWrapper.DomainEvent);
                         }
                         return events;
@@ -91,7 +95,7 @@ namespace Contact.Infrastructure.Sql
             var xRoot = new XmlRootAttribute();
             xRoot.ElementName = "DomainEventWrapper";
             xRoot.IsNullable = true;
-            var serializer = new XmlSerializer(typeof (DomainEventWrapper), null,
+            var serializer = new XmlSerializer(typeof(DomainEventWrapper), null,
                                                new[]
                                                    {
                                                        typeof (DomainEvent),

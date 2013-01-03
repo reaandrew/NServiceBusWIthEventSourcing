@@ -109,6 +109,15 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="ServiceInstall.bat">
+      <DependentUpon>ServiceInstall.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="ServiceInstall.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceInstall.bat</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contact.Domain\Contact.Domain.csproj">
@@ -122,6 +131,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log4Net\Infrastructure.Log4Net.csproj">
+      <Project>{e30c2922-a037-4a7d-8d76-e68e148a1c9c}</Project>
+      <Name>Infrastructure.Log4Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
       <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>

@@ -1,0 +1,36 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\NServiceBus.dll" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\Contact.Messages.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Runtime.Remoting.Messaging" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#@ import namespace="NServiceBus" #>
+
+<#@ output extension=".bat" #>
+<#
+var targetType = typeof (Contact.Messages.Events.UserCreated);
+System.UriBuilder uri = new System.UriBuilder(System.Reflection.Assembly.GetAssembly(targetType).CodeBase);
+string path = Uri.UnescapeDataString(uri.Path);
+var NServiceBusPath = Path.Combine(Path.GetDirectoryName(path),"NServiceBus.Host.exe");
+var assembly = Assembly.GetAssembly(targetType);
+var eventTypes = assembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof (IEvent))).ToList();
+var commandTypes = assembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(ICommand))).ToList();
+#>
+<#
+foreach(System.Type @event in eventTypes){
+#>
+<#
+
+#>
+:: Distributor and Worker for <#= @event.FullName #>
+<#= NServiceBusPath #> /uninstall /serviceName:<#= @event.FullName #>.Query 
+<#= NServiceBusPath #> /uninstall /serviceName:<#= @event.FullName #>.Query /instance:Instance1
+
+<#
+}
+#>

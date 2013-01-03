@@ -47,7 +47,7 @@ namespace Contact.WebApi.Controllers
                     Email = createAccommodationLead.Email
                 };
 
-            _bus.Send("Contact", createAccommodationLeadCommand);
+            _bus.Send("Contact.Commands.CreateAccommodationLead", createAccommodationLeadCommand);
 
             var response = new HttpResponseMessage(HttpStatusCode.Accepted);
             response.Headers.Add("Location", "/api/accommodationleads/" + accLeadId.ToString("N"));
@@ -61,7 +61,7 @@ namespace Contact.WebApi.Controllers
                 {
                     AccLeadId = accommodationLeadId.Id
                 };
-            _bus.Send("Contact", approveAccLeadCommand);
+            _bus.Send("Contact.Commands.ApproveAccLead", approveAccLeadCommand);
             var response = new HttpResponseMessage(HttpStatusCode.Accepted);
             return response;
         }

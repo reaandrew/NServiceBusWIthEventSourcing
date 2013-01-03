@@ -59,8 +59,6 @@ namespace Contact
                      .StructureMapBuilder(container)
                      .EnablePerformanceCounters()
                      .RavenPersistence();
-
-            Console.WriteLine("Initialized");
         }
     }
 }
