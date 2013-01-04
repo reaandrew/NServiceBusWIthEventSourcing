@@ -96,7 +96,6 @@ namespace Contact.Query.SqlServer
                                                                      x.AccommodationLeadId,
                                                                  Email = x.Email,
                                                                  Name = x.Name,
-                                                                 Id = x.Id,
                                                                  Approved = x.Approved
                                                              }).ToList();
             }
@@ -109,7 +108,6 @@ namespace Contact.Query.SqlServer
                 return context.AccommodationLeads.Where(x => x.AccommodationLeadId == id)
                               .Select(lead => new Contracts.Model.AccommodationLead
                                   {
-                                      Id = lead.Id,
                                       AccommodationLeadId = lead.AccommodationLeadId,
                                       Name = lead.Name,
                                       Email = lead.Email,
