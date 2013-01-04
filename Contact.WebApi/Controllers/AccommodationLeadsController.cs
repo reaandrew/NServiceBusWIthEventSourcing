@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Contact.Query;
+using Contact.Messages.Commands;
 using Contact.Query.Contracts;
 using Contact.Query.Contracts.Model;
-using Contact.WebApi.Contracts.Commands;
 using Contact.WebApi.Models;
 using NServiceBus;
+using CreateAccommodationLead = Contact.WebApi.Contracts.Commands.CreateAccommodationLead;
 
 namespace Contact.WebApi.Controllers
 {
@@ -37,7 +37,7 @@ namespace Contact.WebApi.Controllers
         }
 
         // POST api/accommodationleads
-        public HttpResponseMessage Post([FromBody]CreateAccommodationLead createAccommodationLead)
+        public HttpResponseMessage Post([FromBody] CreateAccommodationLead createAccommodationLead)
         {
             var accLeadId = Guid.NewGuid();
             var createAccommodationLeadCommand = new Messages.Commands.CreateAccommodationLead
@@ -55,9 +55,9 @@ namespace Contact.WebApi.Controllers
         }
 
         // PUT api/accommodationleads/approved/
-        public HttpResponseMessage Put([FromBody]AccommodationLeadId accommodationLeadId)
+        public HttpResponseMessage Put([FromBody] AccommodationLeadId accommodationLeadId)
         {
-            var approveAccLeadCommand = new Contact.Messages.Commands.ApproveAccLead
+            var approveAccLeadCommand = new ApproveAccLead
                 {
                     AccLeadId = accommodationLeadId.Id
                 };

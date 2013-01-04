@@ -12,7 +12,7 @@ namespace Core.DomainServices
             _eventStore = eventStore;
         }
 
-        public void Save<T>(T aggregateRoot) 
+        public void Save<T>(T aggregateRoot)
             where T : AggregateRoot
         {
             _eventStore.SaveEvents(aggregateRoot.ID, aggregateRoot.OutstandingEvents);
@@ -24,7 +24,7 @@ namespace Core.DomainServices
             var events = _eventStore.GetEventsForAggregate<T>(id);
             if (events.Count == 0)
                 throw new NullReferenceException("No events found for the ID of the Aggregate supplied");
-            var aggregateRoot = (T)Activator.CreateInstance(typeof(T), new object[] { events });
+            var aggregateRoot = (T) Activator.CreateInstance(typeof (T), new object[] {events});
             return aggregateRoot;
         }
     }

@@ -14,8 +14,8 @@ namespace Contact.Processors
     public class CreateAccSupplier :
         Saga<CreateAccSupplierSagaData>,
         IAmStartedByMessages<Messages.Commands.CreateAccSupplier>,
-        IHandleMessages<Messages.Events.AuthenticationCreated>,
-    IHandleMessages<UserCreated>
+        IHandleMessages<AuthenticationCreated>,
+        IHandleMessages<UserCreated>
     {
         public IDomainRepository DomainRepository { get; set; }
 
@@ -37,11 +37,11 @@ namespace Contact.Processors
         public void Handle(AuthenticationCreated message)
         {
             Bus.Send(new Messages.Commands.CreateUser
-            {
-                UserId = Data.UserID,
-                Name = Data.Name,
-                Email = Data.Email
-            });
+                {
+                    UserId = Data.UserID,
+                    Name = Data.Name,
+                    Email = Data.Email
+                });
         }
 
         public void Handle(UserCreated message)
