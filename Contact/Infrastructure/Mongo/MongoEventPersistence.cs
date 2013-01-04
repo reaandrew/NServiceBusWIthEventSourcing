@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Contact.Domain.DomainEvents;
 using Core;
 using Core.Domain;
 using MongoDB.Bson.Serialization;
@@ -15,11 +16,11 @@ namespace Contact.Infrastructure.Mongo
 
         static MongoEventPersistence()
         {
-            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationLeadApproved>();
-            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationLeadCreated>();
-            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationSupplierCreated>();
-            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AuthenticationCreated>();
-            BsonClassMap.RegisterClassMap<Domain.DomainEvents.UserCreated>();
+            BsonClassMap.RegisterClassMap<AccommodationLeadApproved>();
+            BsonClassMap.RegisterClassMap<AccommodationLeadCreated>();
+            BsonClassMap.RegisterClassMap<AccommodationSupplierCreated>();
+            BsonClassMap.RegisterClassMap<AuthenticationCreated>();
+            BsonClassMap.RegisterClassMap<UserCreated>();
         }
 
         public MongoEventPersistence(string connectionString, string database)

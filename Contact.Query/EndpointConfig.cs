@@ -1,7 +1,6 @@
 using System.Configuration;
 using Contact.Query.Contracts;
 using Contact.Query.Mongo;
-using Contact.Query.SqlServer;
 using NServiceBus;
 using StructureMap;
 using log4net.Config;

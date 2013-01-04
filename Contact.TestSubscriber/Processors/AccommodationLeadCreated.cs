@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Contact.Messages.Commands;
 using NServiceBus;
 
 namespace Contact.TestSubscriber.Processors
 {
-    public class AccommodationLeadCreated : IHandleMessages<Contact.Messages.Events.AccommodationLeadCreated>
+    public class AccommodationLeadCreated : IHandleMessages<Messages.Events.AccommodationLeadCreated>
     {
         private readonly IBus _bus;
 
@@ -18,7 +14,7 @@ namespace Contact.TestSubscriber.Processors
 
         public void Handle(Messages.Events.AccommodationLeadCreated message)
         {
-            _bus.Send(new Contact.Messages.Commands.ApproveAccLead
+            _bus.Send(new ApproveAccLead
                 {
                     AccLeadId = message.AccommodationLeadID
                 });

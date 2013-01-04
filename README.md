@@ -1,6 +1,9 @@
 ABOUT 
 
-**Please take the domain modelling in this example with a "pinch of salt".
+*Please take the domain modelling in this example with a "pinch of salt".
+*NServiceBus has documentation about configuring your system with permissions for msmq and things.
+
+SQL Setup scripts inside the Setup/mssql folder if you want to try MSSQL.
 
 The immediate goal is to look into different ways an EDA approach can help.
 

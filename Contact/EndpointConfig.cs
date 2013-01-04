@@ -4,7 +4,6 @@ using Contact.Infrastructure;
 using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.Mongo;
 using Contact.Infrastructure.NServiceBus;
-using Contact.Infrastructure.Sql;
 using Core;
 using Core.DomainServices;
 using Infrastructure.NServiceBus;
@@ -41,7 +40,7 @@ namespace Contact
             var container = new Container(x =>
                 {
                     x.For<IEventPublisher>().Use<NServiceBusEventPublisher>();
-                   
+
                     x.For<IEventMappings>()
                      .LifecycleIs(new SingletonLifecycle())
                      .Use(() => new NServiceBusDomainEventMappingFactory().CreateMappingCollection());
@@ -51,8 +50,8 @@ namespace Contact
                     .Use(new SqlEventPersistence(connectionString));
                     * * */
                     x.For<IEventPersistence>()
-                    .LifecycleIs(new SingletonLifecycle())
-                    .Use(new MongoEventPersistence(mongoConnectionString, mongoDatabase));
+                     .LifecycleIs(new SingletonLifecycle())
+                     .Use(new MongoEventPersistence(mongoConnectionString, mongoDatabase));
                     x.For<IEventStore>().Use<EventStore>();
                     x.For<IDomainRepository>().Use<DomainRepository>();
                     x.For<ISendEmails>().Use<BlackHoleEmailSender>();

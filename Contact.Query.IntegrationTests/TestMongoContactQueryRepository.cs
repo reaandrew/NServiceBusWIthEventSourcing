@@ -120,15 +120,15 @@ namespace Contact.Query.IntegrationTests
         public void ShouldListAccommodationLeads()
         {
             var accommodationLead1 = new AccommodationLead
-            {
-                AccommodationLeadId = _id,
-                Name = Name
-            };
+                {
+                    AccommodationLeadId = _id,
+                    Name = Name
+                };
             var accommodationLead2 = new AccommodationLead
-            {
-                AccommodationLeadId = Guid.NewGuid(),
-                Name = "Wrong"
-            };
+                {
+                    AccommodationLeadId = Guid.NewGuid(),
+                    Name = "Wrong"
+                };
             _repository.Save(accommodationLead1);
             _repository.Save(accommodationLead2);
 
@@ -138,7 +138,7 @@ namespace Contact.Query.IntegrationTests
 
         private T GetEntity<T>(Guid id, string collectionName)
         {
-            var collection = GetCollection <T>(collectionName);
+            var collection = GetCollection<T>(collectionName);
             var query = MongoDB.Driver.Builders.Query.EQ("_id", _id);
             var entity = collection.FindOne(query);
             return entity.Object;

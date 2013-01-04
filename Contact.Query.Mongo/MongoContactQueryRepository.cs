@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Contact.Query.Contracts;
 using Contact.Query.Contracts.Model;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 
 namespace Contact.Query.Mongo
@@ -40,10 +38,10 @@ namespace Contact.Query.Mongo
         {
             var collection = GetCollection<AccommodationSupplier>(ACCOMMODATIONSUPPLIER_COLLECTION);
             var wrappedObject = new QueryObjectWrapper<AccommodationSupplier>
-            {
-                Object = accommodationSupplier,
-                _id = accommodationSupplier.AccommodationSupplierId
-            };
+                {
+                    Object = accommodationSupplier,
+                    _id = accommodationSupplier.AccommodationSupplierId
+                };
             collection.Save(wrappedObject);
         }
 
@@ -51,10 +49,10 @@ namespace Contact.Query.Mongo
         {
             var collection = GetCollection<Authentication>(AUTHENTICATION_COLLECTION);
             var wrappedObject = new QueryObjectWrapper<Authentication>
-            {
-                Object = authentication,
-                _id = authentication.AuthenticationId
-            };
+                {
+                    Object = authentication,
+                    _id = authentication.AuthenticationId
+                };
             collection.Save(wrappedObject);
         }
 
@@ -62,10 +60,10 @@ namespace Contact.Query.Mongo
         {
             var collection = GetCollection<User>(USER_COLLECTION);
             var wrappedObject = new QueryObjectWrapper<User>
-            {
-                Object = user,
-                _id = user.UserId
-            };
+                {
+                    Object = user,
+                    _id = user.UserId
+                };
             collection.Save(wrappedObject);
         }
 

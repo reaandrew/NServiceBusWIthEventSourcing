@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Contact.Query.Contracts;
 using Contact.Query.Mongo;
-using Contact.Query.SqlServer;
 using Contact.WebApi.Infrastructure;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
@@ -35,11 +34,11 @@ namespace Contact.WebApi
             var mongoDatabase = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
             var container = new Container(expression
                                           => expression.For<IContactQueryRepository>()
-                                                                  .Use<MongoContactQueryRepository>()
-                                                                  .Ctor<string>("connectionString")
-                                                                  .Is(mongoConnectionString)
-                                                                  .Ctor<string>("databaseName")
-                                                                  .Is(mongoDatabase));
+                                                       .Use<MongoContactQueryRepository>()
+                                                       .Ctor<string>("connectionString")
+                                                       .Is(mongoConnectionString)
+                                                       .Ctor<string>("databaseName")
+                                                       .Is(mongoDatabase));
 
             Configure.With()
                      .StructureMapBuilder(container)
