@@ -40,8 +40,7 @@ namespace Contact
                     x.For<IEventPublisher>().Use<NServiceBusEventPublisher>();
                     x.For<IEventMappings>()
                      .LifecycleIs(new SingletonLifecycle())
-                     .Use(() => new NServiceBusDomainEventMappingFactory()
-                                    .CreateMappingCollection());
+                     .Use(() => new NServiceBusDomainEventMappingFactory().CreateMappingCollection());
                     x.For<IEventPersistence>()
                      .LifecycleIs(new SingletonLifecycle())
                      .Use(new SqlEventPersistence(connectionString));
@@ -54,6 +53,7 @@ namespace Contact
                     //Sagas that work with the NServiceBus Test framework
                     x.FillAllPropertiesOfType<IDomainRepository>();
                 });
+
             Configure.With()
                      .Log4Net()
                      .StructureMapBuilder(container)

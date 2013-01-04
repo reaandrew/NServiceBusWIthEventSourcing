@@ -31,7 +31,7 @@ namespace Contact.WebApi
 
             var container = new Container(expression
                                           => expression.For<IContactQueryRepository>()
-                                                       .Use<ContactQueryRepository>());
+                                                       .Use<SqlContactQueryRepository>());
 
             Configure.With()
                      .StructureMapBuilder(container)

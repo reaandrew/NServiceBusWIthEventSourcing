@@ -104,7 +104,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Contact.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ContactQueryRepository.cs" />
+    <Compile Include="SqlContactQueryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
       <DependentUpon>Contact.tt</DependentUpon>

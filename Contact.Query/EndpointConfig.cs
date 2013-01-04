@@ -20,7 +20,7 @@ namespace Contact.Query
         {
             //Move to config so that it can be changed
             var container = new Container(expression => expression.For<IContactQueryRepository>()
-                                                                  .Use<ContactQueryRepository>());
+                                                                  .Use<SqlContactQueryRepository>());
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
             Configure.With()
                      .StructureMapBuilder(container)
