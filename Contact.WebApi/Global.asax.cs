@@ -1,8 +1,10 @@
-﻿using System.Web;
+﻿using System.Configuration;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Contact.Query.Contracts;
+using Contact.Query.Mongo;
 using Contact.Query.SqlServer;
 using Contact.WebApi.Infrastructure;
 using NServiceBus;
@@ -29,9 +31,15 @@ namespace Contact.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            var mongoConnectionString = ConfigurationManager.AppSettings["MongoEventStoreConnectionString"];
+            var mongoDatabase = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
             var container = new Container(expression
                                           => expression.For<IContactQueryRepository>()
-                                                       .Use<SqlContactQueryRepository>());
+                                                                  .Use<MongoContactQueryRepository>()
+                                                                  .Ctor<string>("connectionString")
+                                                                  .Is(mongoConnectionString)
+                                                                  .Ctor<string>("databaseName")
+                                                                  .Is(mongoDatabase));
 
             Configure.With()
                      .StructureMapBuilder(container)

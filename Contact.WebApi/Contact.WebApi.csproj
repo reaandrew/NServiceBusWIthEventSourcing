@@ -175,6 +175,10 @@
       <Project>{2f416daa-ed7e-4f66-9347-bdbc975f53b6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
+      <Project>{1e93c964-90f7-490a-b722-8e41c7440a7e}</Project>
+      <Name>Contact.Query.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
       <Project>{55e7fe77-348c-493e-9a89-6b88cdebdc04}</Project>
       <Name>Contact.Query.SqlServer</Name>

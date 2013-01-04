@@ -52,6 +52,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,6 +92,10 @@
     <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
       <Project>{2F416DAA-ED7E-4F66-9347-BDBC975F53B6}</Project>
       <Name>Contact.Query.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
+      <Project>{1e93c964-90f7-490a-b722-8e41c7440a7e}</Project>
+      <Name>Contact.Query.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
       <Project>{55e7fe77-348c-493e-9a89-6b88cdebdc04}</Project>

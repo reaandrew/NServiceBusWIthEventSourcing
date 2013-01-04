@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contact.Domain\Contact.Domain.csproj">
-      <Project>{FC352196-1D24-40DF-B634-AF47F4801148}</Project>
+      <Project>{fc352196-1d24-40df-b634-af47f4801148}</Project>
       <Name>Contact.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">

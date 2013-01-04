@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core;
 using Core.Domain;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 
@@ -11,6 +12,15 @@ namespace Contact.Infrastructure.Mongo
     {
         private readonly string _connectionString;
         private readonly string _database;
+
+        static MongoEventPersistence()
+        {
+            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationLeadApproved>();
+            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationLeadCreated>();
+            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AccommodationSupplierCreated>();
+            BsonClassMap.RegisterClassMap<Domain.DomainEvents.AuthenticationCreated>();
+            BsonClassMap.RegisterClassMap<Domain.DomainEvents.UserCreated>();
+        }
 
         public MongoEventPersistence(string connectionString, string database)
         {
