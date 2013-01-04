@@ -13,7 +13,7 @@ namespace Contact.WebApi.Infrastructure
     /// </summary>
     public class NServiceBusResolverAdapter : IDependencyResolver
     {
-        private IBuilder builder;
+        private readonly IBuilder builder;
 
         public NServiceBusResolverAdapter(IBuilder builder)
         {
@@ -22,15 +22,12 @@ namespace Contact.WebApi.Infrastructure
 
         public object GetService(Type serviceType)
         {
-
-            if (typeof(IHttpController).IsAssignableFrom(serviceType))
+            if (typeof (IHttpController).IsAssignableFrom(serviceType))
             {
                 return builder.Build(serviceType);
             }
 
             return null;
-
-
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
@@ -45,7 +42,6 @@ namespace Contact.WebApi.Infrastructure
 
         public void Dispose()
         {
-
         }
     }
 }

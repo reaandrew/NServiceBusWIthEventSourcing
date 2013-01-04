@@ -17,7 +17,7 @@ namespace Contact.IntegrationTests.ProcessorsTests
             var eventPublisher = new NServiceBusEventPublisher(bus, mapperCollection);
             var eventStore = new EventStore(eventPersistence, eventPublisher);
             var instance = Activator.CreateInstance(typeof (T), eventStore);
-            return (T)instance;
-        } 
+            return (T) instance;
+        }
     }
 }

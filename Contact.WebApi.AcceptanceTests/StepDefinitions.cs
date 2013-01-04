@@ -25,7 +25,7 @@ namespace Contact.WebApi.AcceptanceTests
         {
             var tableRow = table.Rows[0];
             var accLeadId = CreateAccommodationLead(tableRow["Name"], tableRow["Email"]);
-            ScenarioContext.Current.Set<Guid>(accLeadId, AccLeadIdKey);
+            ScenarioContext.Current.Set(accLeadId, AccLeadIdKey);
             Thread.Sleep(1000);
         }
 
@@ -42,7 +42,7 @@ namespace Contact.WebApi.AcceptanceTests
         {
             var accLeadId = ScenarioContext.Current.Get<Guid>(AccLeadIdKey);
             var accLead = GetAccommodationLead(accLeadId);
-            ScenarioContext.Current.Set<AccommodationLead>(accLead, AccLeadKey);
+            ScenarioContext.Current.Set(accLead, AccLeadKey);
         }
 
         [Then(@"the Approval status of the Accommodation Lead should be true")]
@@ -55,7 +55,7 @@ namespace Contact.WebApi.AcceptanceTests
         private void ApproveAccommodationLead(Guid id)
         {
             var client = new RestClient(ApiHost);
-            var request = new RestRequest { Method = Method.PUT, Resource = "api/accommodationleads/approved" };
+            var request = new RestRequest {Method = Method.PUT, Resource = "api/accommodationleads/approved"};
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Id", id, ParameterType.GetOrPost);
@@ -74,7 +74,7 @@ namespace Contact.WebApi.AcceptanceTests
         private Guid CreateAccommodationLead(string name, string email)
         {
             var client = new RestClient(ApiHost);
-            var request = new RestRequest { Method = Method.POST, Resource = "api/accommodationleads" };
+            var request = new RestRequest {Method = Method.POST, Resource = "api/accommodationleads"};
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Name", name, ParameterType.GetOrPost);
@@ -86,7 +86,6 @@ namespace Contact.WebApi.AcceptanceTests
 
             return id;
         }
-
     }
 
     public static class RestSharpExtensions

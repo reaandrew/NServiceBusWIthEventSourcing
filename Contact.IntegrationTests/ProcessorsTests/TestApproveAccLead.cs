@@ -2,10 +2,9 @@ using System;
 using Contact.Domain;
 using Contact.IntegrationTests.ProcessorsTests.SupportForTests;
 using Contact.Messages.Commands;
+using Contact.Messages.Events;
 using NServiceBus.Testing;
 using NUnit.Framework;
-using Rhino.Mocks;
-using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadApproved;
 
 namespace Contact.IntegrationTests.ProcessorsTests
 {

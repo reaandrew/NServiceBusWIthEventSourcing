@@ -1,6 +1,8 @@
 ﻿using System;
 using Contact.DomainServices;
 using Contact.IntegrationTests.ProcessorsTests.SupportForTests;
+using Contact.Messages.Commands;
+using Contact.Messages.Events;
 using NServiceBus.Testing;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -26,14 +28,14 @@ namespace Contact.IntegrationTests.ProcessorsTests
             mockPasswordGenerator.Expect(x => x.GeneratePassword()).Return(generatedPassword);
             mockHasher.Expect(x => x.Hash(generatedPassword)).Return(hash);
 
-            Test.Handler<Processors.CreateAuthenticationWithGeneratedPassword>(bus =>
+            Test.Handler(bus =>
                          new Processors.CreateAuthenticationWithGeneratedPassword
                              (CreateDomainRepository(bus), mockPasswordGenerator, mockHasher))
-                .ExpectPublish<Messages.Events.AuthenticationCreated>(created => 
-                    created.AuthenticationID == authId &&
-                    created.Email == email &&                                                  
-                    created.HashedPassword == hash)
-                .OnMessage<Messages.Commands.CreateAuthenticationWithGeneratedPassword>(password =>
+                .ExpectPublish<AuthenticationCreated>(created =>
+                                                      created.AuthenticationID == authId &&
+                                                      created.Email == email &&
+                                                      created.HashedPassword == hash)
+                .OnMessage<CreateAuthenticationWithGeneratedPassword>(password =>
                     {
                         password.AuthID = authId;
                         password.Email = email;

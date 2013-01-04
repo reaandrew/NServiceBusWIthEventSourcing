@@ -1,6 +1,5 @@
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Infrastructure.NServiceBus;
-using NServiceBus;
 
 namespace Contact.Infrastructure.NServiceBus
 {

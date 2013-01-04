@@ -55,18 +55,18 @@ namespace Core.UnitTests.DomainServicesTests
             var eventPublisher = MockRepository.GenerateMock<IEventPublisher>();
             var eventPersistence = MockRepository.GenerateMock<IEventPersistence>();
             var id = Guid.NewGuid();
-             var events = new List<DomainEvent>
+            var events = new List<DomainEvent>
                 {
                     new EmptyDomainEvent(id)
                         {
                             Version = 1
                         }
                 };
-             eventPersistence.Stub<IEventPersistence, IList<DomainEvent>>(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
+            eventPersistence.Stub(x => x.GetEventsForAggregate<EmptyDomainObject>(id)).Return(events);
 
             var eventStore = new EventStore(eventPersistence, eventPublisher);
             var retrievedEvents = eventStore.GetEventsForAggregate<EmptyDomainObject>(id);
-            Assert.That((object) retrievedEvents, NUnit.Framework.Is.EquivalentTo(events));
+            Assert.That(retrievedEvents, NUnit.Framework.Is.EquivalentTo(events));
         }
     }
 }

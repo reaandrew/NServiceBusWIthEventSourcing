@@ -14,15 +14,16 @@ namespace Infrastructure.NServiceBus
     public class NServiceBusEventMappings : IEventMappings
     {
         private readonly List<IEventMapper> _eventMappers;
- 
+
         public NServiceBusEventMappings()
         {
             _eventMappers = new List<IEventMapper>();
         }
+
         public IEvent GetMappedObjectFor(DomainEvent domainEvent)
         {
             var mapper = _eventMappers.SingleOrDefault(x => x.CanMap(domainEvent));
-            if(mapper == null)
+            if (mapper == null)
                 throw new MapperNotFoundException();
             return mapper.Map(domainEvent);
         }

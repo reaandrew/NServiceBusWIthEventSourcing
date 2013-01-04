@@ -4,7 +4,6 @@ using Contact.Query.Subscribers;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;
 using Rhino.Mocks;
-using Is = NUnit.Framework.Is;
 
 namespace Contact.Query.UnitTests
 {
@@ -33,7 +32,6 @@ namespace Contact.Query.UnitTests
                     AccLeadId = id
                 };
             handler.Handle(@event);
-
         }
 
         [Test]
@@ -44,7 +42,7 @@ namespace Contact.Query.UnitTests
             const string email = "test@test.com";
 
             var handler = new AccommodationLeadCreated(Repository);
-            var @event = new Contact.Messages.Events.AccommodationLeadCreated
+            var @event = new Messages.Events.AccommodationLeadCreated
                 {
                     AccommodationLeadID = id,
                     Name = name,

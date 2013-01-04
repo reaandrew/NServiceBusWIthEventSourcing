@@ -21,7 +21,7 @@ namespace Core.Domain
         }
 
         protected AggregateRoot(IEnumerable<DomainEvent> domainEvents)
-            :this()
+            : this()
         {
             var events = domainEvents.OrderBy(x => x.Version);
             foreach (var @event in events)
@@ -85,7 +85,7 @@ namespace SimpleCQRS.Support
             if (o == null || o.GetType().IsPrimitive || o is string)
                 return o;
 
-            return new PrivateReflectionDynamicObject { RealObject = o };
+            return new PrivateReflectionDynamicObject {RealObject = o};
         }
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
@@ -199,13 +199,13 @@ namespace SimpleCQRS.Support
             // First, add all the properties
             foreach (PropertyInfo prop in type.GetProperties(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[prop.Name] = new Property { PropertyInfo = prop };
+                typeProperties[prop.Name] = new Property {PropertyInfo = prop};
             }
 
             // Now, add all the fields
             foreach (FieldInfo field in type.GetFields(bindingFlags).Where(p => p.DeclaringType == type))
             {
-                typeProperties[field.Name] = new Field { FieldInfo = field };
+                typeProperties[field.Name] = new Field {FieldInfo = field};
             }
 
             // Finally, recurse on the base class to add its fields
@@ -311,15 +311,15 @@ namespace SimpleCQRS.Support
         public static Action<BaseT> CastArgument<BaseT, DerivedT>(Expression<Action<DerivedT>> source)
             where DerivedT : BaseT
         {
-            if (typeof(DerivedT) == typeof(BaseT))
+            if (typeof (DerivedT) == typeof (BaseT))
             {
-                return (Action<BaseT>)((Delegate)source.Compile());
+                return (Action<BaseT>) ((Delegate) source.Compile());
             }
-            ParameterExpression sourceParameter = Expression.Parameter(typeof(BaseT), "source");
+            ParameterExpression sourceParameter = Expression.Parameter(typeof (BaseT), "source");
             Expression<Action<BaseT>> result = Expression.Lambda<Action<BaseT>>(
                 Expression.Invoke(
                     source,
-                    Expression.Convert(sourceParameter, typeof(DerivedT))),
+                    Expression.Convert(sourceParameter, typeof (DerivedT))),
                 sourceParameter);
             return result.Compile();
         }

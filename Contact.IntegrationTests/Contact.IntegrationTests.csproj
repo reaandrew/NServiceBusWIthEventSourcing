@@ -50,6 +50,12 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\packages\NServiceBus.Interfaces.3.3.3\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
@@ -76,8 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InfrastructureTests\TestDomainEventGenericMappingCollection.cs" />
+    <Compile Include="InfrastructureTests\TestMongoEventPersistence.cs" />
     <Compile Include="InfrastructureTests\TestNServiceBusEventPublisher.cs" />
-    <Compile Include="InfrastructureTests\TestSqlEventStore.cs" />
+    <Compile Include="InfrastructureTests\TestSqlEventPersistence.cs" />
     <Compile Include="ProcessorsTests\SupportForTests\WithInProcEventStoreAndNServiceBusPublisher.cs" />
     <Compile Include="ProcessorsTests\TestApproveAccLead.cs" />
     <Compile Include="ProcessorsTests\TestCreateAccommodationLead.cs" />

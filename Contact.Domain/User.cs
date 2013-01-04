@@ -13,7 +13,6 @@ namespace Contact.Domain
         public User(IEnumerable<DomainEvent> domainEvents)
             : base(domainEvents)
         {
-            
         }
 
         public User(Guid id, string name, string email)

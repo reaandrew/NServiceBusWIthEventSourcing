@@ -18,7 +18,6 @@ namespace Contact.Domain
         public AccommodationLead(IEnumerable<DomainEvent> domainEvents)
             : base(domainEvents)
         {
-            
         }
 
         public AccommodationLead(Guid id, string name, string email)

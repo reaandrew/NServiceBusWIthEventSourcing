@@ -50,8 +50,8 @@ namespace Contact.UnitTests.DomainTests
             {
                 var @event = _accommodationSupplier.OutstandingEvents[0] as AccommodationSupplierCreated;
                 Assert.That(@event.Name, Is.EqualTo(_name));
-            }   
- 
+            }
+
             [Test]
             public void ShouldAssignEmailOfTheAccommodationSupplierToEvent()
             {

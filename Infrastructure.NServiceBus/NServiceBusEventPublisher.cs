@@ -23,7 +23,7 @@ namespace Infrastructure.NServiceBus
         public void Publish<T>(T @event) where T : DomainEvent
         {
             var eventToPublish = _genericMappers.GetMappedObjectFor(@event);
-            LogManager.GetLogger(this.GetType()).Info("O_o Publishing " + eventToPublish.GetType().ToString());
+            LogManager.GetLogger(this.GetType()).Info("O_o Publishing " + eventToPublish.GetType());
             _bus.Publish(eventToPublish);
         }
     }

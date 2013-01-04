@@ -1,4 +1,5 @@
 using System;
+using Contact.Messages.Events;
 using Contact.Query.Contracts.Model;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;
@@ -15,7 +16,7 @@ namespace Contact.Query.UnitTests
             const string name = "Test";
             const string email = "test@test.com";
             var userId = Guid.NewGuid();
-            var @event = new Contact.Messages.Events.UserCreated
+            var @event = new UserCreated
                 {
                     UserID = userId,
                     Name = name,

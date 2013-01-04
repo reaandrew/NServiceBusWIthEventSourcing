@@ -1,7 +1,7 @@
+using Contact.Domain.DomainEvents;
 using Core.Domain;
 using Infrastructure.NServiceBus;
 using NServiceBus;
-using AccommodationSupplierCreated = Contact.Messages.Events.AccommodationSupplierCreated;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 {
@@ -9,8 +9,8 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var accSupplierCreatedEvent = (Domain.DomainEvents.AccommodationSupplierCreated) @event;
-            return new AccommodationSupplierCreated
+            var accSupplierCreatedEvent = (AccommodationSupplierCreated) @event;
+            return new Messages.Events.AccommodationSupplierCreated
                 {
                     AccommodationSupplierId = accSupplierCreatedEvent.ID,
                     Name = accSupplierCreatedEvent.Name,
@@ -20,7 +20,7 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Domain.DomainEvents.AccommodationSupplierCreated);
+            return @event.GetType() == typeof (AccommodationSupplierCreated);
         }
     }
 }

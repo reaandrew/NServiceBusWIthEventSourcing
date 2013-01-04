@@ -1,7 +1,6 @@
 using System;
 using Contact.Domain.DomainEvents;
-using Contact.Infrastructure;
-using Contact.Infrastructure.NServiceBus;
+using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Infrastructure.NServiceBus;
 using NServiceBus;
 using NUnit.Framework;
@@ -17,7 +16,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
         {
             var mockBus = MockRepository.GenerateMock<IBus>();
             var domainEventMappingCollection = new NServiceBusEventMappings();
-            domainEventMappingCollection.AddMapper(new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
+            domainEventMappingCollection.AddMapper(new AccommodationLeadApprovedMapper());
             var eventPublisher = new NServiceBusEventPublisher(mockBus, domainEventMappingCollection);
             var domainEvent = new AccommodationLeadApproved
                 {

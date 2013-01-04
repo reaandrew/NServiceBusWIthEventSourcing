@@ -25,9 +25,9 @@ namespace Contact.IntegrationTests.ProcessorsTests
                     return new Processors.CreateUser(domainRepository);
                 })
                 .ExpectPublish<UserCreated>(created =>
-                    created.UserID == userID &&
-                    created.Name == name &&
-                    created.Email == email)
+                                            created.UserID == userID &&
+                                            created.Name == name &&
+                                            created.Email == email)
                 .OnMessage<CreateUser>(user =>
                     {
                         user.UserId = userID;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Mvc;
 using NServiceBus;
 
 namespace Contact.WebApi.Infrastructure
@@ -11,11 +12,11 @@ namespace Contact.WebApi.Infrastructure
         {
             // Register our http controller activator with NSB
 
-            configure.Configurer.RegisterSingleton(typeof(System.Web.Mvc.IControllerActivator), new NServiceBusControllerActivator());
+            configure.Configurer.RegisterSingleton(typeof (IControllerActivator), new NServiceBusControllerActivator());
 
             // Find every http controller class so that we can register it
             var controllers = Configure.TypesToScan
-                                       .Where(t => typeof(ApiController).IsAssignableFrom(t));
+                                       .Where(t => typeof (ApiController).IsAssignableFrom(t));
 
             // Register each http controller class with the NServiceBus container
             foreach (Type type in controllers)

@@ -65,10 +65,10 @@ namespace Contact.WebApi.UnitTests
         public void ShouldReturnALocationHeaderForTheNewlyCreatedAccommodationLead()
         {
             var response = _controller.Post(new CreateAccommodationLead
-            {
-                Name = "something",
-                Email = "test@test.com"
-            });
+                {
+                    Name = "something",
+                    Email = "test@test.com"
+                });
             Assert.That(response.Headers.Location.ToString(), Is.StringMatching(".*/api/accommodationleads/[\\d\\w]+"));
         }
 

@@ -13,7 +13,6 @@ namespace Contact.Domain
         public AccommodationSupplier(IEnumerable<DomainEvent> domainEvents)
             : base(domainEvents)
         {
-            
         }
 
         public AccommodationSupplier(Guid id, string name, string email)

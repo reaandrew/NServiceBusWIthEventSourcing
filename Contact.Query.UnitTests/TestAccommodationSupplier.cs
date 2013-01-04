@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using Contact.Messages.Events;
 using Contact.Query.Contracts.Model;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;
@@ -17,7 +17,7 @@ namespace Contact.Query.UnitTests
             const string name = "test";
             const string email = "test@test.com";
 
-            var @event = new Contact.Messages.Events.AccommodationSupplierCreated
+            var @event = new AccommodationSupplierCreated
                 {
                     AccommodationSupplierId = id,
                     Name = name,

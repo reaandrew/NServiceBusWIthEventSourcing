@@ -41,7 +41,6 @@ namespace Contact.UnitTests.DomainTests
             [Test]
             public void ShoudAssignAVersionOf1ToTheAuthenticationCreatedEvent()
             {
-                
             }
 
             [Test]

@@ -1,7 +1,7 @@
+using Contact.Domain.DomainEvents;
 using Core.Domain;
 using Infrastructure.NServiceBus;
 using NServiceBus;
-using UserCreated = Contact.Messages.Events.UserCreated;
 
 namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
 {
@@ -9,18 +9,18 @@ namespace Contact.Infrastructure.NServiceBus.DomainEventMappers
     {
         public IEvent Map(DomainEvent @event)
         {
-            var userCreatedEvent = (Domain.DomainEvents.UserCreated) @event;
-            return new UserCreated
-            {
-                UserID = userCreatedEvent.ID,
-                Name = userCreatedEvent.Name,
-                Email = userCreatedEvent.Email
-            };
+            var userCreatedEvent = (UserCreated) @event;
+            return new Messages.Events.UserCreated
+                {
+                    UserID = userCreatedEvent.ID,
+                    Name = userCreatedEvent.Name,
+                    Email = userCreatedEvent.Email
+                };
         }
 
         public bool CanMap(DomainEvent @event)
         {
-            return @event.GetType() == typeof (Domain.DomainEvents.UserCreated);
+            return @event.GetType() == typeof (UserCreated);
         }
     }
 }

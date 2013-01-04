@@ -1,5 +1,4 @@
-﻿using System;
-using Contact.Domain.DomainEvents;
+﻿using Contact.Domain.DomainEvents;
 using Core.Domain;
 using Infrastructure.NServiceBus;
 using NServiceBus;

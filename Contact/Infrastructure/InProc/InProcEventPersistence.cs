@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Core;
 using Core.Domain;
-using Core.DomainServices;
 
 namespace Contact.Infrastructure.InProc
 {
@@ -28,7 +27,8 @@ namespace Contact.Infrastructure.InProc
         public IList<DomainEvent> GetEventsForAggregate<T>(Guid id) where T : AggregateRoot
         {
             IList<DomainEvent> returnList = null;
-            returnList = !_persistence.ContainsKey(id) ? new List<DomainEvent>() 
+            returnList = !_persistence.ContainsKey(id)
+                             ? new List<DomainEvent>()
                              : _persistence[id];
 
             return returnList;

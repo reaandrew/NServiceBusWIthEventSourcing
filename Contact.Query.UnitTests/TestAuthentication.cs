@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using Contact.Messages.Events;
 using Contact.Query.Contracts.Model;
 using Contact.Query.UnitTests.Helpers;
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace Contact.Query.UnitTests
             var id = Guid.NewGuid();
             const string email = "something";
             const string hashedPassword = "hash";
-            var @event = new Contact.Messages.Events.AuthenticationCreated
+            var @event = new AuthenticationCreated
                 {
                     AuthenticationID = id,
                     Email = email,

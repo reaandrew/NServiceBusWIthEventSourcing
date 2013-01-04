@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Contact.Query.Contracts.Model;
 
 namespace Contact.Query.Contracts
 {
     public interface IContactQueryRepository
     {
-        void Save(Model.AccommodationLead accommodationLead);
-        void Save(Model.AccommodationSupplier accommodationSupplier);
-        void Save(Model.Authentication authentication);
-        void Save(Model.User user);
+        void Save(AccommodationLead accommodationLead);
+        void Save(AccommodationSupplier accommodationSupplier);
+        void Save(Authentication authentication);
+        void Save(User user);
 
-        List<Model.AccommodationLead> ListAccommodationLeads();
-        Model.AccommodationLead GetAccommodationLeadById(Guid id);
+        List<AccommodationLead> ListAccommodationLeads();
+        AccommodationLead GetAccommodationLeadById(Guid id);
     }
 }

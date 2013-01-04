@@ -1,7 +1,7 @@
 ﻿using System;
+using Contact.Domain.DomainEvents;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using NUnit.Framework;
-using UserCreated = Contact.Messages.Events.UserCreated;
 
 namespace Contact.UnitTests.DomainEventMappersTests
 {
@@ -13,13 +13,13 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new UserCreatedMapper();
-            var domainEvent = new Domain.DomainEvents.UserCreated
+            var domainEvent = new UserCreated
                 {
                     ID = id,
                     Name = "Something",
                     Email = "test@test.com"
                 };
-            Assert.That(mapper.Map(domainEvent), Is.TypeOf<UserCreated>());
+            Assert.That(mapper.Map(domainEvent), Is.TypeOf<Messages.Events.UserCreated>());
         }
     }
 }

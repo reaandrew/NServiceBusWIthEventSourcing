@@ -1,43 +1,39 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Reflection;
 using Contact.Domain;
-using Contact.Infrastructure.Sql;
+using Contact.Domain.DomainEvents;
+using Contact.Infrastructure.Mongo;
 using Core;
 using Core.DomainServices;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace Contact.IntegrationTests.InfrastructureTests
 {
     [TestFixture]
-    public class TestSqlEventStore
+    public class TestMongoEventPersistence
     {
         private string _connectionString;
+        private string _database;
         private IDomainRepository _domainRepository;
 
         [SetUp]
         public void Setup()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString;
+            _connectionString = "mongodb://10.6.111.6";
+            _database = "integrationtests";
             var mockPublisher = MockRepository.GenerateMock<IEventPublisher>();
-            var eventPersistence = new SqlEventPersistence(_connectionString);
+            var eventPersistence = new MongoEventPersistence(_connectionString, _database);
             _domainRepository = new DomainRepository(new EventStore(eventPersistence, mockPublisher));
         }
 
         [TearDown]
         public void TearDown()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "truncate table Events";
-                    command.ExecuteNonQuery();
-                }
-            }
+            var client = new MongoClient(_connectionString);
+            var server = client.GetServer();
+            server.DropDatabase(_database);
         }
 
         [Test]
@@ -49,16 +45,14 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var aggregateRoot = new AccommodationLead(aggId, name, email);
             _domainRepository.Save(aggregateRoot);
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "Select COUNT(*) from Events";
-                    var count = (int) command.ExecuteScalar();
-                    Assert.That(count, Is.EqualTo(1));
-                }
-            }
+            var client = new MongoClient(_connectionString);
+            var server = client.GetServer();
+            var database = server.GetDatabase(_database);
+            var collection = database.GetCollection<DomainEventCollection>("domainEvents");
+            var query = Query.EQ("AggregateId", aggId);
+            var entity = collection.FindOne(query);
+            Assert.That(entity.DomainEvents.Count, Is.EqualTo(1));
+            Assert.That(entity.DomainEvents[0], Is.TypeOf<AccommodationLeadCreated>());
         }
 
         [Test]

@@ -6,10 +6,9 @@ namespace Core.UnitTests.TestClasses
 {
     public class EmptyDomainObject : AggregateRoot
     {
-        public EmptyDomainObject(IEnumerable<DomainEvent> domainEvents )
+        public EmptyDomainObject(IEnumerable<DomainEvent> domainEvents)
             : base(domainEvents)
         {
-            
         }
 
         public EmptyDomainObject(Guid id)

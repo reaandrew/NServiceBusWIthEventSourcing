@@ -1,5 +1,6 @@
 using System;
 using Contact.Domain.DomainEvents;
+using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using Infrastructure.NServiceBus;
 using NUnit.Framework;
 
@@ -14,7 +15,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var domainEventMappingCollection = new NServiceBusEventMappings();
 
             domainEventMappingCollection.AddMapper(
-                new Infrastructure.NServiceBus.DomainEventMappers.AccommodationLeadApprovedMapper());
+                new AccommodationLeadApprovedMapper());
 
             var domainEvent = new AccommodationLeadApproved
                 {
@@ -24,7 +25,7 @@ namespace Contact.IntegrationTests.InfrastructureTests
             var mappedEvent =
                 domainEventMappingCollection.GetMappedObjectFor(domainEvent);
 
-            Assert.That(mappedEvent, Is.TypeOf<Contact.Messages.Events.AccommodationLeadApproved>());
+            Assert.That(mappedEvent, Is.TypeOf<Messages.Events.AccommodationLeadApproved>());
         }
 
         [Test]
@@ -33,9 +34,9 @@ namespace Contact.IntegrationTests.InfrastructureTests
         {
             var domainEventMappingCollection = new NServiceBusEventMappings();
             var domainEvent = new AccommodationLeadApproved
-            {
-                ID = Guid.NewGuid()
-            };
+                {
+                    ID = Guid.NewGuid()
+                };
             domainEventMappingCollection.GetMappedObjectFor(domainEvent);
         }
     }

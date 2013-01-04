@@ -1,7 +1,7 @@
 ﻿using System;
+using Contact.Domain.DomainEvents;
 using Contact.Infrastructure.NServiceBus.DomainEventMappers;
 using NUnit.Framework;
-using AccommodationLeadApproved = Contact.Messages.Events.AccommodationLeadApproved;
 
 namespace Contact.UnitTests.DomainEventMappersTests
 {
@@ -13,11 +13,11 @@ namespace Contact.UnitTests.DomainEventMappersTests
         {
             var id = Guid.NewGuid();
             var mapper = new AccommodationLeadApprovedMapper();
-            var domainEvent = new Domain.DomainEvents.AccommodationLeadApproved
-            {
-                ID = id
-            };
-            Assert.That(mapper.Map(domainEvent), Is.TypeOf<AccommodationLeadApproved>());
+            var domainEvent = new AccommodationLeadApproved
+                {
+                    ID = id
+                };
+            Assert.That(mapper.Map(domainEvent), Is.TypeOf<Messages.Events.AccommodationLeadApproved>());
         }
     }
 }

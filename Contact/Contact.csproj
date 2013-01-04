@@ -50,6 +50,12 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.7\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Interfaces.3.3.3\lib\net40\NServiceBus.dll</HintPath>
@@ -78,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Mongo\DomainEventCollection.cs" />
+    <Compile Include="Infrastructure\Mongo\MongoEventPersistence.cs" />
+    <Compile Include="Infrastructure\Sql\SqlEventPersistence.cs" />
     <Compile Include="Services\IGeneratePassword.cs" />
     <Compile Include="Services\IHash.cs" />
     <Compile Include="Services\ISendEmails.cs" />
@@ -93,7 +102,6 @@
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
     <Compile Include="Infrastructure\RandomNumberPasswordGenerator.cs" />
     <Compile Include="Infrastructure\SHA512Hasher.cs" />
-    <Compile Include="Infrastructure\Sql\SqlEventPersistence.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccommodationLead.cs" />

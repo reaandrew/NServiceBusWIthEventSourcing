@@ -1,6 +1,4 @@
-﻿using System;
-using Contact.Messages.Commands;
-using NServiceBus;
+﻿using NServiceBus;
 
 namespace Contact
 {
@@ -10,7 +8,6 @@ namespace Contact
 
         public void Run()
         {
-
         }
 
         public void Stop()

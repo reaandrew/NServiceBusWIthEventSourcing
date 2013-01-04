@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using NUnit.Framework;
-using Model = Contact.Query.Contracts.Model;
 
 namespace Contact.Query.SqlServer.IntegrationTests
 {
@@ -10,6 +9,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
     public class TestContactQueryRepository
     {
         private string _connectionString;
+
         [SetUp]
         public void Setup()
         {
@@ -37,7 +37,7 @@ namespace Contact.Query.SqlServer.IntegrationTests
             const string name = "Something";
             const string email = "test@test.com";
             const bool approved = false;
-            var accommodationLead = new Model.AccommodationLead
+            var accommodationLead = new Contracts.Model.AccommodationLead
                 {
                     AccommodationLeadId = id,
                     Name = name,

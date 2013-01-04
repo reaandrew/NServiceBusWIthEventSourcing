@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Contact.Query.Contracts;
-using Model = Contact.Query.Contracts.Model;
 
 namespace Contact.Query.SqlServer
 {
     public class ContactQueryRepository : IContactQueryRepository
     {
-        public void Save(Model.AccommodationLead accommodationLead)
+        public void Save(Contracts.Model.AccommodationLead accommodationLead)
         {
             using (var context = new ContactEntities())
             {
@@ -29,9 +28,8 @@ namespace Contact.Query.SqlServer
             }
         }
 
-        public void Save(Model.AccommodationSupplier accommodationSupplier)
+        public void Save(Contracts.Model.AccommodationSupplier accommodationSupplier)
         {
-
             using (var context = new ContactEntities())
             {
                 var accSupplierToSave = context.AccommodationSuppliers.SingleOrDefault(
@@ -49,9 +47,8 @@ namespace Contact.Query.SqlServer
             }
         }
 
-        public void Save(Model.Authentication authentication)
+        public void Save(Contracts.Model.Authentication authentication)
         {
-
             using (var context = new ContactEntities())
             {
                 var authToSave = context.Authentications.SingleOrDefault(
@@ -69,9 +66,8 @@ namespace Contact.Query.SqlServer
             }
         }
 
-        public void Save(Model.User user)
+        public void Save(Contracts.Model.User user)
         {
-
             using (var context = new ContactEntities())
             {
                 var userToSave = context.Users.SingleOrDefault(
@@ -89,13 +85,12 @@ namespace Contact.Query.SqlServer
             }
         }
 
-        public List<Model.AccommodationLead> ListAccommodationLeads()
+        public List<Contracts.Model.AccommodationLead> ListAccommodationLeads()
         {
-
             using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Select(x =>
-                                                         new Model.AccommodationLead
+                                                         new Contracts.Model.AccommodationLead
                                                              {
                                                                  AccommodationLeadId =
                                                                      x.AccommodationLeadId,
@@ -107,12 +102,12 @@ namespace Contact.Query.SqlServer
             }
         }
 
-        public Model.AccommodationLead GetAccommodationLeadById(Guid id)
+        public Contracts.Model.AccommodationLead GetAccommodationLeadById(Guid id)
         {
             using (var context = new ContactEntities())
             {
                 return context.AccommodationLeads.Where(x => x.AccommodationLeadId == id)
-                              .Select(lead => new Model.AccommodationLead
+                              .Select(lead => new Contracts.Model.AccommodationLead
                                   {
                                       Id = lead.Id,
                                       AccommodationLeadId = lead.AccommodationLeadId,

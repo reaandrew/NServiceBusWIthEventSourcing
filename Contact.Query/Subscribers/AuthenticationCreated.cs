@@ -4,7 +4,7 @@ using NServiceBus;
 
 namespace Contact.Query.Subscribers
 {
-    public class AuthenticationCreated : IHandleMessages<Contact.Messages.Events.AuthenticationCreated>
+    public class AuthenticationCreated : IHandleMessages<Messages.Events.AuthenticationCreated>
     {
         private readonly IContactQueryRepository _repository;
 
@@ -16,11 +16,11 @@ namespace Contact.Query.Subscribers
         public void Handle(Messages.Events.AuthenticationCreated message)
         {
             var authentication = new Authentication
-            {
-                AuthenticationId = message.AuthenticationID,
-                Email = message.Email,
-                HashedPassword = message.HashedPassword
-            };
+                {
+                    AuthenticationId = message.AuthenticationID,
+                    Email = message.Email,
+                    HashedPassword = message.HashedPassword
+                };
             _repository.Save(authentication);
         }
     }
