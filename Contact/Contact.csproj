@@ -84,8 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Mongo\DomainEventCollection.cs" />
-    <Compile Include="Infrastructure\Mongo\MongoEventPersistence.cs" />
+    <Compile Include="Infrastructure\Mongo\MongoContactEventPersistenceFactory.cs" />
     <Compile Include="Infrastructure\Sql\SqlEventPersistence.cs" />
     <Compile Include="Services\IGeneratePassword.cs" />
     <Compile Include="Services\IHash.cs" />
@@ -135,6 +134,10 @@
     <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Mongo\Core.Mongo.csproj">
+      <Project>{2B313E1C-6ACD-4EEE-9BE7-970EE6AA9625}</Project>
+      <Name>Core.Mongo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
