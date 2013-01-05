@@ -1,8 +1,8 @@
 ﻿using System;
-using Contact.DomainServices;
 using Contact.IntegrationTests.ProcessorsTests.SupportForTests;
 using Contact.Messages.Commands;
 using Contact.Messages.Events;
+using Core.InProc;
 using NServiceBus.Testing;
 using NUnit.Framework;
 using Rhino.Mocks;

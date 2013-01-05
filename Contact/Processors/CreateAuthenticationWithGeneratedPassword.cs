@@ -1,6 +1,6 @@
 ﻿using Contact.Domain;
-using Contact.DomainServices;
 using Core;
+using Core.InProc;
 using NServiceBus;
 
 namespace Contact.Processors

@@ -1,6 +1,6 @@
-using Contact.DomainServices;
 using Contact.Messages.Events;
 using Contact.Subscribers;
+using Core.InProc;
 using NUnit.Framework;
 using Rhino.Mocks;
 

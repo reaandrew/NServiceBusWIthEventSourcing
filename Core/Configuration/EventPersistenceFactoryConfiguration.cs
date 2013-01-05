@@ -14,10 +14,10 @@ namespace Core.Configuration
             set { this["type"] = value; }
         }
 
-        public static IEventStoreFactory CreateFactory()
+        public static IEventPersistenceFactory CreateFactory()
         {
             var configurationSection = (EventPersistenceFactoryConfiguration)ConfigurationManager.GetSection(CONFIGURATION_SECTION_KEY);
-            return (IEventStoreFactory)Activator.CreateInstance(System.Type.GetType(configurationSection.Type));
+            return (IEventPersistenceFactory)Activator.CreateInstance(System.Type.GetType(configurationSection.Type));
         }
     }
 }

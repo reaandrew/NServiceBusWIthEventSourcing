@@ -81,9 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfrastructureTests\TestContactMongoEventPersistenceFactory.cs" />
     <Compile Include="InfrastructureTests\TestDomainEventGenericMappingCollection.cs" />
     <Compile Include="InfrastructureTests\TestNServiceBusEventPublisher.cs" />
-    <Compile Include="InfrastructureTests\TestSqlEventPersistence.cs" />
     <Compile Include="ProcessorsTests\SupportForTests\WithInProcEventStoreAndNServiceBusPublisher.cs" />
     <Compile Include="ProcessorsTests\TestApproveAccLead.cs" />
     <Compile Include="ProcessorsTests\TestCreateAccommodationLead.cs" />
@@ -112,6 +112,10 @@
     <ProjectReference Include="..\Contact\Contact.csproj">
       <Project>{1e070495-6fae-408d-a601-bc42d2a3e817}</Project>
       <Name>Contact</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.InProc\Core.InProc.csproj">
+      <Project>{F423CEBA-9DB9-4625-8DE0-675064EEDA99}</Project>
+      <Name>Core.InProc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.Mongo\Core.Mongo.csproj">
       <Project>{2B313E1C-6ACD-4EEE-9BE7-970EE6AA9625}</Project>

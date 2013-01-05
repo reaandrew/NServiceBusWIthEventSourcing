@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Mongo", "Core.Mongo\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IntegrationTests", "Core.IntegrationTests\Core.IntegrationTests.csproj", "{89A38F8E-DF04-4A59-B739-A7B680A091D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Sql", "Core.Sql\Core.Sql.csproj", "{882FB657-FBCF-4496-8452-99A47B1B186B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.InProc", "Core.InProc\Core.InProc.csproj", "{F423CEBA-9DB9-4625-8DE0-675064EEDA99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +155,14 @@ Global
 		{89A38F8E-DF04-4A59-B739-A7B680A091D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89A38F8E-DF04-4A59-B739-A7B680A091D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89A38F8E-DF04-4A59-B739-A7B680A091D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882FB657-FBCF-4496-8452-99A47B1B186B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882FB657-FBCF-4496-8452-99A47B1B186B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882FB657-FBCF-4496-8452-99A47B1B186B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882FB657-FBCF-4496-8452-99A47B1B186B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F423CEBA-9DB9-4625-8DE0-675064EEDA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F423CEBA-9DB9-4625-8DE0-675064EEDA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F423CEBA-9DB9-4625-8DE0-675064EEDA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F423CEBA-9DB9-4625-8DE0-675064EEDA99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

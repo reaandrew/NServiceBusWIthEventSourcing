@@ -49,7 +49,7 @@
     <Compile Include="IEventPersistence.cs" />
     <Compile Include="IEventPublisher.cs" />
     <Compile Include="IEventStore.cs" />
-    <Compile Include="IEventStoreFactory.cs" />
+    <Compile Include="IEventPersistenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

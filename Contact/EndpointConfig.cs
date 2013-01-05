@@ -1,12 +1,11 @@
 using System.Configuration;
-using Contact.DomainServices;
 using Contact.Infrastructure;
-using Contact.Infrastructure.InProc;
 using Contact.Infrastructure.Mongo;
 using Contact.Infrastructure.NServiceBus;
 using Core;
 using Core.Configuration;
 using Core.DomainServices;
+using Core.InProc;
 using Infrastructure.NServiceBus;
 using NServiceBus;
 using StructureMap;

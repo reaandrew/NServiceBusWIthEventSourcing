@@ -85,22 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Mongo\MongoContactEventPersistenceFactory.cs" />
-    <Compile Include="Infrastructure\Sql\SqlEventPersistence.cs" />
-    <Compile Include="Services\IGeneratePassword.cs" />
-    <Compile Include="Services\IHash.cs" />
-    <Compile Include="Services\ISendEmails.cs" />
+    <Compile Include="Infrastructure\Sql\SqlContactEventPersistenceFactory.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="Infrastructure\InProc\InProcEventPersistence.cs" />
-    <Compile Include="Infrastructure\InProc\BlackHoleEmailSender.cs" />
-    <Compile Include="Infrastructure\LoggingDecorator.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadApprovedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationLeadCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AccommodationSupplierCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\AuthenticationCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\DomainEventMappers\UserCreatedMapper.cs" />
     <Compile Include="Infrastructure\NServiceBus\NServiceBusDomainEventMappingFactory.cs" />
-    <Compile Include="Infrastructure\RandomNumberPasswordGenerator.cs" />
-    <Compile Include="Infrastructure\SHA512Hasher.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Processors\ApproveAccLead.cs" />
     <Compile Include="Processors\CreateAccommodationLead.cs" />
@@ -135,9 +127,17 @@
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.InProc\Core.InProc.csproj">
+      <Project>{f423ceba-9db9-4625-8de0-675064eeda99}</Project>
+      <Name>Core.InProc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Mongo\Core.Mongo.csproj">
       <Project>{2B313E1C-6ACD-4EEE-9BE7-970EE6AA9625}</Project>
       <Name>Core.Mongo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Sql\Core.Sql.csproj">
+      <Project>{882FB657-FBCF-4496-8452-99A47B1B186B}</Project>
+      <Name>Core.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
@@ -151,9 +151,6 @@
       <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>
       <Name>Infrastructure.NServiceBus</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Senders\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -175,6 +172,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

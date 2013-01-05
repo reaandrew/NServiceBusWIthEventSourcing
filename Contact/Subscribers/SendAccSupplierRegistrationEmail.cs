@@ -1,5 +1,5 @@
-﻿using Contact.DomainServices;
-using Contact.Messages.Events;
+﻿using Contact.Messages.Events;
+using Core.InProc;
 using NServiceBus;
 
 namespace Contact.Subscribers

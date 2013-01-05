@@ -1,6 +1,4 @@
-﻿using Contact.DomainServices;
-
-namespace Contact.Infrastructure.InProc
+namespace Core.InProc
 {
     public class BlackHoleEmailSender : ISendEmails
     {

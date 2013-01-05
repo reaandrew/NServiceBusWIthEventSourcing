@@ -1,4 +1,4 @@
-namespace Contact.DomainServices
+namespace Core.InProc
 {
     public interface ISendEmails
     {

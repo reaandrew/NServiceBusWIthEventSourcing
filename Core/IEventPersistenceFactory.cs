@@ -1,6 +1,6 @@
 namespace Core
 {
-    public interface IEventStoreFactory
+    public interface IEventPersistenceFactory
     {
         IEventPersistence CreateEventPersistence();
     }

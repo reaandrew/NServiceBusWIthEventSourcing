@@ -10,7 +10,7 @@ namespace Contact.Infrastructure.Mongo
     /// <summary>
     /// This will be the ContactMongoEventStoreFactory
     /// </summary>
-    public class MongoContactEventPersistenceFactory : IEventStoreFactory
+    public class MongoContactEventPersistenceFactory : IEventPersistenceFactory
     {
         static MongoContactEventPersistenceFactory()
         {

@@ -1,11 +1,11 @@
-﻿using Contact.Infrastructure.Mongo;
+using Contact.Infrastructure.Mongo;
 using Core.Configuration;
 using NUnit.Framework;
 
-namespace Core.IntegrationTests
+namespace Contact.IntegrationTests.InfrastructureTests
 {
     [TestFixture]
-    public class TestMongoEventPersistenceFactory
+    public class TestContactMongoEventPersistenceFactory
     {
         [Test]
         public void ShouldReturnInstanceOfEventStoreFactory()
