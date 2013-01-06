@@ -17,8 +17,7 @@ namespace Contact.TestSubscriber
             Configure.With()
                      .Log4Net()
                      .StructureMapBuilder()
-                     .EnablePerformanceCounters()
-                     .RavenPersistence();
+                     .EnablePerformanceCounters();
         }
     }
 }

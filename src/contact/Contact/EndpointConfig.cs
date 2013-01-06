@@ -52,8 +52,7 @@ namespace Contact
             Configure.With()
                      .Log4Net()
                      .StructureMapBuilder(container)
-                     .EnablePerformanceCounters()
-                     .RavenPersistence();
+                     .EnablePerformanceCounters();
 
             LogManager.GetLogger(this.GetType()).Info("Initialized");
         }

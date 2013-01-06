@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using log4net;
 
 namespace Core.InProc
 {
@@ -12,6 +13,7 @@ namespace Core.InProc
             var inputBytes = Encoding.ASCII.GetBytes(input);
             var hashBytes = sha512Managed.ComputeHash(inputBytes);
             var hash = BitConverter.ToString(hashBytes);
+
             return hash;
         }
     }

@@ -32,7 +32,6 @@ namespace Contact.Query
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
             Configure.With()
                      .StructureMapBuilder(container)
-                     .RavenPersistence()
                      .EnablePerformanceCounters()
                      .Log4Net();
         }
