@@ -1,10 +1,22 @@
 require 'albacore'
 
+desc "Deploy"
 task :deploy do
-    #src_path = File.join(BASE_PATH, "Output/bin/.")
-    #dest_path = File.join(BASE_PATH, "Deploy")
-    puts "Deploying files..."
-    #FileUtils.cp_r src_path, dest_path
+	endpoints = [
+		'Contact.Commands.ApproveAccLead',
+		'Contact.Commands.CreateAccommodationLead',
+		'Contact.Commands.CreateAccSupplier',
+		'Contact.Commands.CreateAuthenticationWithGeneratedPassword',
+		'Contact.Commands.CreateUser'
+	]
+    src_path = File.join("src/contact/Contact/bin/Release/.")
+	endpoints.each { |x|
+		directory = "deploy/"+x.downcase
+		FileUtils.rm_rf(directory)
+		FileUtils.mkdir_p(directory)
+		dest_path = File.join(directory)
+		FileUtils.cp_r src_path, dest_path
+	}
 end
 
 desc "Build"
@@ -20,5 +32,7 @@ nunit :test => :build do |nunit|
   nunit.options "/framework v4.0.30319"
   nunit.assemblies FileList["tests/**/*/Release/*.UnitTests.dll", "tests/**/*/Release/*.IntegrationTests.dll"].exclude(/obj\//)
 end
+
+
 
 

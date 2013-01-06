@@ -26,6 +26,7 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
+results/*
 $tf*/
 packages/
-perfmoncollections/
+deploy/*
