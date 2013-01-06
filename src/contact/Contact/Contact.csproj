@@ -118,27 +118,27 @@
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.InProc\Core.InProc.csproj">
+    <ProjectReference Include="..\..\core\Core.InProc\Core.InProc.csproj">
       <Project>{f423ceba-9db9-4625-8de0-675064eeda99}</Project>
       <Name>Core.InProc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Mongo\Core.Mongo.csproj">
+    <ProjectReference Include="..\..\core\Core.Mongo\Core.Mongo.csproj">
       <Project>{2B313E1C-6ACD-4EEE-9BE7-970EE6AA9625}</Project>
       <Name>Core.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Sql\Core.Sql.csproj">
+    <ProjectReference Include="..\..\core\Core.Sql\Core.Sql.csproj">
       <Project>{882FB657-FBCF-4496-8452-99A47B1B186B}</Project>
       <Name>Core.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\..\core\Core\Core.csproj">
       <Project>{5c179e3e-6e03-4bfe-8577-824ba52ab9c5}</Project>
-      <Name>Core</Name>
+      <Name>Core %28Core\Core%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Log4Net\Infrastructure.Log4Net.csproj">
+    <ProjectReference Include="..\..\infrastructure\Infrastructure.Log4Net\Infrastructure.Log4Net.csproj">
       <Project>{e30c2922-a037-4a7d-8d76-e68e148a1c9c}</Project>
       <Name>Infrastructure.Log4Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
+    <ProjectReference Include="..\..\infrastructure\Infrastructure.NServiceBus\Infrastructure.NServiceBus.csproj">
       <Project>{1C362B1F-D8B4-4EC3-A676-BF47A9CD437A}</Project>
       <Name>Infrastructure.NServiceBus</Name>
     </ProjectReference>

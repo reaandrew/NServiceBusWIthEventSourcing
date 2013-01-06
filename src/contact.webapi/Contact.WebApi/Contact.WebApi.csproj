@@ -167,19 +167,19 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
+    <ProjectReference Include="..\..\contact\Contact.Messages\Contact.Messages.csproj">
       <Project>{08b6a47d-b8d1-48a1-81cc-bfbaf212bed1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+    <ProjectReference Include="..\..\contact.query\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
       <Project>{2f416daa-ed7e-4f66-9347-bdbc975f53b6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
+    <ProjectReference Include="..\..\contact.query\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
       <Project>{1e93c964-90f7-490a-b722-8e41c7440a7e}</Project>
       <Name>Contact.Query.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
+    <ProjectReference Include="..\..\contact.query\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
       <Project>{55e7fe77-348c-493e-9a89-6b88cdebdc04}</Project>
       <Name>Contact.Query.SqlServer</Name>
     </ProjectReference>
@@ -187,9 +187,9 @@
       <Project>{388f84be-242e-4bd7-bbf9-5dfd2c439ebd}</Project>
       <Name>Contact.WebApi.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\..\core\Core\Core.csproj">
       <Project>{5C179E3E-6E03-4BFE-8577-824BA52AB9C5}</Project>
-      <Name>Core</Name>
+      <Name>Core %28Core\Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

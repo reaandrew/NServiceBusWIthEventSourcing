@@ -60,7 +60,7 @@
     <Compile Include="StepDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+    <ProjectReference Include="..\..\..\src\contact.query\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
       <Project>{2F416DAA-ED7E-4F66-9347-BDBC975F53B6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>

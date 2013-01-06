@@ -67,17 +67,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Mongo\Core.Mongo.csproj">
+    <ProjectReference Include="..\..\..\src\core\Core.Mongo\Core.Mongo.csproj">
       <Project>{2b313e1c-6acd-4eee-9be7-970ee6aa9625}</Project>
       <Name>Core.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Sql\Core.Sql.csproj">
+    <ProjectReference Include="..\..\..\src\core\Core.Sql\Core.Sql.csproj">
       <Project>{882fb657-fbcf-4496-8452-99a47b1b186b}</Project>
       <Name>Core.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\..\..\src\core\Core\Core.csproj">
       <Project>{5C179E3E-6E03-4BFE-8577-824BA52AB9C5}</Project>
-      <Name>Core</Name>
+      <Name>Core %28Core\Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

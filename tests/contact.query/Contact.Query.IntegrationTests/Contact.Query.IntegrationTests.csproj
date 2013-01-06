@@ -62,15 +62,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+    <ProjectReference Include="..\..\..\src\contact.query\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
       <Project>{2f416daa-ed7e-4f66-9347-bdbc975f53b6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
+    <ProjectReference Include="..\..\..\src\contact.query\Contact.Query.Mongo\Contact.Query.Mongo.csproj">
       <Project>{1E93C964-90F7-490A-B722-8E41C7440A7E}</Project>
       <Name>Contact.Query.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
+    <ProjectReference Include="..\..\..\src\contact.query\Contact.Query.SqlServer\Contact.Query.SqlServer.csproj">
       <Project>{55E7FE77-348C-493E-9A89-6B88CDEBDC04}</Project>
       <Name>Contact.Query.SqlServer</Name>
     </ProjectReference>

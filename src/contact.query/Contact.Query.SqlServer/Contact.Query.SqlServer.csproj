@@ -131,7 +131,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
+    <ProjectReference Include="..\..\contact\Contact.Messages\Contact.Messages.csproj">
       <Project>{08b6a47d-b8d1-48a1-81cc-bfbaf212bed1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
@@ -139,9 +139,9 @@
       <Project>{2f416daa-ed7e-4f66-9347-bdbc975f53b6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\..\core\Core\Core.csproj">
       <Project>{5C179E3E-6E03-4BFE-8577-824BA52AB9C5}</Project>
-      <Name>Core</Name>
+      <Name>Core %28Core\Core%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

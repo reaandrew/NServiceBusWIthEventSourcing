@@ -59,21 +59,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contact.Messages\Contact.Messages.csproj">
+    <ProjectReference Include="..\..\..\src\contact\Contact.Messages\Contact.Messages.csproj">
       <Project>{08B6A47D-B8D1-48A1-81CC-BFBAF212BED1}</Project>
       <Name>Contact.Messages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
+    <ProjectReference Include="..\..\..\src\contact.query\Contact.Query.Contracts\Contact.Query.Contracts.csproj">
       <Project>{2F416DAA-ED7E-4F66-9347-BDBC975F53B6}</Project>
       <Name>Contact.Query.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.WebApi.Contracts\Contact.WebApi.Contracts.csproj">
+    <ProjectReference Include="..\..\..\src\contact.webapi\Contact.WebApi.Contracts\Contact.WebApi.Contracts.csproj">
       <Project>{388F84BE-242E-4BD7-BBF9-5DFD2C439EBD}</Project>
       <Name>Contact.WebApi.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contact.WebApi\Contact.WebApi.csproj">
+    <ProjectReference Include="..\..\..\src\contact.webapi\Contact.WebApi\Contact.WebApi.csproj">
       <Project>{9A49E67E-20C6-41DD-BC54-03836271E8E1}</Project>
-      <Name>Contact.WebApi</Name>
+      <Name>Contact.WebApi %28Contact.WebApi\Contact.WebApi%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

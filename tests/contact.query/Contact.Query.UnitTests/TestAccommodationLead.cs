@@ -14,8 +14,6 @@ namespace Contact.Query.UnitTests
         public void ShouldUpdateTheAccommodationLeadWithApprovedStatus()
         {
             var id = Guid.NewGuid();
-            const string name = "Something";
-            const string email = "test@test.com";
 
             Repository.Stub(x => x.GetAccommodationLeadById(id)).Return(new AccommodationLead());
             Repository.Stub(x => x.Save(default(AccommodationLead))).IgnoreArguments()
