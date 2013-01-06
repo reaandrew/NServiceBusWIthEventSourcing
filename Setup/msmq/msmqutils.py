@@ -12,7 +12,7 @@ def deleteAllLocalPrivateQueues():
 		MessageQueue.Delete(queue.Path)
 
 def purgeAllLocalPrivateQueues():
-	queue = MessageQueue.GetPrivateQueuesByMachine(".")
+	queues = MessageQueue.GetPrivateQueuesByMachine(".")
 	for queueIndex in range(0,len(queues)):
 		queue = queues[queueIndex]
 		queue.Purge()

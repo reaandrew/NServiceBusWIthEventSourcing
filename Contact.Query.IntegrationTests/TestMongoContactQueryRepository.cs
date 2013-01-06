@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using Contact.Query.Contracts.Model;
 using Contact.Query.Mongo;
 using MongoDB.Driver;
@@ -19,8 +20,8 @@ namespace Contact.Query.IntegrationTests
         [SetUp]
         public void Setup()
         {
-            _connectionString = "mongodb://10.6.111.6";
-            _databaseName = "integrationtests";
+            _connectionString = ConfigurationManager.AppSettings["MongoEventStoreConnectionString"];
+            _databaseName = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
             _repository = new MongoContactQueryRepository(_connectionString, _databaseName);
         }
 

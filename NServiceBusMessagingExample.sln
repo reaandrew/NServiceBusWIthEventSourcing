@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Messages", "Contact
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B60A4508-096C-43AD-A1FA-217DC92AFC85}"
 	ProjectSection(SolutionItems) = preProject
+		rakefile.rb = rakefile.rb
 		README.md = README.md
 	EndProjectSection
 EndProject
