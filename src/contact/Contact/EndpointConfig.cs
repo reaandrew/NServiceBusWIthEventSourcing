@@ -8,6 +8,8 @@ using Core.DomainServices;
 using Core.InProc;
 using Infrastructure.NServiceBus;
 using NServiceBus;
+using NServiceBus.Unicast.Queuing.Msmq;
+using NServiceBus.Unicast.Subscriptions.Msmq;
 using StructureMap;
 using StructureMap.Pipeline;
 using log4net;
@@ -53,6 +55,7 @@ namespace Contact
                      .Log4Net()
                      .StructureMapBuilder(container)
                      .EnablePerformanceCounters();
+                     
 
             LogManager.GetLogger(this.GetType()).Info("Initialized");
         }

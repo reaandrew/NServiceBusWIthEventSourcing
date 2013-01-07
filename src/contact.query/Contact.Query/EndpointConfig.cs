@@ -2,6 +2,8 @@ using System.Configuration;
 using Contact.Query.Contracts;
 using Contact.Query.Mongo;
 using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Unicast.Queuing.Msmq;
 using StructureMap;
 using log4net.Config;
 
@@ -35,6 +37,7 @@ namespace Contact.Query
                                                     .Is(mongoDatabase)
                                            * */
                 );
+
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
             Configure.With()
                      .StructureMapBuilder(container)
