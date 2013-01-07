@@ -8,19 +8,17 @@ task :deploy => [:build, :test] do
 		{:endpoint => 'Contact.Commands.ApproveAccLead', :mappings => []},
 		{:endpoint => 'Contact.Commands.CreateAccommodationLead', :mappings => []},
 		{:endpoint => 'Contact.Commands.CreateAccSupplier', :mappings => [
-			{:messages=>'Contact.Messages.Commands.ApproveAccLead, Contact.Messages',:endpoint=>'Contact.Commands.ApproveAccLead'},
-			{:messages=>'Contact.Messages.Commands.CreateAccommodationLead, Contact.Messages',:endpoint=>'Contact.Commands.CreateAccommodationLead'},
-			{:messages=>'Contact.Messages.Commands.CreateAccSupplier, Contact.Messages',:endpoint=>'Contact.Commands.CreateAccSupplier'},
 			{:messages=>'Contact.Messages.Commands.CreateAuthenticationWithGeneratedPassword, Contact.Messages',:endpoint=>'Contact.Commands.CreateAuthenticationWithGeneratedPassword'},
 			{:messages=>'Contact.Messages.Commands.CreateUser, Contact.Messages',:endpoint=>'Contact.Commands.CreateUser'},
-			{:messages=>'Contact.Messages.Events.AccommodationLeadApproved, Contact.Messages',:endpoint=>'Contact.Commands.ApproveAccLead'},
-			{:messages=>'Contact.Messages.Events.AccommodationLeadCreated, Contact.Messages',:endpoint=>'Contact.Commands.CreateAccommodationLead'},
-			{:messages=>'Contact.Messages.Events.AccommodationSupplierCreated, Contact.Messages',:endpoint=>'Contact.Commands.CreateAccSupplier'},
 			{:messages=>'Contact.Messages.Events.AuthenticationCreated, Contact.Messages',:endpoint=>'Contact.Commands.CreateAuthenticationWithGeneratedPassword'},
 			{:messages=>'Contact.Messages.Events.UserCreated, Contact.Messages',:endpoint=>'Contact.Commands.CreateUser'}
 		]},
 		{:endpoint => 'Contact.Commands.CreateAuthenticationWithGeneratedPassword', :mappings =>[]},
-		{:endpoint => 'Contact.Commands.CreateUser', :mappings => []}
+		{:endpoint => 'Contact.Commands.CreateUser', :mappings => []},
+		{:endpoint => 'Contact.Events.AccommodationLeadApproved', :mappings => [
+			{:messages=>'Contact.Messages.Events.AccommodationLeadApproved, Contact.Messages',:endpoint=>'Contact.Commands.ApproveAccLead'},
+			{:messages=>'Contact.Messages.Commands.CreateAccSupplier, Contact.Messages',:endpoint=>'Contact.Commands.CreateAccSupplier'}
+		]}
 	]
 	
     src_path = File.join("src/contact/Contact/bin/Release/.")

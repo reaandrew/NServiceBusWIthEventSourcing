@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using Contact.Query.Contracts;
+using log4net;
 
 namespace Contact.Query.SqlServer
 {
@@ -167,6 +168,11 @@ namespace Contact.Query.SqlServer
                                           Approved = lead.Approved
                                       }).SingleOrDefault();
                     transaction.Complete();
+                    if (returnlead == null)
+                    {
+                        LogManager.GetLogger(this.GetType())
+                                  .Error("No accommodation lead exists with id " + id.ToString());
+                    }
                     return returnlead;
                 }
             }
