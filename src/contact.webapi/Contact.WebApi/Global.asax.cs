@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Contact.Query.Auditing.DataAccess;
+using Contact.Query.Auditing.Infrastructure;
 using Contact.Query.Contracts;
 using Contact.Query.Mongo;
 using Contact.WebApi.Infrastructure;
@@ -33,12 +35,21 @@ namespace Contact.WebApi
             var mongoConnectionString = ConfigurationManager.AppSettings["MongoEventStoreConnectionString"];
             var mongoDatabase = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
             var container = new Container(expression
-                                          => expression.For<IContactQueryRepository>()
-                                                       .Use<MongoContactQueryRepository>()
-                                                       .Ctor<string>("connectionString")
-                                                       .Is(mongoConnectionString)
-                                                       .Ctor<string>("databaseName")
-                                                       .Is(mongoDatabase));
+                                          =>
+                {
+                    expression.For<IContactQueryRepository>()
+                              .Use<MongoContactQueryRepository>()
+                              .Ctor<string>("connectionString")
+                              .Is(mongoConnectionString)
+                              .Ctor<string>("databaseName")
+                              .Is(mongoDatabase);
+                    expression.For<IAuditInformationRepository>()
+                              .Use<MongoAuditInformationRepository>()
+                              .Ctor<string>("connectionString")
+                              .Is(ConfigurationManager.AppSettings["MongoAuditConnectionString"])
+                              .Ctor<string>("databaseName")
+                              .Is(ConfigurationManager.AppSettings["MongoAuditDatabaseName"]);
+                });
 
             Configure.With()
                      .StructureMapBuilder(container)
