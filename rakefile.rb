@@ -3,6 +3,7 @@ require 'nokogiri'
 
 desc "Deploy"
 task :deploy => [:build, :test] do
+	FileUtils.mkdir_p("deploy")
 	endpoints = [
 		{:endpoint => 'Contact.Commands.ApproveAccLead', :mappings => []},
 		{:endpoint => 'Contact.Commands.CreateAccommodationLead', :mappings => []},

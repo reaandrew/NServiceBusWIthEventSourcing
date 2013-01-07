@@ -21,14 +21,20 @@ namespace Contact.Query
         {
             var mongoConnectionString = ConfigurationManager.AppSettings["MongoEventStoreConnectionString"];
             var mongoDatabase = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
+            
             //Move to config so that it can be changed
             //And Use a factory, this is DIRTY
-            var container = new Container(expression => expression.For<IContactQueryRepository>()
-                                                                  .Use<MongoContactQueryRepository>()
-                                                                  .Ctor<string>("connectionString")
-                                                                  .Is(mongoConnectionString)
-                                                                  .Ctor<string>("databaseName")
-                                                                  .Is(mongoDatabase));
+            var container = new Container(expression =>
+                                          expression.For<IContactQueryRepository>()
+                                          .Use<Contact.Query.SqlServer.SqlContactQueryRepository>()
+                                          /*
+                                                    .Use<MongoContactQueryRepository>()
+                                                    .Ctor<string>("connectionString")
+                                                    .Is(mongoConnectionString)
+                                                    .Ctor<string>("databaseName")
+                                                    .Is(mongoDatabase)
+                                           * */
+                );
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);
             Configure.With()
                      .StructureMapBuilder(container)

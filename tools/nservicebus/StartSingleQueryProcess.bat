@@ -1,1 +1,1 @@
-start C:\src\NServiceBusMessagingExample\src\contact.query\Contact.Query\bin\Debug\NServiceBus.Host.exe /endpointName:"Contact.Query" NServiceBus.Integration
+start C:\src\NServiceBusMessagingExample\src\contact.query\Contact.Query\bin\Release\NServiceBus.Host.exe /endpointName:"Contact.Query" NServiceBus.Integration

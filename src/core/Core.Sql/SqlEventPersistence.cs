@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -52,15 +53,27 @@ namespace Core.Sql
             {
                 connection.Open();
 
-                using (var command = connection.CreateCommand())
+                using (var transaction = connection.BeginTransaction(IsolationLevel.ReadCommitted))
                 {
-                    command.CommandText =
-                        "insert into Events (Id,AggregateId,Version,Event) values (@Id,@AggregateId,@Version,@Event)";
-                    command.Parameters.AddWithValue("@Id", Guid.NewGuid());
-                    command.Parameters.AddWithValue("@AggregateId", aggregateId);
-                    command.Parameters.AddWithValue("@Version", domainEvent.Version);
-                    command.Parameters.AddWithValue("@Event", stringBuilder.ToString());
-                    command.ExecuteNonQuery();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandText =
+                            "insert into Events (Id,AggregateId,Version,Event) values (@Id,@AggregateId,@Version,@Event)";
+                        command.Parameters.AddWithValue("@Id", Guid.NewGuid());
+                        command.Parameters.AddWithValue("@AggregateId", aggregateId);
+                        command.Parameters.AddWithValue("@Version", domainEvent.Version);
+                        command.Parameters.AddWithValue("@Event", stringBuilder.ToString());
+                        command.ExecuteNonQuery();
+                        try
+                        {
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                        }
+                    }
                 }
             }
         }
@@ -70,29 +83,43 @@ namespace Core.Sql
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var transaction = connection.BeginTransaction(IsolationLevel.ReadCommitted))
                 {
-                    command.CommandText = "select * from Events where AggregateID = @AggregateID order by Version asc";
-                    command.Parameters.AddWithValue("@AggregateID", id);
-                    using (var dataReader = command.ExecuteReader())
+                    using (var command = connection.CreateCommand())
                     {
+                        command.Transaction = transaction;
+                        command.CommandText =
+                            "select * from Events where AggregateID = @AggregateID order by Version asc";
+                        command.Parameters.AddWithValue("@AggregateID", id);
                         var events = new List<DomainEvent>();
-                        while (dataReader.Read())
+                        using (var dataReader = command.ExecuteReader())
                         {
-                            var @eventXmlReader = dataReader.GetXmlReader(dataReader.GetOrdinal("Event"));
-                            var @eventWrapper = (DomainEventWrapper)_xmlSerializer.Deserialize(@eventXmlReader);
-                            events.Add(@eventWrapper.DomainEvent);
+                            while (dataReader.Read())
+                            {
+                                var @eventXmlReader = dataReader.GetXmlReader(dataReader.GetOrdinal("Event"));
+                                var @eventWrapper = (DomainEventWrapper) _xmlSerializer.Deserialize(@eventXmlReader);
+                                events.Add(@eventWrapper.DomainEvent);
+                            }
+                        }
+                        try
+                        {
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
                         }
                         return events;
                     }
+                   
                 }
             }
         }
 
-        private static XmlSerializer CreateXmlSerializer(IEnumerable<Type> domainEventTypes )
+        private static XmlSerializer CreateXmlSerializer(IEnumerable<Type> domainEventTypes)
         {
-            var xRoot = new XmlRootAttribute {ElementName = "DomainEventWrapper", IsNullable = true};
-            var serializer = new XmlSerializer(typeof (DomainEventWrapper), null,
+            var xRoot = new XmlRootAttribute { ElementName = "DomainEventWrapper", IsNullable = true };
+            var serializer = new XmlSerializer(typeof(DomainEventWrapper), null,
                                                domainEventTypes.ToArray(), xRoot, null);
             return serializer;
         }
