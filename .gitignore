@@ -33,3 +33,5 @@ packages/
 deploy/*
 !.nuget
 !NuGet.exe
+*~
+*.swp
