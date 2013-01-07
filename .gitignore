@@ -31,3 +31,5 @@ results/*
 $tf*/
 packages/
 deploy/*
+!.nuget
+!NuGet.exe
