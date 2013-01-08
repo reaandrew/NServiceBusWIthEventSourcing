@@ -1,0 +1,8 @@
+{
+    "name": "ScrumBoard"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "cli-table":"latest"
+  }
+}
