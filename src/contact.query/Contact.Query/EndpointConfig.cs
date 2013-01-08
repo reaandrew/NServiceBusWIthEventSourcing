@@ -28,14 +28,13 @@ namespace Contact.Query
             //And Use a factory, this is DIRTY
             var container = new Container(expression =>
                                           expression.For<IContactQueryRepository>()
-                                          .Use<Contact.Query.SqlServer.SqlContactQueryRepository>()
-                                          /*
+                                              //.Use<Contact.Query.SqlServer.SqlContactQueryRepository>()
                                                     .Use<MongoContactQueryRepository>()
                                                     .Ctor<string>("connectionString")
                                                     .Is(mongoConnectionString)
                                                     .Ctor<string>("databaseName")
                                                     .Is(mongoDatabase)
-                                           * */
+
                 );
 
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);

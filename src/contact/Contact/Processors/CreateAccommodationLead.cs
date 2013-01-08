@@ -16,7 +16,6 @@ namespace Contact.Processors
 
         public void Handle(Messages.Commands.CreateAccommodationLead message)
         {
-            LogManager.GetLogger("General").Info("CorrelationID = " + message.GetHeader("correlationId"));
             var accommodationLead = new AccommodationLead
                 (message.AccommodationLeadID, message.Name, message.Email);
             _domainRepository.Save(accommodationLead);
