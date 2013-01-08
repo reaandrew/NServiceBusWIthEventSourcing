@@ -6,6 +6,7 @@ using Contact.Query.Auditing.DataAccess;
 using Contact.Query.Auditing.DataObjects;
 using MongoDB.Driver;
 using NServiceBus;
+using log4net;
 
 namespace Contact.Query.Auditing.Infrastructure
 {
@@ -54,11 +55,15 @@ namespace Contact.Query.Auditing.Infrastructure
 
             //Check if the data is inclusive of the saga
             data.MessageCount += 1;
-            data.TotalMilliseconds += (double)(processEnded - processStarted).Duration().TotalMilliseconds;
-            if (data.Min == 0 || data.TotalMilliseconds < data.Min)
-                data.Min = data.TotalMilliseconds;
-            if (data.Max == 0 || data.TotalMilliseconds > data.Max)
-                data.Max = data.TotalMilliseconds;
+            var milliseconds =  (double)(processEnded - processStarted).Duration().TotalMilliseconds;
+            data.TotalMilliseconds += milliseconds;
+            if (data.Min == 0 || milliseconds < data.Min)
+                data.Min = milliseconds;
+            if (data.Max == 0 || milliseconds > data.Max)
+                data.Max = milliseconds;
+
+            LogManager.GetLogger(this.GetType()).Info(messageTypeName + " NServiceBus.ProcessingStarted " + message.GetHeader("NServiceBus.ProcessingStarted"));
+            LogManager.GetLogger(this.GetType()).Info(messageTypeName + " NServiceBus.ProcessingEnded " + message.GetHeader("NServiceBus.ProcessingEnded"));
 
             collection.Save(data);
         }
