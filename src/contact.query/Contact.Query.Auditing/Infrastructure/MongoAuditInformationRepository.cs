@@ -29,10 +29,9 @@ namespace Contact.Query.Auditing.Infrastructure
                 !(message is ICommand))
                 throw new ArgumentException("It is only possible to process types implementing ICommand or IEvent", "message");
 
-            var messageTypeName = message.GetType().FullName;
+            var messageTypeName = message.GetType().FullName.ToLower();
             var originatingHeader = message.GetHeader("NServiceBus.OriginatingAddress");
-            var originatingQueue = originatingHeader.Substring(0, originatingHeader.IndexOf("@"))
-                .ToLower();
+            var originatingQueue = originatingHeader.Substring(0, originatingHeader.IndexOf("@")).ToLower();
 
             var collection = GetCollection();
 
