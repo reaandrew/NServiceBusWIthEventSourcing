@@ -60,7 +60,7 @@ namespace Contact.Query.Auditing.Infrastructure
             if (data.Max == 0 || data.TotalMilliseconds > data.Max)
                 data.Max = data.TotalMilliseconds;
 
-            collection.Save(data)
+            collection.Save(data);
         }
 
         public IList<MessageAuditInformation> List()
