@@ -1,0 +1,5 @@
+I have simply used:
+
+watch -d 'node server.js'
+
+As the UI runner for this.  Nice and simple and does the job
