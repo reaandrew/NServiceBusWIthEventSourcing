@@ -54,7 +54,7 @@ namespace Core.Mongo
             var client = new MongoClient(_connectionString);
             var server = client.GetServer();
             var database = server.GetDatabase(_database);
-            var collection = database.GetCollection<DomainEventCollection>(MongoEventPersistence.DOMAINEVENT_COLLECTION);
+            var collection = database.GetCollection<DomainEventCollection>(DOMAINEVENT_COLLECTION);
             return collection;
         }
     }

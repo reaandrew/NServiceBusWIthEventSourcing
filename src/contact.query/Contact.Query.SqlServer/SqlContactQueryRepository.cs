@@ -17,10 +17,8 @@ namespace Contact.Query.SqlServer
                                                                   IsolationLevel = IsolationLevel.RepeatableRead
                                                               }))
             {
-               
                 using (var context = new ContactEntities())
                 {
-                    
                     var accLeadToSave =
                         context.AccommodationLeads.SingleOrDefault(
                             x => x.AccommodationLeadId == accommodationLead.AccommodationLeadId)
@@ -37,7 +35,6 @@ namespace Contact.Query.SqlServer
                     context.SaveChanges();
                     transaction.Complete();
                 }
-                
             }
         }
 
@@ -65,7 +62,6 @@ namespace Contact.Query.SqlServer
                     context.SaveChanges();
                     transaction.Complete();
                 }
-                
             }
         }
 
@@ -120,7 +116,6 @@ namespace Contact.Query.SqlServer
                     context.SaveChanges();
                     transaction.Complete();
                 }
-                
             }
         }
 
@@ -135,14 +130,14 @@ namespace Contact.Query.SqlServer
                 using (var context = new ContactEntities())
                 {
                     var leads = context.AccommodationLeads.Select(x =>
-                                                             new Contracts.Model.AccommodationLead
-                                                                 {
-                                                                     AccommodationLeadId =
-                                                                         x.AccommodationLeadId,
-                                                                     Email = x.Email,
-                                                                     Name = x.Name,
-                                                                     Approved = x.Approved
-                                                                 }).ToList();
+                                                                  new Contracts.Model.AccommodationLead
+                                                                      {
+                                                                          AccommodationLeadId =
+                                                                              x.AccommodationLeadId,
+                                                                          Email = x.Email,
+                                                                          Name = x.Name,
+                                                                          Approved = x.Approved
+                                                                      }).ToList();
                     transaction.Complete();
                     return leads;
                 }
@@ -160,13 +155,13 @@ namespace Contact.Query.SqlServer
                 using (var context = new ContactEntities())
                 {
                     var returnlead = context.AccommodationLeads.Where(x => x.AccommodationLeadId == id)
-                                  .Select(lead => new Contracts.Model.AccommodationLead
-                                      {
-                                          AccommodationLeadId = lead.AccommodationLeadId,
-                                          Name = lead.Name,
-                                          Email = lead.Email,
-                                          Approved = lead.Approved
-                                      }).SingleOrDefault();
+                                            .Select(lead => new Contracts.Model.AccommodationLead
+                                                {
+                                                    AccommodationLeadId = lead.AccommodationLeadId,
+                                                    Name = lead.Name,
+                                                    Email = lead.Email,
+                                                    Approved = lead.Approved
+                                                }).SingleOrDefault();
                     transaction.Complete();
                     if (returnlead == null)
                     {

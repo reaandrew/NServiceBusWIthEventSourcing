@@ -14,5 +14,4 @@ namespace Contact.IntegrationTests.InfrastructureTests
             Assert.That(factory, Is.TypeOf<MongoContactEventPersistenceFactory>());
         }
     }
-
 }

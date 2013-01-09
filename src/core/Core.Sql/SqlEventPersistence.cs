@@ -26,6 +26,7 @@ namespace Core.Sql
             [XmlElement]
             public DomainEvent DomainEvent { get; set; }
         }
+
         private readonly string _connectionString;
         private readonly XmlSerializer _xmlSerializer;
 
@@ -111,15 +112,14 @@ namespace Core.Sql
                         }
                         return events;
                     }
-                   
                 }
             }
         }
 
         private static XmlSerializer CreateXmlSerializer(IEnumerable<Type> domainEventTypes)
         {
-            var xRoot = new XmlRootAttribute { ElementName = "DomainEventWrapper", IsNullable = true };
-            var serializer = new XmlSerializer(typeof(DomainEventWrapper), null,
+            var xRoot = new XmlRootAttribute {ElementName = "DomainEventWrapper", IsNullable = true};
+            var serializer = new XmlSerializer(typeof (DomainEventWrapper), null,
                                                domainEventTypes.ToArray(), xRoot, null);
             return serializer;
         }

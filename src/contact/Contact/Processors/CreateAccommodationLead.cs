@@ -1,7 +1,6 @@
 ﻿using Contact.Domain;
 using Core;
 using NServiceBus;
-using log4net;
 
 namespace Contact.Processors
 {

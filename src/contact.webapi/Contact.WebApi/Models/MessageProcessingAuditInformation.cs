@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Contact.WebApi.Models
+﻿namespace Contact.WebApi.Models
 {
     public class MessageProcessingAuditInformation
     {

@@ -1,7 +1,6 @@
 using System;
 using Contact.Messages.Events;
 using NServiceBus;
-using log4net;
 
 namespace Contact.Subscribers
 {

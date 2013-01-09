@@ -6,6 +6,7 @@ namespace Contact.Query.Auditing.DataObjects
     public class MessageAuditInformation
     {
         public ObjectId Id { get; set; }
+
         public MessageAuditInformation()
         {
             TotalMilliseconds = 0;

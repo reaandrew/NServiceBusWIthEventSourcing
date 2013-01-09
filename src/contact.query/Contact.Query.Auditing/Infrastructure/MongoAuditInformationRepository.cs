@@ -5,6 +5,7 @@ using System.Linq;
 using Contact.Query.Auditing.DataAccess;
 using Contact.Query.Auditing.DataObjects;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using NServiceBus;
 using log4net;
 
@@ -27,7 +28,8 @@ namespace Contact.Query.Auditing.Infrastructure
         {
             if (!(message is IEvent) &&
                 !(message is ICommand))
-                throw new ArgumentException("It is only possible to process types implementing ICommand or IEvent", "message");
+                throw new ArgumentException("It is only possible to process types implementing ICommand or IEvent",
+                                            "message");
 
             var messageTypeName = message.GetType().FullName.ToLower();
             var originatingHeader = message.GetHeader("NServiceBus.OriginatingAddress");
@@ -36,15 +38,15 @@ namespace Contact.Query.Auditing.Infrastructure
             var collection = GetCollection();
 
             var query = MongoDB.Driver.Builders.Query.And(
-                MongoDB.Driver.Builders.Query<MessageAuditInformation>.EQ(x => x.MessageTypeName, messageTypeName),
-                MongoDB.Driver.Builders.Query<MessageAuditInformation>.EQ(x => x.OriginatingQueue, originatingQueue)
+                Query<MessageAuditInformation>.EQ(x => x.MessageTypeName, messageTypeName),
+                Query<MessageAuditInformation>.EQ(x => x.OriginatingQueue, originatingQueue)
                 );
 
             var data = collection.FindOneAs<MessageAuditInformation>(query) ?? new MessageAuditInformation
-            {
-                MessageTypeName = messageTypeName,
-                OriginatingQueue = originatingQueue
-            };
+                {
+                    MessageTypeName = messageTypeName,
+                    OriginatingQueue = originatingQueue
+                };
             var processStarted = DateTime.ParseExact(message.GetHeader("NServiceBus.ProcessingStarted"),
                                                      "yyyy-MM-dd HH:mm:ss:ffffff 'Z'",
                                                      CultureInfo.InvariantCulture);
@@ -54,15 +56,19 @@ namespace Contact.Query.Auditing.Infrastructure
 
             //Check if the data is inclusive of the saga
             data.MessageCount += 1;
-            var milliseconds =  (double)(processEnded - processStarted).Duration().TotalMilliseconds;
+            var milliseconds = (processEnded - processStarted).Duration().TotalMilliseconds;
             data.TotalMilliseconds += milliseconds;
             if (data.Min == 0 || milliseconds < data.Min)
                 data.Min = milliseconds;
             if (data.Max == 0 || milliseconds > data.Max)
                 data.Max = milliseconds;
 
-            LogManager.GetLogger(this.GetType()).Info(messageTypeName + " NServiceBus.ProcessingStarted " + message.GetHeader("NServiceBus.ProcessingStarted"));
-            LogManager.GetLogger(this.GetType()).Info(messageTypeName + " NServiceBus.ProcessingEnded " + message.GetHeader("NServiceBus.ProcessingEnded"));
+            LogManager.GetLogger(this.GetType())
+                      .Info(messageTypeName + " NServiceBus.ProcessingStarted " +
+                            message.GetHeader("NServiceBus.ProcessingStarted"));
+            LogManager.GetLogger(this.GetType())
+                      .Info(messageTypeName + " NServiceBus.ProcessingEnded " +
+                            message.GetHeader("NServiceBus.ProcessingEnded"));
 
             collection.Save(data);
         }

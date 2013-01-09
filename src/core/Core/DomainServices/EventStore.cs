@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Domain;
 
 namespace Core.DomainServices
@@ -27,7 +28,7 @@ namespace Core.DomainServices
         public IList<DomainEvent> GetEventsForAggregate<T>(Guid id)
             where T : AggregateRoot
         {
-            return _eventPersistence.GetEventsForAggregate<T>(id);
+            return _eventPersistence.GetEventsForAggregate<T>(id).OrderBy(x => x.Version).ToList();
         }
     }
 }

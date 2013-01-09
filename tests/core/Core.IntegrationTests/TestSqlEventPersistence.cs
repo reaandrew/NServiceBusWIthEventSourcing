@@ -66,7 +66,7 @@ namespace Core.IntegrationTests
 
             var retrievedAggregateRoot = _domainRepository.Get<TestDomainObject>(aggId);
 
-            Assert.That((object) retrievedAggregateRoot.Version, Is.EqualTo(1));
+            Assert.That(retrievedAggregateRoot.Version, Is.EqualTo(1));
         }
     }
 }

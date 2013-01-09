@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contact.Query.Auditing.DataAccess;
+﻿using Contact.Query.Auditing.DataAccess;
 using NServiceBus;
 
 namespace Contact.Query.Auditing.Processors
 {
     public class CreateUser :
-        IHandleMessages<Contact.Messages.Commands.CreateUser>
+        IHandleMessages<Messages.Commands.CreateUser>
     {
         private readonly IAuditInformationRepository _auditInformationRepository;
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Xml.Serialization;
+﻿using System.Configuration;
 using Contact.Domain.DomainEvents;
 using Core;
 using Core.Domain;

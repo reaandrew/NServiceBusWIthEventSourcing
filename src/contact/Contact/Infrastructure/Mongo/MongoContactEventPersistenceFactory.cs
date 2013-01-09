@@ -6,7 +6,6 @@ using MongoDB.Bson.Serialization;
 
 namespace Contact.Infrastructure.Mongo
 {
-
     /// <summary>
     /// This will be the ContactMongoEventStoreFactory
     /// </summary>

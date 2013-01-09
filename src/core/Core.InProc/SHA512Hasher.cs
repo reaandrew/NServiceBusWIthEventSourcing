@@ -1,7 +1,6 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
-using log4net;
 
 namespace Core.InProc
 {

@@ -5,7 +5,6 @@ using Contact.Messages.State;
 using Core;
 using NServiceBus;
 using NServiceBus.Saga;
-using log4net;
 
 namespace Contact.Processors
 {

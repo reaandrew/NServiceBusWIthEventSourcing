@@ -1,5 +1,4 @@
 using NServiceBus;
-using NServiceBus.Unicast.Queuing.Msmq;
 using log4net.Config;
 
 namespace Contact.TestSubscriber

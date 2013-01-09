@@ -3,7 +3,7 @@ using NServiceBus;
 
 namespace Contact.Query.Auditing.Processors
 {
-    public class AccommodationSupplierCreated : IHandleMessages<Contact.Messages.Events.AccommodationSupplierCreated>
+    public class AccommodationSupplierCreated : IHandleMessages<Messages.Events.AccommodationSupplierCreated>
     {
         private readonly IAuditInformationRepository _auditInformationRepository;
 

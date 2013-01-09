@@ -2,7 +2,6 @@
 using Core;
 using Core.InProc;
 using NServiceBus;
-using log4net;
 
 namespace Contact.Processors
 {

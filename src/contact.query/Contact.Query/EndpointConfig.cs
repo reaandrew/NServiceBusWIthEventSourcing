@@ -2,8 +2,6 @@ using System.Configuration;
 using Contact.Query.Contracts;
 using Contact.Query.Mongo;
 using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Unicast.Queuing.Msmq;
 using StructureMap;
 using log4net.Config;
 
@@ -23,7 +21,7 @@ namespace Contact.Query
         {
             var mongoConnectionString = ConfigurationManager.AppSettings["MongoEventStoreConnectionString"];
             var mongoDatabase = ConfigurationManager.AppSettings["MongoEventStoreDatabaseName"];
-            
+
             //Move to config so that it can be changed
             //And Use a factory, this is DIRTY
             var container = new Container(expression =>
@@ -34,7 +32,6 @@ namespace Contact.Query
                                                     .Is(mongoConnectionString)
                                                     .Ctor<string>("databaseName")
                                                     .Is(mongoDatabase)
-
                 );
 
             SetLoggingLibrary.Log4Net(XmlConfigurator.Configure);

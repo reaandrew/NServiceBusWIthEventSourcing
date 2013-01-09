@@ -4,7 +4,7 @@ using NServiceBus;
 namespace Contact.Query.Auditing.Processors
 {
     public class CreateAuthenticationWithGeneratedPassword :
-        IHandleMessages<Contact.Messages.Commands.CreateAuthenticationWithGeneratedPassword>
+        IHandleMessages<Messages.Commands.CreateAuthenticationWithGeneratedPassword>
     {
         private readonly IAuditInformationRepository _auditInformationRepository;
 

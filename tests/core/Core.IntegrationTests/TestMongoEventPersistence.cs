@@ -48,8 +48,8 @@ namespace Core.IntegrationTests
             var collection = database.GetCollection<DomainEventCollection>(MongoEventPersistence.DOMAINEVENT_COLLECTION);
             var query = Query.EQ("AggregateId", aggId);
             var entity = collection.FindOne(query);
-            Assert.That((object) entity.DomainEvents.Count, Is.EqualTo(1));
-            Assert.That((object) entity.DomainEvents[0], Is.TypeOf<TestDomainEvent>());
+            Assert.That(entity.DomainEvents.Count, Is.EqualTo(1));
+            Assert.That(entity.DomainEvents[0], Is.TypeOf<TestDomainEvent>());
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Core.IntegrationTests
 
             var retrievedAggregateRoot = _domainRepository.Get<TestDomainObject>(aggId);
 
-            Assert.That((object) retrievedAggregateRoot.Version, Is.EqualTo(1));
+            Assert.That(retrievedAggregateRoot.Version, Is.EqualTo(1));
         }
     }
 }
