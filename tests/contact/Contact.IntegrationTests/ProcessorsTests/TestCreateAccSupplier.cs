@@ -25,6 +25,7 @@ namespace Contact.IntegrationTests.ProcessorsTests
                 (password => password.Email == accSupplierEmail)
                 .When(processor => processor.Handle(new Messages.Commands.CreateAccSupplier
                     {
+                        AccommodationSupplierId = authId,
                         Name = accSupplierName,
                         Email = accSupplierEmail
                     }))

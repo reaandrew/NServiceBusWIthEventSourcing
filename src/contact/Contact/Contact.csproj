@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Logging\EventPersistenceWithLogging.cs" />
     <Compile Include="Infrastructure\Mongo\MongoContactEventPersistenceFactory.cs" />
     <Compile Include="Infrastructure\Sql\SqlContactEventPersistenceFactory.cs" />
     <Compile Include="EndpointConfig.cs" />

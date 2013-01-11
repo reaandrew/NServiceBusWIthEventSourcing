@@ -60,7 +60,7 @@ namespace Core.Sql
                     {
                         command.Transaction = transaction;
                         command.CommandText =
-                            "insert into Events (Id,AggregateId,Version,Event) values (@Id,@AggregateId,@Version,@Event)";
+                            "SET NOCOUNT ON;insert into dbo.Events (Id,AggregateId,Version,Event) values (@Id,@AggregateId,@Version,@Event)";
                         command.Parameters.AddWithValue("@Id", Guid.NewGuid());
                         command.Parameters.AddWithValue("@AggregateId", aggregateId);
                         command.Parameters.AddWithValue("@Version", domainEvent.Version);
@@ -90,7 +90,7 @@ namespace Core.Sql
                     {
                         command.Transaction = transaction;
                         command.CommandText =
-                            "select * from Events where AggregateID = @AggregateID order by Version asc";
+                            "SET NOCOUNT ON;select Event from dbo.Events where AggregateID = @AggregateID order by Version asc";
                         command.Parameters.AddWithValue("@AggregateID", id);
                         var events = new List<DomainEvent>();
                         using (var dataReader = command.ExecuteReader())

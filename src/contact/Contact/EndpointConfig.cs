@@ -1,3 +1,4 @@
+using Contact.Infrastructure.Logging;
 using Contact.Infrastructure.NServiceBus;
 using Core;
 using Core.Configuration;
@@ -39,7 +40,7 @@ namespace Contact
                      .Use(() => new NServiceBusDomainEventMappingFactory().CreateMappingCollection());
                     x.For<IEventPersistence>()
                      .LifecycleIs(new SingletonLifecycle())
-                     .Use(eventPersistenceFactory.CreateEventPersistence());
+                     .Use(new EventPersistenceWithLogging(eventPersistenceFactory.CreateEventPersistence()));
                     x.For<IEventStore>().Use<EventStore>();
                     x.For<IDomainRepository>().Use<DomainRepository>();
                     x.For<ISendEmails>().Use<BlackHoleEmailSender>();

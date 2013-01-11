@@ -13,6 +13,7 @@ namespace Contact.Domain
         public User(IEnumerable<DomainEvent> domainEvents)
             : base(domainEvents)
         {
+
         }
 
         public User(Guid id, string name, string email)
@@ -25,7 +26,7 @@ namespace Contact.Domain
                 });
         }
 
-        private void Handle(UserCreated @event)
+        private void Apply(UserCreated @event)
         {
             this.ID = @event.ID;
             this._email = @event.Email;

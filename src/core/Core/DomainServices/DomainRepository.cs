@@ -15,6 +15,9 @@ namespace Core.DomainServices
         public void Save<T>(T aggregateRoot)
             where T : AggregateRoot
         {
+            if (aggregateRoot.ID == null || aggregateRoot.ID == Guid.Empty)
+                throw new NullReferenceException("A valid GUID must be specified for the AggregateRoot");
+
             _eventStore.SaveEvents(aggregateRoot.ID, aggregateRoot.OutstandingEvents);
             aggregateRoot.MarkChangesAsCommitted();
         }
